@@ -1,0 +1,84 @@
+
+                <h2>کار با عناصر صفحه (DOM Manipulation) &#8211; بخش دوم</h2>
+                <div><h3>متدهای removeChild و replaceChild</h3>
+<p style="text-align: justify;">برای حذف هر یک از گره‌های درخت DOM می‌توان از متد removeChild استفاده کرد. این متد را نیز مانند متد insertBefore باید بر روی عنصر والد گره‌ی مورد نظر اجرا کرد. جهت اجرای مثال‌های این بخش سند HTML زیر را تعریف می‌کنیم.</p>
+<pre class="ltr"><code class="language-markup">
+&lt;h1&gt;List of fruits&lt;/h1&gt;
+&lt;ul&gt;
+	&lt;li&gt;Apple&lt;/li&gt;
+	&lt;li&gt;Orange&lt;/li&gt;
+	&lt;li&gt;Banana&lt;/li&gt;
+	&lt;li&gt;Cherry&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p style="text-align: justify;">حال فرض کنید قصد داریم عنصر دوم لیست فوق را حذف کنیم. برای این منظور ابتدا باید عنصر مورد نظر را انتخاب کرد. توجه کنید که روش انتخاب هیچ اهمیتی ندارد و از هر روشی می‌توان برای انتخاب عنصر مورد نظر استفاده کرد. در مثال زیر ابتدا با استفاده از خاصیت firstElementChild فرزند اول عنصر &lt;ul&gt; انتخاب می‌شود. سپس با خاصیت nextElementSibling از این عنصر، عنصر دوم لیست انتخاب می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+const ul = document.querySelector('ul');
+const second = ul.firstElementChild.nextElementSibling;
+const removed = ul.removeChild(second);
+</code></pre>
+<p style="text-align: justify;">توجه کنید که متد removeChild گره‌ی حذف شده را بازمی‌گراند. یعنی متد removeChild گره‌ی مورد نظر را فقط از درخت DOM حذف می‌کند و از حافظه حذف نمی‌کند. پس در صورت نیاز می‌توان گره‌ی مورد نظر را در متغیر دیگری ذخیره کرد (متغیر removed در این مثال) تا در مکان دیگری از آن استفاده شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/WYOKJv" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید.</p>
+<p style="text-align: justify;">یکی دیگر از متدهای پرکاربرد مرتبط با DOM، متد replaceChild است. با استفاده از این متد می‌توان یک گره را با گره‌ای دیگر جایگزین کرد. این متد دو ورودی دریافت می‌کند. ورودی اول گره‌ی جدید برای جایگزینی، و ورودی دوم گره‌ی قدیمی است که باید حذف شود. این متد را باید بر روی عنصر والد گره‌ی قدیمی اجرا کرد. به عنوان مثال در قطعه کد زیر یک عنصر جدید از نوع &lt;li&gt; ایجاد شده و جایگزین آخرین عنصر لیست قبلی می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+const newItem = document.createElement('li');
+newItem.textContent = 'Lemon';
+const ul = document.querySelector('ul');
+const oldItem = ul.lastElementChild;
+const replaced = ul.replaceChild(newItem , oldItem);
+</code></pre>
+<p style="text-align: justify;">متد replaceChild نیز مانند متد removeChild گره‌ی حذف شده را بازمی‌گرداند. یعنی در مثال فوق متغیر replaced به همان عنصر oldItem اشاره می‌کند. در واقع عنصر oldItem فقط از درخت DOM حذف شده است. ولی با استفاده از متغیر replaced می‌توان در مکان دیگری از آن استفاده کرد. این مثال را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/EOXeYE" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته‌ی مهم :</span></strong> در صورتی که با استفاده از متدهایی مانند replaceChild یا insertBefore یا appendChild یکی از عناصر موجود در درخت DOM را در مکان دیگری درج کنید. عنصر مورد نظر از مکان قبلی خود حذف می‌شود. به مثال زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+const ul = document.querySelector('ul');
+const firstItem = ul.firstElementChild;
+const lastItem = ul.lastElementChild;
+ul.insertBefore(firstItem , lastItem);
+</code></pre>
+<p style="text-align: justify;">در این مثال عنصر اول لیست با استفاده از متد insertBefore قبل از عنصر آخر لیست درج می‌شود. با اجرای دستورات فوق، عنصر اول لیست از محل قبلی خود حذف شده، سپس به محل جدید منتقل می‌شود. برای درک بهتر این موضوع این مثال را <a href="https://codepen.io/abbassac/pen/jQwvym" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;">اما در برخی مواقع لازم است تا یک گره از DOM ضمن حفظ مکان فعلی خود، در مکان جدیدی در درخت DOM نیز کپی شود. در این شرایط باید ابتدا یک کپی از گره‌ی مورد نظر ایجاد شود. سپس نسخه‌ی کپی شده را به محل جدید انتقال داد. برای کپی گرفتن از یک گره می‌توان از متد cloneNode استفاده کرد. به عنوان مثال در قطعه کد زیر یک کپی از عنصر اول لیست به انتهای همان لیست اضافه می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+const ul = document.querySelector('ul');
+const copyNode = ul.firstElementChild.cloneNode(true);
+ul.appendChild(copyNode);
+</code></pre>
+<p style="text-align: justify;">در خط دوم از این مثال با استفاده از متد cloneNode یک کپی از اولین عنصر لیست در متغیر copyNode ذخیره می‌شود. سپس در دستور بعدی، گره‌ی جدید به انتهای لیست اضافه می‌شود. همانطور که مشاهده می‌کنید، متد cloneNode یک آرگومان ورودی نیز دریافت می‌کند. این آرگومان اختیاری است و در صورت true بودن، عنصر مورد نظر با تمام فرزندان کپی می‌شود. اما در صورت false بودن فقط خود عنصر بدون فرزندان کپی می‌شود. مقدار پیش‌فرض این آرگومان نیز false است. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/qQjMxw" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span> </strong>در صورتی که عنصری دارای صفت id باشد، استفاده از متد cloneNode برای کپی کردن آن، می‌تواند موجب ایجاد دو عنصر با id یکسان شود. وجود دو عنصر با id یکسان در یک سند HTML ممکن است مشکلات پیش‌بینی نشده‌ای را به وجود آورد. پس باید این نکته را در زمان استفاده از متد cloneNode در نظر داشته باشید.</p>
+<p>&nbsp;</p>
+<h3>خاصیت innerHTML</h3>
+<p style="text-align: justify;">تا به اینجا با انواع روش‌های ایجاد، مقداردهی، جا به جایی و حذف گره‌ها در DOM آشنا شدیم. اما روش‌های معرفی شده برای ایجاد تغییرات بزرگ مناسب نیستند. مثلاً برای ایجاد یک لیست تو در تو که دارای ده‌ها آیتم مختلف است، استفاده از روش‌های معرفی شده مناسب نیست و تعداد خطوط برنامه را به شدت افزایش داده و خوانایی برنامه را نیز کاهش می‌دهد. در چنین شرایطی می‌توان از خاصیت innerHTML استفاده کرد.</p>
+<p style="text-align: justify;">خاصیت innerHTML بسیار شبیه خاصیت textContent است. یعنی محتوای یک عنصر را به صورت یک رشته‌ی متنی نگهداری می‌کند. اما یک تفاوت مهم بین این دو خاصیت وجود دارد. خاصیت innerHTML علاوه بر محتوای متنی، تگ‌های HTML داخل عناصر را نیز نگهداری می‌کند. یعنی می‌توان تمام فرزندان یک عنصر را، از هر نوعی که باشند، به صورت یک رشته‌ی HTML در خاصیت innerHTML آن عنصر قرار داد. به عنوان مثال فرض کنید قصد داریم ۳ عنصر جدید به انتهای لیست نشان داده شده در مثال قبلی اضافه کنیم. با استفاده از روش‌های قبلی باید از دستورات زیر استفاده کنیم.</p>
+<pre class="ltr"><code class="language-javascript">
+const ul = document.querySelector('ul');
+const li1 = document.createElement('li');
+li1.textContent = 'Lemon';
+const li2 = document.createElement('li');
+li2.textContent = 'Lime';
+const li3 = document.createElement('li');
+li3.textContent = 'Melon';
+ul.appendChild(li1);
+ul.appendChild(li2);
+ul.appendChild(li3);
+</code></pre>
+<p style="text-align: justify;">حال با استفاده از خاصیت innerHTML این کار را انجام می‌دهیم. برای انجام این کار کافی است یک رشته‌ی HTML را که شامل ۳ تگ &lt;li&gt; است به انتهای تگ &lt;ul&gt; اضافه کنیم. قطعه کد زیر این کار را انجام می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript">
+const ul = document.querySelector('ul');
+const newChildren = '&lt;li&gt;Lemon&lt;/li&gt; &lt;li&gt;Lime&lt;/li&gt; &lt;li&gt;Melon&lt;/li&gt;';
+ul.innerHTML = ul.innerHTML + newChildren;
+</code></pre>
+<p style="text-align: justify;">توجه کنید که رشته‌ی newChildren به رشته‌ی ذخیره شده در خاصیت innerHTML اضافه شده است. زیرا در صورتی که خاصیت innerHTML برابر با newChildren قرار داده شود، کل محتویات قبلی تگ &lt;ul&gt; از بین رفته و رشته‌ی newChildren جایگزین آن می‌شود که در این صورت لیست مورد نظر در نهایت ۳ عنصر خواهد داشت. اما با اضافه کردن رشته‌ی newChildrern به مقدار قبلی innerHTML، محتوای قبلی حفظ شده و ۳ عنصر جدید نیز به انتهای لیست اضافه می‌شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/PxKYmJ" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;">خاصیت innerHTML کاربرد زیادی در جاوا اسکریپت دارد و برای اعمال تغییرات بزرگ در ساختار DOM به کار برده می‌شود. در مثال فوق رشته‌ی newChildren یک رشته‌ی نسبتاً کوتاه است که در یک خط می‌توان آن را نوشت. اما این رشته می‌تواند به هر اندازه بزرگ باشد. در شرایطی که به یک رشته‌ی طولانی برای قرار دادن در خاصیت innerHTML نیاز داشته باشیم، می‌توان از Template Literals برای ایجاد رشته‌ها استفاده کرد که به سادگی امکان ایجاد رشته‌های چند خطی را فراهم کرده و می‌توان از متغیرها در درون رشته‌ها استفاده کرد.</p>
+<p>&nbsp;</p>
+<h3>خاصیت outerHTML</h3>
+<p style="text-align: justify;">خاصیت outerHTML شباهت زیادی به خاصیت innerHTML دارد. تفاوت بین این دو خاصیت در این است که innerHTML فقط شامل فرزندان یک عنصر می‌شود. اما outerHTML علاوه بر فرزندان، تگ HTML مربوط به خود عنصر را نیز شامل می‌شود. مثال زیر تفاوت این دو خاصیت را به خوبی نشان می‌دهد. توجه کنید که در نمایش خروجی‌ها فضاهای خالی حذف شده‌اند.</p>
+<pre class="ltr"><code class="language-javascript">
+const ul = document.querySelector('ul');
+console.log(ul.innerHTML);
+← "&lt;li&gt;Apple&lt;/li&gt;&lt;li&gt;Orange&lt;/li&gt;&lt;li&gt;Banana&lt;/li&gt;&lt;li&gt;Cherry&lt;/li&gt;"
+console.log(ul.outerHTML);
+← "&lt;ul&gt;&lt;li&gt;Apple&lt;/li&gt;&lt;li&gt;Orange&lt;/li&gt;&lt;li&gt;Banana&lt;/li&gt;&lt;li&gt;Cherry&lt;/li&gt;&lt;/ul&gt;"
+</code></pre>
+<p style="text-align: justify;">مشاهده می‌کنید که خاصیت outerHTML شامل تگ شروع و پایان &lt;ul&gt; نیز می‌شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/WYEbVX" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span> </strong>خاصیت outerHTML نیز مانند خاصیت innerHTML قابلیت تغییر دارد. یعنی می‌توان رشته‌ی جدیدی را در آن قرار داد. اما در صورت قرار دادن مقدار جدیدی در این خاصیت، دیگر امکان دسترسی به عنصر مورد نظر از طریق متغیرهای قبلی وجود ندارد. زیرا عنصر مذکور از بین رفته و یک عنصر جدید جایگزین آن شده است. حتی اگر دقیقاً مقدار فعلی خاصیت outerHTML را مجدداً در این خاصیت قرار دهید، باز هم نمی‌توان از متغیرهای قبلی (متغیر ul در مثال بالا) برای دسترسی به آن استفاده کرد و باید مجدداً آن را انتخاب کرد.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span> </strong>با استفاده از خاصیت‌های innerHTML و outerHTML می‌توان هر محتوایی را به ساختار DOM اضافه کرد. حتی می‌توان با استفاده از تگ &lt;style&gt; کدهای CSS را نیز با استفاده از این خاصیت‌ها به صفحه‌ی وب اضافه کرد. اما توجه به این نکته ضروری است که بنا به دلایل امنیتی، امکان تزریق کدهای جاوا اسکریپت با استفاده از تگ &lt;script&gt; در این خاصیت‌ها وجود ندارد. یعنی در صورت استفاده از رشته‌ای که شامل تگ &lt;script&gt; باشد، محتوای تگ‌های &lt;script&gt; تفسیر و اجرا نخواهند شد.</p>
+</div>
+                

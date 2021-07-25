@@ -1,0 +1,112 @@
+
+                <h2>رویدادهای صفحه کلید</h2>
+                <div><p style="text-align: justify;">در این بخش به بررسی انواع رویدادهایی که توسط صفحه کلید تولید می‌شوند می‌پردازیم. همچنین خاصیت‌های شئ event که در این رویدادها در دسترس هستند را معرفی خواهیم کرد.</p>
+<p>&nbsp;</p>
+<h3>انواع رویدادهای صفحه کلید</h3>
+<p>در جاوا اسکریپت <span class="text-dark">۳</span> نوع رویداد توسط صفحه کلید تولید می‌شوند که عبارتند از :</p>
+<ul>
+<li style="text-align: justify;">keydown : در زمان فشردن هر یک از کلیدهای صفحه کلید این رویداد رخ می‌دهد. در صورتی که کلید در حالت فشرده نگه داشته شود، این رویداد به صورت مکرر اتفاق می‌افتد.</li>
+<li>keyup : در زمان رها کردن هر یک از کلیدهای صفحه کلید این رویداد رخ می‌دهد.</li>
+<li style="text-align: justify;">keypress : مانند رویداد keydown است. با این تفاوت که فقط در زمان فشردن کلیدهای کاراکتری رخ می‌دهد. اما رویداد keydown برای تمام کلیدها (مانند Ctrl، Home و &#8230;) رخ می‌دهد.</li>
+</ul>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته : </span></strong> در زمان فشردن کلیدهای کاراکتری، ابتدا رویداد keydown و سپس رویداد keypress رخ می‌دهد. و در صورت فشرده نگه داشتن کلید، این دو رویداد با همین ترتیب تکرار می‌شوند.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> برخی از عناصر در صفحات وب می‌توانند focus را در اختیار بگیرند. عنصری که focus را در اختیار دارد، تمام ورودی‌های صفحه کلید را دریافت می‌کند. مثلاً برای تایپ کردن یک رشته در عنصری از نوع &lt;input&gt;، ابتدا باید focus را به عنصر مورد نظر منتقل کرد (با کلیک کردن یا زدن کلید TAB)، سپس ورودی مورد نظر را تایپ کرد. توجه به این نکته بسیار مهم است که برخلاف رویدادهای ماوس که برای هر عنصری قابل استفاده هستند. رویدادهای صفحه کلید فقط برای عناصری که می‌توانند focus را در اختیار بگیرند قابل استفاده می‌باشند. زیرا فقط این عناصر می‌توانند ورودی‌هایی را از صفحه کلید دریافت کنند. مثلاً یک عنصر از نوع &lt;div&gt; نمی‌تواند ورودی‌های صفحه کلید را دریافت کند، پس نمی‌توان از رویدادهای صفحه کلید برای این عنصر استفاده کرد. (مگر این که از صفت tabindex برای عنصر مورد نظر استفاده شود)</p>
+<p style="text-align: justify;">مثال زیر نحوه‌ی وقوع رویدادهای صفحه کلید و ترتیب وقوع آنها را نشان می‌دهد. در این مثال برای یک عنصر از نوع &lt;input&gt;، یک تابع به عنوان Event Handler برای هر <span class="text-dark">۳</span> رویداد صفحه کلید تعریف شده است. در صورت فراخوانی این تابع، نام رویداد در صفحه‌ی وب نمایش می‌دهد. اگر این مثال را اجرا کنید، مشاهده می‌کنید که با فشردن هر یک از کلیدهای کاراکتری هر <span class="text-dark">۳</span> رویداد رخ می‌دهند. ترتیب وقوع آنها نیز به این صورت است که ابتدا رویداد keydown، سپس رویداد keypress و در انتها رویداد keyup رخ می‌دهد. در صورت نگه داشتن کلید نیز رویدادهای keydown و keypress به صورت متوالی رخ می‌دهند.</p>
+<p style="text-align: justify;">اما اگر یکی از کلیدهای غیر کاراکتری (مانند Shift یا Insert) را فشار دهید. فقط <span class="text-dark">۲</span> رویداد keydown و keyup رخ می‌دهند و رویداد keypress برای این نوع کلیدها رخ نمی‌دهد. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/GwdOXp" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+const input = document.querySelector('input');
+input.addEventListener('keydown', handler);
+input.addEventListener('keypress', handler);
+input.addEventListener('keyup', handler);
+
+function handler(event) {
+	let p = document.querySelector('p');
+	p.textContent += event.type + ' ';
+}
+</code></pre>
+<p>&nbsp;</p>
+<h3>خاصیت‌های charCode و keyCode</h3>
+<p style="text-align: justify;">در زمان وقوع هر یک از رویدادهای صفحه کلید، دقیقاً مانند رویدادهای ماوس، یک آرگومان ورودی به تابع Event Handler ارسال می‌شود. این شئ دارای خاصیت‌هایی است که به وسیله‌ی آنها می‌توان کلید یا کلیدهای فشرده شده از صفحه کلید را تشخیص داد.</p>
+<p style="text-align: justify;">با استفاده از خاصیت charCode می‌توان کد عددی کاراکتر وارد شده را به دست آورد. این خاصیت فقط باید در رویداد keypress به کار برده شود. توجه کنید که مقدار خاصیت charCode به کاراکتر وارد شده وابسته است، نه کلید فشرده شده. زیرا یک کلید خاص بر روی صفحه کلید می‌تواند کاراکترهای مختلفی را تولید کند. مثلاً کلید &#8220;A&#8221; می‌تواند در حالتی که زبان ورودی انگلیسی باشد دو کاراکتر &#8220;a&#8221; و &#8220;A&#8221; را تولید کند که مقدار خاصیت charCode برای این دو کاراکتر متفاوت بوده و به ترتیب برابر با 97 و 65 است. همچنین اگر زبان ورودی تغییر کند (مثلاً به فارسی)، همان کلید &#8220;A&#8221; می‌تواند کاراکتر &#8220;ش&#8221; را تولید کند. که مقدار خاصیت charCode برای این کاراکتر 1588 خواهد بود.</p>
+<p style="text-align: justify;">مثال زیر نحوه‌ی استفاده از خاصیت charCode را نشان می‌دهد. در این مثال کد کاراکتر وارد شده در عنصر &lt;input&gt;، در یک عنصر از نوع &lt;p&gt; نمایش داده می‌شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/oQdpXN" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+const input = document.querySelector('input');
+input.addEventListener('keypress', handler);
+
+function handler(event) {
+	const p = document.querySelector('p');
+	p.textContent += event.charCode + ' ';
+}
+</code></pre>
+<p style="text-align: justify;">خاصیت دیگری که در رویدادهای صفحه کلید به کار برده می‌شود، خاصیت keyCode است. با استفاده از این خاصیت می‌توان کد کلید فشرده شده را به دست آورد. این خاصیت فقط باید در رویدادهای keydown و keyup به کار برده شود. توجه کنید که برخلاف خاصیت charCode، مقدار خاصیت keyCode برای هر یک از کلیدهای صفحه کلید همیشه ثابت است. یعنی نوع زبان ورودی و یا کوچک یا بزرگ بودن حروف هیچ تاثیری در مقدار این خاصیت ندارد. در واقع این خاصیت شماره‌ی کلید فشرده شده را مشخص می‌کند و هر کلید در صفحه کلید دارای شماره‌ی ثابتی است.</p>
+<p style="text-align: justify;">مثال زیر نحوه‌ی استفاده از این خاصیت را نشان می‌دهد. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/mQLpBW" target="_blank" rel="noopener noreferrer">اینجا </a>اجرا کنید. مثلاً با زدن کلید &#8220;A&#8221; از صفحه کلید، همیشه مقدار این خاصیت برابر با 65 خواهد بود.</p>
+<pre class="ltr"><code class="language-javascript">
+const input = document.querySelector('input');
+input.addEventListener('keydown', handler);
+
+function handler(event) {
+	const p = document.querySelector('p');
+	p.textContent += event.keyCode + ' ';
+}
+</code></pre>
+<p>&nbsp;</p>
+<h3>خاصیت‌های key و code</h3>
+<p style="text-align: justify;">هرچند خاصیت‌های charCode و keyCode در تمام مرورگرها پشتیبانی می‌شوند. اما جزء موارد منسوخ شده (Deprecated) در جاوا اسکریپت محسوب می‌شوند و توصیه می‌شود که از این خاصیت‌ها استفاده نشود. زیرا ممکن است در آینده، پشتیبانی از این خاصیت‌ها از مرورگرها حذف شود. (البته احتمال آن بسیار کم است)</p>
+<p style="text-align: justify;">در استاندارد جدید بهتر است از دو خاصیت key و code به ترتیب به جای charCode و keyCode استفاده شود. این خاصیت‌ها را در تمام رویدادهای صفحه کلید می‌توان به کار برد. تفاوت اصلی key و code با charCode و keyCode در این است که بر خلاف دو خاصیت قبلی که کدها را به صورت عددی ذخیره می‌کردند، این دو خاصیت کدها را به صورت رشته‌ای ذخیره می‌کنند.</p>
+<p style="text-align: justify;">مثلاً خاصیت key برای هر کاراکتر، دقیقاً همان کاراکتر را ذخیره می‌کند. و برای کلیدهای غیر کاراکتری، نام آن کلید را به صورت رشته‌ای ذخیره می‌کند. مثلاً برای کلید Ctrl، مقدار &#8220;Control&#8221; را ذخیره می‌کند.</p>
+<p style="text-align: justify;">مثال زیر نحوه‌ی استفاده از خاصیت key را نشان می‌دهد. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/XyqZbm" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+const input = document.querySelector('input');
+input.addEventListener('keydown', handler);
+
+function handler(event) {
+	const p = document.querySelector('p');
+	p.textContent += event.key + ' ';
+}
+</code></pre>
+<p style="text-align: justify;">خاصیت code نیز برای هر یک از کلیدهای صفحه کلید، یک نام مشخص را به صورت رشته بازمی‌گرداند. دقیقاً مانند خاصیت keyCode، در این خاصیت نیز فقط کلید فشرده شده مهم است و زبان ورودی و یا کوچک و بزرگ بودن حروف مهم نیست. مثلاً برای کلید &#8220;D&#8221; تحت هر شرایطی مقدار &#8220;KeyD&#8221; در این خاصیت ذخیره می‌شود. یک مزیت مهم خاصیت code نسبت به خاصیت keyCode در این است که برای کلیدهایی که دو نمونه از آنها در صفحه کلید وجود دارد (مانند Shift یا Ctrl)، دو کد متفاوت بازمی‌گرداند (مثلا ShiftLeft و ShiftRight). در صورتی که کد عددی ذخیره شده در خاصیت keyCode برای کلیدهای Shift سمت چپ و راست یکسان و برابر با عدد 16 است.</p>
+<p style="text-align: justify;">مثال زیر نیز نحوه‌ی استفاده از خاصیت code را نشان می‌دهد. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/JevpYE" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+const input = document.querySelector('input');
+input.addEventListener('keydown', handler);
+
+function handler(event) {
+	const p = document.querySelector('p');
+	p.textContent += event.code + ' ';
+}
+</code></pre>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span> </strong>خاصیت key در حال حاضر در تمام مرورگرها پشتیبانی می‌شود. اما خاصیت code در مرورگر IE و Edge (تا نسخه‌ی ۱۸) پشتیبانی نمی‌شود. پس تا زمانی که این خاصیت در مرورگر Edge پشتیبانی شود بهتر است از آن استفاده نشود. و یا قبل از استفاده، وضعیت پشتیبانی از این خاصیت بررسی شود.</p>
+<p style="text-align: justify;">قطعه کد زیر نحوه‌ی بررسی وضعیت پشتیانی از خاصیت code را نشان می‌دهد. به طور کلی برای بررسی این که آیا یک متد یا یک خاصیت در مرورگر پشتیبانی می‌شود یا خیر، آن را با مقدار undefined مقایسه می‌کنیم. زیرا در صورتی که خاصیت یا متدی در یک شئ تعریف نشده باشد، مقدار آن undefined خواهد بود.</p>
+<pre class="ltr"><code class="language-javascript">
+const input = document.querySelector('input');
+input.addEventListener('keydown', handler);
+
+function handler(event) {
+	const p = document.querySelector('p');
+	if (event.code === undefined) {
+		p.textContent += event.keyCode + ' ';
+	} else {
+		p.textContent += event.code + ' ';
+	}	
+}
+</code></pre>
+<p style="text-align: justify;">در این مثال در صورتی که مرورگر از خاصیت code پشتیبانی نکند، خاصیت keyCode که یک کد عددی است نمایش داده می‌شود. و در صورت پشتیبانی از خاصیت code، مقدار این خاصیت که یک کد رشته‌ای است نمایش داده می‌شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/aQGqWp" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. سعی این مثال را با مرورگرهای مختلف اجرا کنید تا تاثیر دستورات شرطی را مشاهده کنید.</p>
+<p>&nbsp;</p>
+<h3>خاصیت‌های altKey و shiftKey و ctrlKey</h3>
+<p style="text-align: justify;">دقیقاً مانند رویدادهای ماوس، در رویدادهای صفحه کلید نیز می‌توان با استفاده از ۳ خاصیت altKey و shiftKey و ctrlKey وضعیت فشرده بودن یا نبودن هر یک از این کلیدها را در زمان وقوع رویداد تشخیص داد.</p>
+<p style="text-align: justify;">به عنوان مثال فرض کنید در برنامه‌ای قصد دارید در صورت فشرده شدن همزمان کلیدهای <kbd>Ctrl + Q</kbd> عمل خاصی را انجام دهید. قطعه کد زیر نحوه‌ی انجام این کار را نشان می‌دهد. در این مثال در صورت فشردن همزمان این دو کلید، پیامی به کاربر نمایش داده می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+const input = document.querySelector('input');
+input.addEventListener('keydown', handler);
+
+function handler(event) {
+	if(event.ctrlKey){
+		if(event.code == 'KeyQ'){
+			alert('Ctrl + Q Pressed!');
+		}
+	}
+}
+</code></pre>
+<p>این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/EOLQQW" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+</div>
+                

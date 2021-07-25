@@ -1,0 +1,108 @@
+
+                <h2>ساختار شرطی switch</h2>
+                <div><p style="text-align: justify;">در بخش قبل با ساختار شرطی if و مشتقات آن آشنا شدیم. در این بخش قصد داریم با ساختار شرطی دیگری به نام switch آشنا شویم. ساختار switch نیز برای تصمیم‌گیری جهت اجرا شدن یا نشدن دستورات به کار برده می‌شود.</p>
+<p style="text-align: justify;">در واقع تمام کارهایی که با ساختار switch قابل انجام است، با ساختار if نیز قابل انجام می‌باشد. اما این ساختار در برخی شرایط خاص، کدها را خواناتر می‌کند. نحوه‌ی استفاده از این ساختار را در قطعه کد زیر مشاهده می‌کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+switch(expression){
+	case value1:
+		statements1
+		break;
+	case value2:
+		statements2
+		break;
+	case value3:
+		statements3
+		break;
+	default:
+		statements4
+}
+</code></pre>
+<p style="text-align: justify;">به ساختار فوق توجه کنید. در این ساختار ابتدا عبارت expression ارزیابی می‌شود. این عبارت می‌تواند یک متغیر ساده و یا یک عبارت محاسباتی پیچیده باشد. سپس مقدار به دست آمده از expression با مقدار value1 مقایسه می‌شود. در صورتی که این دو با هم برابر باشند، دستورات بخش statements1 اجرا می‌شوند. در صورت عدم تساوی این دو مقدار، مقدار expression با value2 مقایسه می‌شود و در صورت برابری، دستورات بخش statements2 اجرا می‌شوند. این روند به تعداد case های موجود در این ساختار تکرار شده و هر جا که مقدار مقابل case با مقدار expression برابر باشد، دستورات مربوط به آن case اجرا می‌شوند. در نهایت اگر هیچ یک از مقادیر مقابل case ها با مقدار expression مطابقت نداشته باشند، دستورات موجود در بخش default اجرا می‌شوند. همچنین توجه کنید که بخش default مانند بخش else اختیاری است.</p>
+<p style="text-align: justify;">به عنوان یک مثال ساده، ساختار if , else if , else زیر را در نظر بگیرید.</p>
+<pre class="ltr"><code class="language-javascript">
+let i = 13;
+if(i == 10){
+	console.log("i is equal to 10");
+}else if(i == 20){
+	console.log("i is equal to 20");
+}else if(i == 30){
+	console.log("i is equal to 30");
+}else{
+	console.log("i is not equal to 10 , 20 or 30");
+}
+</code></pre>
+<p style="text-align: justify;">معادل ساختار فوق با استفاده از ساختار switch به شکل زیر خواهد بود.</p>
+<pre class="ltr"><code class="language-javascript">
+let i = 13;
+switch(i){
+	case 10:
+		console.log("i is equal to 10");
+		break;
+	case 20:
+		console.log("i is equal to 20");
+		break;
+	case 30:
+		console.log("i is equal to 30");
+		break;
+	default:
+		console.log("i is not equal to 10 , 20 or 30");
+}
+</code></pre>
+<p>این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/ZMrxrz" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen به صورت آنلاین اجرا کنید. سعی کنید مقدار متغیر i را تغییر دهید و نتیجه را در حالت‌های مختلف مشاهده کنید.</p>
+<p style="text-align: justify;">توجه کنید که وجود دستور break در انتهای هر یک از case ها اختیاری است. اما در اکثر مواقع باید از آن استفاده کنید. این دستور موجب توقف اجرای ساختار switch و خروج از آن می‌شود. در صورتی که break را حذف کنید. پس از اجرای دستورات یک case خاص، دستورات case های بعدی نیز تا رسیدن به اولین break اجرا می‌شوند. این حالت در برخی مواقع می‌تواند مفید باشد. مثلاً فرض کنید در مثال فوق، به ازای مقدار ۱۰ و ۲۰ برای متغیر i، قصد اجرای دستورات یکسانی را داشته باشیم. در چنین حالتی می‌توان از کد زیر استفاده کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+let i = 13;
+switch(i){
+	case 10:
+	case 20:
+		console.log("i is equal to 10 or 20");
+		break;
+	case 30:
+		console.log("i is equal to 30");
+		break;
+	default:
+		console.log("i is not equal to 10 , 20 or 30");
+}
+</code></pre>
+<p style="text-align: justify;">در مثال فوق می‌توان گفت دو حالت اول (یعنی i == 10 و i == 20) با هم OR شده‌اند. یعنی در صورتی که مقدار i برابر با ۱۰ یا ۲۰ باشد، دستور بعد از case 20 اجرا خواهد شد. در این مثال برای حالت case 10 هیچ دستور خاصی در نظر گرفته نشده است. اما اگر دستور یا دستوراتی را برای این حالت در نظر بگیریم، ولی از break استفاده نکنیم، رفتار این ساختار کمی متفاوت خواهد بود. به قطعه کد زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+let i = 13;
+switch(i){
+	case 10:
+		console.log("i is equal to 10");
+	case 20:
+		console.log("i is equal to 10 or 20");
+		break;
+	case 30:
+		console.log("i is equal to 30");
+		break;
+	default:
+		console.log("i is not equal to 10 , 20 or 30");
+}
+</code></pre>
+<p style="text-align: justify;">در کد فوق در صورتی که مقدار i برابر با ۱۰ باشد، هم دستورات case 10 اجرا می‌شوند و هم دستورات case 20. زیرا برای حالت case 10 از break استفاده نشده است. یعنی زمانی که یکی از case ها با مقدار expression مطابقت داشته باشد، تمام دستورات پس از آن تا رسیدن به دستور break اجرا خواهند شد. اما اگر مقدار متغیر i برابر با ۲۰ باشد، فقط دستورات مربوط به حالت case 20 اجرا خواهند شد.</p>
+<p style="text-align: justify;">اما ساختار switch را می‌توان برای حل مسائل پیچیده‌تر نیز به کار برد. مسئله‌ی آزمون چهار گزینه‌ای که در بخش قبلی مطرح شد را دوباره در نظر بگیرید. این مسئله را با ساختار switch نیز می‌توان حل کرد. قطعه کد زیر نحوه‌ی پیاده‌سازی این مسئله با ساختار switch را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript">
+let trueAnswers = 10;
+switch(true){
+	case (trueAnswers &gt;= 0 &amp;&amp; trueAnswers &lt; 5) :
+		console.log('خیلی ضعیف');
+		break;
+	case (trueAnswers &gt;= 5 &amp;&amp; trueAnswers &lt;= 10) :
+		console.log('ضعیف');
+		break;
+	case (trueAnswers &gt;= 11 &amp;&amp; trueAnswers &lt;= 15) :
+		console.log('متوسط');
+		break;
+	case (trueAnswers &gt; 15 &amp;&amp; trueAnswers &lt;= 20) :
+		console.log('عالی');
+		break;
+	default:
+		console.log('مقدار ورودی نامعتبر است');
+}
+</code></pre>
+<p style="text-align: justify;">در برنامه‌ی فوق با توجه به اینکه مقدار expression را true قرار داده‌ایم، دستورات هر case در صورتی اجرا خواهند شد که مقدار مقابل case برابر با true باشد. حال می‌توان برای هر case از یک عبارت مقایسه‌ای استفاده کرد که می‌دانیم خروجی آن true یا false خواهد بود. در صورتی که این مقدار برابر با true باشد، این مقدار با مقدار expression نیز برابر است. در نتیجه دستورات مقابل آن case اجرا خواهند شد. همچنین در صورتی که مقدار مقابل هیچ یک از case ها برابر با true نشود، آنگاه دستورات قسمت default اجرا خواهند شد.</p>
+<p>برنامه‌ی فوق را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/jvZxWO" target="_blank" rel="noopener noreferrer">اینجا</a> به صورت آنلاین در CodePen اجرا کنید.</p>
+<p style="text-align: justify;">همانطور که دیدید ساختار شرطی switch تمام توانایی‌های ساختار if را دارد و می‌توانید به دلخواه از یکی از این ساختارها برای اجرای شرطی دستورات در حالت‌های مختلف استفاده کنید. اما ساختار if در اکثر مواقع ساده‌تر به نظر می‌رسد. به همین دلیل هم اکثر برنامه‌نویسان استفاده از ساختار if را ترجیح می‌دهند. مگر در مواقعی که استفاده از ساختار switch خوانایی برنامه را بالاتر برده و کدنویسی را ساده‌تر کند.</p>
+</div>
+                

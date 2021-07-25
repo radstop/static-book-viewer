@@ -1,0 +1,134 @@
+
+                <h2>رویدادهای Ajax</h2>
+                <div><p style="text-align: justify;">در بخش‌های قبلی با رویداد readystatechange آشنا شدیم. اما این تنها رویداد مورد استفاده در Ajax نیست. در این بخش قصد داریم با سایر رویدادهای مرتبط با Ajax آشنا شویم. اما قبل از معرفی رویدادها، باید با یک متد و یک خاصیت از شئ XHR آشنا شویم.</p>
+<p>&nbsp;</p>
+<h4>متد abort</h4>
+<p style="text-align: justify;">با استفاده از متد abort می‌توان یک درخواست Ajax را لغو کرد. البته این متد در صورتی عمل خواهد کرد که قبل از دریافت کامل پاسخ فراخوانی شود. فراخوانی متد abort در هر مرحله‌ای از دریافت پاسخ، موجب از بین رفتن کل پاسخ دریافتی خواهد شد. دستورات زیر نحوه‌ی استفاده از این متد را نشان می‌دهند.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+const xhr = new XMLHttpRequest();
+xhr.open('GET' , 'https://jsonplaceholder.typicode.com/todos/1');
+xhr.addEventListener('readystatechange' , function(){
+	if(xhr.readyState == 4){
+		if((xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) || xhr.status == 304){
+			console.log(xhr.responseText);
+		}
+	}
+});
+xhr.send();
+setTimeout( () =&gt; xhr.abort() , 300);
+</code></pre>
+<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/VwZpvxJ" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. در دستورات فوق عمداً از تابع setTimeout استفاده شده است تا متد abort با کمی تأخیر نسبت به متد send اجرا شود. با تغییر میزان تاخیر در تابع setTimeout می‌توانید زمان فراخوانی متد abort را تنظیم کنید. در صورتی که فراخوانی متد abort قبل از دریافت کامل پاسخ انجام شود، دستور موجود در خط 6 به هیچ وجه اجرا نخواهد شد.</p>
+<p>&nbsp;</p>
+<h4>خاصیت timeout</h4>
+<p style="text-align: justify;">با استفاده از خاصیت timeout می‌توان حداکثر زمان انتظار برای دریافت پاسخ را بر حسب میلی‌ثانیه تعیین کرد. در صورتی که زمان انتظار، از زمان تعیین شده در خاصیت timeout تجاوز کند. درخواست Ajax لغو می‌شود. در ادامه مثالی از نحوه‌ی استفاده از این خاصیت را خواهیم دید.</p>
+<p>&nbsp;</p>
+<h3>رویدادهای Ajax</h3>
+<p style="text-align: justify;">علاوه بر رویداد readystatechange که قبلاً با آن آشنا شده‌ایم. <span class="text-dark">۷</span> نوع رویداد دیگر نیز در رابطه با Ajax و شئ XHR وجود دارد. به این رویدادها اصطلاحاً <strong>&#8220;رویدادهای پیشرفت&#8221;</strong> یا <strong>&#8220;Progress Events&#8221;</strong> گفته می‌شود. که در ادامه‌ی این بخش به بررسی هر یک از این رویدادها و نحوه‌ی استفاده از آنها می‌پردازیم.</p>
+<p>&nbsp;</p>
+<h4>رویداد timeout</h4>
+<p style="text-align: justify;">این رویداد زمانی رخ می‌دهد که زمان مجاز برای دریافت پاسخ به پایان برسد و درخواست Ajax لغو شود. قطعه کد زیر نحوه‌ی استفاده از رویداد timeout را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+const xhr = new XMLHttpRequest();
+xhr.open('GET' , 'https://jsonplaceholder.typicode.com/todos/1');
+xhr.addEventListener('readystatechange' , function(){
+	if(xhr.readyState == 4){
+		if((xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) || xhr.status == 304){
+			console.log(xhr.responseText);
+		}else{
+			console.log(xhr.status);
+		}
+	}
+});
+xhr.timeout = 1000;
+xhr.addEventListener('timeout' , function(){
+	console.log('Timeout');
+});
+xhr.send();
+</code></pre>
+<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/LYPWGPw" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. توجه کنید که همزمان با وقوع رویداد timeout، مقدار خاصیت readyState به 4 تغییر می‌کند. در نتیجه رویداد readystatechange نیز رخ می‌دهد (دقیقا قبل از رویداد timeout). اما مقدار خاصیت status در این حالت برابر با 0 است. بنابراین در صورت وقوع رویداد timeout، دستور خط 8 نیز اجرا شده و مقدار 0 را در کنسول نمایش می‌دهد.</p>
+<p style="text-align: justify;">در مثال فوق کم کردن مقدار خاصیت timeout موجب وقوع رویداد timeout می‌شود. این خاصیت را تغییر دهید و تاثیر آن را مشاهده کنید.</p>
+<p>&nbsp;</p>
+<h4>رویداد load</h4>
+<p style="text-align: justify;">یکی از رویدادهای بسیار مفید و پرکاربرد در Ajax رویداد load است. این رویداد پس از دریافت کامل پاسخ رخ می‌دهد. یعنی زمانی که مقدار خاصیت readyState برابر با 4 می‌شود. در نتیجه این رویداد جایگزین بسیار مناسبی برای رویداد readystatechange است. زیرا با استفاده از این رویداد نیازی به بررسی مقدار خاصیت readyState نخواهیم داشت.</p>
+<p style="text-align: justify;">همچنین بر خلاف رویداد readystatechange، رویداد load در صورت لغو شدن درخواست رخ نمی‌دهد. قطعه کد زیر نحوه‌ی استفاده از رویداد load را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript">
+const xhr = new XMLHttpRequest();
+xhr.open('GET' , 'https://jsonplaceholder.typicode.com/todos/1');
+xhr.addEventListener('load' , function(){
+	if((xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) || xhr.status == 304){
+		console.log(xhr.responseText);
+	}else{
+		alert("Request was unsuccessful: " + xhr.status);
+	}
+});
+xhr.send();
+</code></pre>
+<p style="text-align: justify;">مشاهده می‌کنید که استفاده از رویداد load بسیار ساده‌تر از رویداد readystatechange است. البته هنوز لازم است خاصیت status را بررسی کنیم. زیرا ممکن است سرور، پاسخ را با یک کد خطا (مثلاً 404) تولید کرده باشد. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/LYPWZRg" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p>&nbsp;</p>
+<h4>رویداد error</h4>
+<p style="text-align: justify;">این رویداد زمانی اتفاق می‌افتد که خطایی در اجرای درخواست رخ دهد. توجه کنید که این رویداد فقط به <strong>&#8220;درخواست&#8221;</strong> مربوط می‌شود. یعنی خطاهایی که در زمان دریافت پاسخ رخ می‌دهند (مثلاً خطای 404) این رویداد را تولید نمی‌کنند. یکی از حالاتی که معمولاً موجب وقوع این رویداد می‌شود استفاده از نام دامنه‌ی غلط در متد open است. در این حالت امکان ارسال درخواست وجود ندارد و رویداد error تولید می‌شود.</p>
+<p>&nbsp;</p>
+<h4>رویداد abort</h4>
+<p style="text-align: justify;">این رویداد زمانی رخ می‌دهد که درخواست Ajax با فراخوانی متد abort لغو شود. قطعه کد زیر نحوه‌ی استفاده از این رویداد را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+const xhr = new XMLHttpRequest();
+xhr.open('GET' , 'https://jsonplaceholder.typicode.com/todos/1');
+xhr.addEventListener('load' , function(){
+	if((xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) || xhr.status == 304){
+		console.log(xhr.responseText);
+	}
+});
+xhr.addEventListener('abort' , function(){
+	console.log('Request aborted');
+});
+xhr.send();
+setTimeout( () =&gt; xhr.abort() , 200);
+</code></pre>
+<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/wvwJWJK" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. توجه کنید که این رویداد فقط در صورتی رخ می‌دهد که متد abort را قبل از وقوع رویداد load فراخوانی کرده باشید. با تغییر در مقدار تاخیر در تابع setTimeout می‌توانید این مورد را بررسی کنید.</p>
+<p>&nbsp;</p>
+<h3>رویدادهای loadstart و loadend</h3>
+<p style="text-align: justify;">با شروع دریافت پاسخ HTTP از سرور، رویداد loadstart رخ می‌دهد. همچنین پس از پایان دریافت پاسخ، رویداد loadend رخ می‌دهد. در واقع رویداد loadend زمانی رخ می‌دهد که یکی از رویدادهای error، load یا abort رخ داده باشد. یعنی موفقیت‌آمیز بودن اجرای درخواست در وقوع رویداد loadend تاثیری ندارد. و تحت هر شرایطی، در نهایت رویداد loadend رخ خواهد داد. مثال زیر نحوه‌ی استفاده از این رویدادها را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+const xhr = new XMLHttpRequest();
+let start , end;
+xhr.open('GET' , 'https://jsonplaceholder.typicode.com/photos');
+xhr.addEventListener('loadstart' , function(){
+	start = Date.now();
+	console.log('Loading start at : ' + start);
+});
+xhr.addEventListener('loadend' , function(){
+	end = Date.now();
+	console.log('Loading End at : ' + end);
+	console.log('Loading time : ' + (end - start) + 'ms');
+});
+xhr.send();
+</code></pre>
+<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/MWgpGmq" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. در این مثال برای محاسبه‌ی زمان دریافت (دانلود) پاسخ از رویدادهای loadstart و loadend استفاده شده است. به این صورت که با شروع دریافت و وقوع رویداد loadstart، زمان جاری در متغیر سراسری start ذخیره می‌شود. و با دریافت آخرین بایت و وقوع رویداد loadend، زمان جاری در متغیر سراسری end ذخیره می‌شود. و در نهایت اختلاف این دو زمان به عنوان زمان دریافت پاسخ در کنسول نمایش داده می‌شود.</p>
+<p>&nbsp;</p>
+<h4>رویداد progress</h4>
+<p style="text-align: justify;">یکی از رویدادهای بسیار کاربردی در Ajax رویداد progress است. این رویداد به صورت متوالی در زمان دریافت پاسخ رخ می‌دهد. یعنی در فاصله‌ی بین دو رویداد loadstart و loadend، این رویداد به صورت متوالی رخ می‌دهد. از این رویداد معمولاً زمانی استفاده می‌شود که حجم داده‌های دریافتی زیاد باشد. زیرا با استفاده از این رویداد می‌توان میزان پیشرفت در دریافت پاسخ را به کاربر نمایش داد.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته‌ :</span> </strong>در تمام انواع <strong>&#8220;رویدادهای پیشرفت&#8221;</strong>، شئ رویداد دارای <span class="text-dark">۳</span> خاصیت به شرح زیر می‌باشد.</p>
+<ul>
+<li style="text-align: justify;">lengthComputable : در صورتی که کل حجم پاسخ در هدر Content-Length مشخص شده باشد، مقدار این خاصیت true است. یعنی می‌دانیم چند بایت را باید دریافت کنیم.</li>
+<li style="text-align: justify;">loaded : این خاصیت نشان می‌دهد که چند بایت از پاسخ دریافت شده است.</li>
+<li style="text-align: justify;">total : در صورتی که خاصیت lengthComputable برابر با true باشد، این خاصیت مقدار کل حجم پاسخ را بر حسب بایت مشخص می‌کند. اما در صورت false بودن خاصیت lengthComputable، مقدار این خاصیت هیچ معنی مشخصی ندارد.</li>
+</ul>
+<p style="text-align: justify;">با استفاده از این خاصیت‌ها به راحتی می‌توان در رویداد progress، میزان پیشرفت در دریافت پاسخ را به دست آورد. البته این فقط در صورتی امکان‌پذیر است که مقدار خاصیت lengthComputable برابر با true باشد. یعنی کل حجم پاسخ مشخص باشد. البته در صورت false بودن مقدار خاصیت lengthComputale، هنوز هم می‌توان با استفاده خاصیت loaded، میزان حجم دریافت شده از پاسخ را به دست آورد. هرچند نمی‌دانیم چه مقدار از پاسخ هنوز دریافت نشده است.</p>
+<p style="text-align: justify;">در مثال زیر از <span class="text-dark">۳</span> رویداد loadstart، progress و loadend استفاده شده است. و در زمان وقوع هر یک از این رویدادها، میزان حجم دریافت شده از پاسخ را در کنسول نمایش می‌دهیم.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+const xhr = new XMLHttpRequest();
+xhr.open('GET' , 'https://jsonplaceholder.typicode.com/photos');
+xhr.addEventListener('loadstart' , function(event){
+	console.log('loadstart : ' + event.loaded + ' bytes received');
+});
+xhr.addEventListener('progress' , function(event){
+	console.log('progress : ' + event.loaded + ' bytes received');
+});
+xhr.addEventListener('loadend' , function(event){
+	console.log('loadend : ' + event.loaded + ' bytes received');
+});
+xhr.send();
+</code></pre>
+<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/LYPWrbW" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. با اجرای این مثال مشاهده خواهید کرد که اولین رویدادی که رخ می‌دهد، رویداد loadstart است. و در زمان وقوع این رویداد مقدار خاصیت loaded هنوز صفر است. اما پس از آن به صورت متوالی رویداد progress رخ می‌دهد. و در هر بار وقوع این رویداد، مقدار خاصیت loaded افزایش می‌یابد. در نهایت هم رویداد loadend رخ داده و میزان کل پاسخ دریافت شده را بر حسب بایت در کنسول نمایش می‌دهد.</p>
+</div>
+                

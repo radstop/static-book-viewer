@@ -1,0 +1,131 @@
+
+                <h2>زمانبندی کارها و ایجاد انیمیشن</h2>
+                <div><p style="text-align: justify;">در بسیاری از برنامه‌هایی که با جاوا اسکریپت نوشته می‌شوند، لازم است تا برخی کارها به صورت زمانبندی شده و در لحظه‌ای خاص انجام شوند. یا ممکن است نیاز به تکرار یک کار در بازه‌های زمانی مشخص داشته باشیم. شئ window دارای چندین متد برای زمانبندی کارها است که در این بخش به معرفی آنها می‌پردازیم.</p>
+<p>&nbsp;</p>
+<h3>متدهای setTimeout و clearTimeout</h3>
+<p style="text-align: justify;">با استفاده از متد setTimeout می‌توان عمل خاصی را پس از سپری شدن مدت زمانی معین انجام داد. این متد دو آرگومان ورودی دریافت می‌کند. آرگومان اول یک تابع Callback است که باید در زمان مورد نظر اجرا شود. و آرگومان دوم مشخص می‌کند که تابع مورد نظر پس از سپری شدن چه مدت زمانی باید فراخوانی شود. این زمان باید بر حسب میلی‌ثانیه مشخص شود.</p>
+<p style="text-align: justify;">در مثال زیر تابع timeout پس از گذشت <span class="text-dark">۳</span> ثانیه (معادل <span class="text-dark">۳</span><span class="text-dark">۰</span><span class="text-dark">۰</span><span class="text-dark">۰</span> میلی‌ثانیه) فراخوانی می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+window.setTimeout(timeout , 3000);
+
+function timeout(){
+	alert('3 Seconds elapsed');
+}
+</code></pre>
+<p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/XyvRoJ" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید. با اجرای این برنامه، پس از بارگذاری صفحه و اجرا شدن دستور اول، پس از گذشت <span class="text-dark">۳</span> ثانیه تابع timeout فراخوانی شده و یک پیام را به کاربر نمایش می‌دهد. در واقع اجرای دستور اول باعث فعال شدن یک زمان‌سنج (Timer) می‌شود که روی زمان <span class="text-dark">۳</span><span class="text-dark">۰</span><span class="text-dark">۰</span><span class="text-dark">۰</span> میلی‌ثانیه تنظیم شده است. و پس از پایان این زمان، رویدادی توسط زمان‌سنج رخ می‌دهد که موجب فراخوانی تابع Callback می‌شود.</p>
+<p style="text-align: justify;">البته می‌توان تابع Callback را به صورت بی‌نام نیز تعریف کرد. یعنی می‌توان برنامه‌ی فوق را به صورت زیر ساده کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+window.setTimeout( () =&gt; alert('3 Seconds elapsed') , 3000);
+</code></pre>
+<p style="text-align: justify;">همچنین می‌توان به جای استفاده از تابع Callback، یک دستور جاوا اسکریپت را به صورت رشته در آرگومان اول متد setTimeout قرار داد. یعنی می‌توان برنامه‌ی فوق را به شکل زیر ساده‌تر کرد. اما معمولاً از این روش استفاده نمی‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+window.setTimeout("alert('3 Seconds elapsed')" , 3000);
+</code></pre>
+<p style="text-align: justify;">لازم به ذکر است که متد setTimeout یک عدد را بازمی‌گرداند که در واقع شناسه‌ی زمان‌سنج فعال شده است. در صورت نیاز می‌توان از این شناسه برای غیرفعال کردن زمان‌سنج استفاده کرد.</p>
+<p style="text-align: justify;">با استفاده از متد clearTimeout می‌توان یک زمان‌سنج فعال شده با متد setTimeout را غیرفعال کرد. البته این متد باید قبل از به پایان رسیدن زمان تعیین شده در متد setTimeout فراخوانی شود. مثال زیر نحوه‌ی استفاده از این متد را نشان می‌دهد. در این مثال ابتدا با استفاده از متد setTimeout یک زمان‌سنج ایجاد می‌شود تا پس از <span class="text-dark">۴</span> ثانیه تابع timeout را فراخوانی کند. اما در صورتی که کاربر قبل از پایان <span class="text-dark">۴</span> ثانیه بر روی دکمه‌ی موجود در صفحه کلیک کند، این زمان‌سنج غیرفعال شده و تابع timeout فراخوانی نمی‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+const button = document.querySelector('button');
+button.addEventListener('click' , stopTimeout);
+
+let timerID = window.setTimeout(timeout , 4000);
+
+function timeout(){
+	alert('4 Seconds elapsed');
+}
+
+function stopTimeout(){
+	window.clearTimeout(timerID);
+}
+</code></pre>
+<p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/OaKxvz" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. یادآوری می‌شود که تمام متدهای شئ window را می‌توان بدون استفاده از نام شئ window فراخوانی کرد. یعنی به جای نوشتن window.setTimeout می‌توان فقط setTimeout را نوشت.</p>
+<p>&nbsp;</p>
+<h3>متدهای setInterval و clearInterval</h3>
+<p style="text-align: justify;">دیدیم که با استفاده از متد setTimeout می‌توان عمل خاصی را پس از سپری شدن زمانی مشخص انجام داد. اما متد setTimeout این کار را فقط یک بار انجام می‌دهد. یعنی اگر نیاز به تکرار عمل مورد نظر در بازه‌های زمانی مشخص داشته باشیم، باید مجدداً از متد setTimeout برای تنظیم یک زمان‌سنج جدید استفاده کنیم.</p>
+<p style="text-align: justify;">اما با استفاده از متد setInterval می‌توان مشکل فوق را حل کرد. نحوه‌ی استفاده از متد setInterval دقیقاً مانند متد setTimeout است. تنها تفاوت این دو متد این است که متد setInterval، تابع Callback را به صورت متوالی پس از سپری شدن زمان مشخص شده فراخوانی می‌کند. مثلاً قطعه کد زیر موجب چاپ شدن متوالی پیام &#8220;Hello&#8221; در کنسول در هر یک ثانیه می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+window.setInterval( () =&gt; console.log('Hello') , 1000);
+</code></pre>
+<p style="text-align: justify;">متد setInterval نیز دقیقاً مانند متد setTimeout یک عدد را به عنوان شناسه‌ی زمان‌سنج تنظیم شده بازمی‌گرداند. برای غیرفعال کردن این زمان‌سنج می‌توان از متد clearInterval استفاده کرد. به عنوان مثال به برنامه‌ی زیر توجه کنید. در این برنامه یک پیام ساده در قالب یک عنصر &lt;p&gt; در هر <span class="text-dark">۲</span> ثانیه به انتهای عنصر &lt;body&gt; اضافه می‌شود. اما با کلیک کردن بر روی دکمه‌ی موجود در صفحه‌ی وب، زمان‌سنج غیر فعال شده و این عمل متوقف می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+const button = document.querySelector('button');
+button.addEventListener('click' , stopInterval);
+
+let timerID = window.setInterval(interval , 2000);
+
+function interval(){
+	const p = document.createElement('p');
+	p.textContent = "2 Seconds elapsed";
+	document.body.appendChild(p);
+}
+
+function stopInterval(){
+	window.clearInterval(timerID);
+}
+</code></pre>
+<p>این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/jQgKYv" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong></span> زمانی که از یک متد به عنوان تابع Callback در متدهای setTimeout و setInterval استفاده می‌کنید، باید توجه داشته باشید که کلمه‌ی کلیدی this در این متد به شئ window اشاره می‌کند. نه به شیئی که متد مورد نظر به آن تعلق دارد. مثال زیر را در نظر بگیرید.</p>
+<pre class="ltr"><code class="language-javascript">
+const person = {
+	myName: 'Abbas Moqaddam',
+	showName() {
+		alert(`Hi, I'm ${this.myName}`);
+	}
+};
+setTimeout(person.showName , 50);
+</code></pre>
+<p style="text-align: justify;">ممکن است تصور کنید که با اجرای این برنامه، پیام &#8220;Hi, I&#8217;m Abbas Moqaddam&#8221; نمایش داده خواهد شد. اما اینطور نیست و پیام &#8220;Hi, I&#8217;m undefined&#8221; نمایش داده می‌شود. دلیل این رفتار این است که در بدنه‌ی هر تابع یا متدی که به عنوان Callback به متدهای setTimeout و setInterval ارسال می‌شود، کلمه‌ی کلیدی this به شئ window اشاره می‌کند. و با توجه به اینکه در این مثال شئ window خاصیتی به نام myName ندارد، مقدار undefined به جای &#8220;this.myName&#8221; قرار می‌گیرد.</p>
+<p>&nbsp;</p>
+<h3>ایجاد انیمیشن</h3>
+<p style="text-align: justify;">یک انیمیشن از نمایش متوالی تعدادی تصویر که هر یک تغییر کوچکی نسبت به تصویر قبلی دارد به وجود می‌آید. به هر یک از این تصاویر متوالی یک فریم (Frame) گفته می‌شود.</p>
+<p style="text-align: justify;">یکی از کاربردهای اصلی متدهای setInterval و setTimeout ایجاد انیمیشن در صفحات وب است. برای این منظور کافی است با استفاده از یکی از این متدها در بازه‌های زمانی کوچک، فریم‌های متوالی یک انیمیشن را ایجاد کنیم.</p>
+<p style="text-align: justify;">به عنوان مثال فرض کنید یک عنصر &lt;div&gt; در صفحه‌ی وب وجود دارد که قصد داریم آن را در محل خود به صورت مداوم بچرخانیم. می‌دانیم که در CSS می‌توان از ویژگی transform و تابع rotate برای چرخاندن عناصر به اندازه‌ی دلخواه استفاده کرد. البته این چرخش به صورت لحظه‌ای انجام می‌شود. در صورتی که برای ایجاد انیمیشن باید دوران به صورت تدریجی انجام شود.</p>
+<p style="text-align: justify;">اما می‌توان با استفاده از متد setInterval در بازه‌های زمانی کوچک و متوالی، دوران کوچکی (مثلاً یک درجه) در عنصر &lt;div&gt; ایجاد کرد. نمایش متوالی فریم‌های ایجاد شده با این روش، منجر به تولید یک انیمیشن خواهد شد. مثال زیر نحوه‌ی انجام این کار را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-markup">
+&lt;div style="margin:100px;width:100px;height:100px;background:red;"&gt;&lt;/div&gt;
+</code></pre>
+<pre class="ltr"><code class="language-javascript">
+let angle = 0;
+const div = document.querySelector('div');
+window.setInterval(rotate , 20);
+
+function rotate(){	
+	div.style.transform = `rotate(${angle}deg)`;
+	angle += 1;
+}
+</code></pre>
+<p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/GwVBgx" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. نتیجه‌ی اجرای این برنامه انیمیشن زیر است. برای تغییر سرعت انیمیشن دو راه وجود دارد. راه اول تغییر فاصله‌ی زمانی بین فریم‌ها است که در این مثال از مقدار <span class="text-dark">۲۰</span> میلی‌ثانیه استفاده شده است. راه دوم نیز تغییر میزان دوران در هر فریم است که در این مثال در هر فریم یک درجه دوران انجام می‌شود. سعی کنید با تغییر این مقادیر سرعت انیمیشن را تغییر دهید.</p>
+<div id="square" style="margin: 30px auto; width: 100px; height: 100px; background: red;"></div>
+<p><script>
+let angle = 0;
+window.setInterval(rotate , 20);
+function rotate(){
+	const div = document.querySelector('#square');
+	div.style.transform = `rotate(${angle}deg)`;
+	angle++;
+}
+</script></p>
+<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong></span> انیمیشن ایجاد شده در این مثال را به راحتی می‌توان با انیمیشن‌های CSS و بدون نیاز به جاوا اسکریپت ایجاد کرد. اما این کار همیشه امکان‌پذیر نیست و برخی انیمیشن‌ها به تنهایی با CSS قابل تولید نیستند و یا ایجاد آنها بسیار مشکل است. به عنوان یک قاعده‌ی کلی به یاد داشته باشید که در صورتی که پیاده‌سازی یک انیمیشن با CSS امکان‌پذیر باشد، بهتر است از CSS به جای جاوا اسکریپت برای پیاده‌سازی آن استفاده شود. زیرا کارایی (Performance) انیمیشن‌های CSS بیشتر از جاوا اسکریپت است و در نتیجه بار پردازشی کمتری به CPU و سیستم عامل تحمیل می‌شود. اما همانطور که اشاره شد، همیشه نمی‌توان انیمیشن‌ها را صرفاً با CSS ایجاد کرد و در برخی شرایط، لازم است که حتماً از جاوا اسکریپت نیز استفاده شود.</p>
+<p>&nbsp;</p>
+<h3>ایجاد انیمیشن با متد requestAnimationFrame</h3>
+<p style="text-align: justify;">در سال‌های نه چندان دور، تنها روش برای ایجاد انیمیشن با جاوا اسکریپت، استفاده از متد setInterval (و یا setTimeout) بود. اما این روش دو مشکل عمده دارد که به خصوص در انیمیشن‌های پیچیده، می‌تواند کیفیت انیمیشن را کاهش دهد.</p>
+<p style="padding-right: 30px; text-align: justify;">۱- متدهای setInterval و setTimeout هیچ ضمانتی در مورد دقت زمانبندی ارائه نمی‌دهند. مثلاً عملی که باید بعد از <span class="text-dark">۵۰۰</span> میلی‌ثانیه انجام شود، ممکن است بعد از <span class="text-dark">۵</span><span class="text-dark">۱</span><span class="text-dark">۰</span> میلی‌ثانیه و یا حتی بعد از <span class="text-dark">۱</span><span class="text-dark">۰</span><span class="text-dark">۰</span><span class="text-dark">۰</span> میلی‌ثانیه انجام شود. یعنی همیشه یک تاخیر در اجرای عمل مورد نظر وجود دارد. میزان این تاخیر به میزان مشغله‌ی سیستم عامل و مرورگر در لحظه‌ی مورد نظر بستگی دارد. هرچند میزان این تاخیر معمولاً بسیار کوچک است، اما وجود این تاخیر و متغیر بودن میزان تاخیر، می‌تواند اجرای انیمیشن را دچار اختلال کرده و کیفیت آن را کاهش دهد.</p>
+<p style="padding-right: 30px; text-align: justify;">۲- محتوای گرافیکی صفحه نمایش نیز مانند یک انیمیشن است. زیرا به صورت متوالی و در بازه‌های زمانی کوچک در حال به روز رسانی است. در واقع در هر سیستم عاملی، رویدادی به نام paint وجود دارد که در هر ثانیه به تعداد مشخصی رخ می‌دهد. و با هر بار وقوع این رویداد، یک بار محتوای صفحه نمایش مجدداً ترسیم می‌شود. تعداد دفعات وقوع این رویداد در سیستم‌های کامپیوتری مختلف، یکسان نیست. اما در بیشتر سیستم‌های کامپیوتری امروزی این رویداد ۶۰ بار در هر ثانیه رخ می‌دهد. لازم به ذکر است که رویداد paint برای تمام پنجره‌های موجود در صفحه نمایش نیز رخ می‌دهد که مرورگر نیز یکی از همین پنجره‌ها است. برای داشتن یک انیمیشن یکنواخت و با کیفیت، باید فریم‌های انیمیشن را دقیقاً همزمان با رویداد paint ترسیم کرد. اما متدهای setInterval و setTimeout این همزمانی را تضمین نمی‌کنند. به همین دلیل انیمیشن‌های ایجاد شده با این متدها معمولاً کیفیت بالایی ندارند.</p>
+<p style="text-align: justify;">متد requestAnimationFrame برای حل دو مشکل فوق به وجود آمده است و خوشبختانه در تمام مرورگرهای امروزی پشتیبانی می‌شود. این متد مشکل همزمانی با رویداد paint را به طور کامل برطرف می‌کند. و مشکل تاخیر در زمانبندی را نیز تا حد زیادی برطرف می‌کند. البته هنوز هم در شرایطی که بار پردازشی CPU خیلی زیاد باشد کمی تاخیر ایجاد خواهد شد.</p>
+<p style="text-align: justify;">متد requestAnimationFrame یک آرگومان ورودی دریافت می‌کند که یک تابع Callback است که در زمان ترسیم فریم بعدی باید فراخوانی شود. این متد از مرورگر درخواست می‌کند تا تابع Callback را دقیقاً قبل از ترسیم بعدی (repaint) مرورگر اجرا کند. به همین دلیل زمان اجرای تابع Callback دقیقاً با زمان ترسیم مرورگر یا همان رویداد paint همگام می‌شود. توجه کنید که با استفاده از این متد، بر خلاف متد setInterval نیازی به تعیین زمان نیست. زیرا زمان اجرای تابع Callback با رویداد paint همگام شده و زمان وقوع این رویداد نیز توسط سیستم عامل تعیین می‌شود.</p>
+<p style="text-align: justify;">مثال زیر نحوه‌ی استفاده از متد requestAnimationFrame را برای پیاده‌سازی مثال قبلی نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript">
+let angle = 0;
+const div = document.querySelector('div');
+window.requestAnimationFrame(rotate);
+
+function rotate(){	
+	div.style.transform = `rotate(${angle}deg)`;
+	angle += 1;
+	window.requestAnimationFrame(rotate);
+}
+</code></pre>
+<p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/KrOxQq" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. هرچند این یک مثال ساده است و تشخیص تفاوت این روش با روش قبلی در این مثال ساده کار دشواری است. اما با این حال می‌توانید با اجرای همزمان این مثال و مثال قبلی در یک مرورگر، و تغییر مقدار افزایش angle در تابع rotate به <span class="text-dark">۵</span> درجه، تا حدودی به بهتر اجرا شدن انیمیشن در روش دوم پی ببرید.</p>
+<p style="text-align: justify;">همچنین توجه کنید که متد requestAnimationFrame فقط یک بار تابع rotate را اجرا می‌کند و برای اجرای متوالی تابع rotate و ایجاد یک انیمیشن، لازم است تا در هر بار اجرای تابع rotate یک بار دیگر از متد requestAnimationFrame استفاده شود تا فریم بعدی انیمیشن در ترسیم بعدی مرورگر ایجاد و نمایش داده شود.</p>
+<p style="text-align: justify;">متد requestAnimationFrame نیز دقیقاً مانند متدهای setTimeout و setInterval یک عدد را به عنوان شناسه‌ی انیمیشن ایجاد شده بازمی‌گرداند. در صورتی که بنا به هر دلیلی نیاز به لغو انیمیشن باشد، با استفاده از متد cancelAnimationFrame و ارسال شناسه‌ی انیمیشن به این متد، می‌توان انیمیشن را لغو کرد.</p>
+</div>
+                

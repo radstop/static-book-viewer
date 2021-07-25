@@ -1,0 +1,84 @@
+
+                <h2>حرکت در DOM</h2>
+                <div><p style="text-align: justify;">پیش از این دیدیم که تمام گره‌های درخت DOM به غیر از گره‌ی document دارای یک والد هستند. همچنین دیدیم که گره‌هایی که از نوع Element هستند می‌توانند تعدادی فرزند داشته باشند. این روابط موجود میان گره‌ها، این امکان را فراهم می‌کند تا در صورت انتخاب یک گره، بتوان با حرکت در درخت DOM به سایر گره‌ها نیز دسترسی پیدا کرد. به شکل زیر که بخشی از یک درخت DOM را نشان می‌دهد توجه کنید.</p>
+<p><img loading="lazy" class="aligncenter text-center wp-image-686 size-full" src="https://otedia.com/wp-content/uploads/2018/11/Relationship.png" alt="DOM Relationship" width="952" height="524" srcset="https://otedia.com/wp-content/uploads/2018/11/Relationship.png 952w, https://otedia.com/wp-content/uploads/2018/11/Relationship-300x165.png 300w, https://otedia.com/wp-content/uploads/2018/11/Relationship-768x423.png 768w" sizes="(max-width: 952px) 100vw, 952px" /></p>
+<p style="text-align: justify;">در شکل فوق ۴ گره وجود دارد که یکی از آنها والد (Parent) سایر گره‌ها می‌باشد. در نتیجه ۳ گره‌ی پایین، فرزند (Child) گره‌ی بالایی هستند. گره‌هایی که دارای والد یکسانی باشند را همزاد (Sibling) یکدیگر می‌نامند. این گره‌ها دارای خاصیت‌هایی هستند که با استفاده از آنها، می‌توان از روابط (Relationship) موجود میان گره‌ها برای حرکت در DOM استفاده کرد. یعنی می‌توان با شروع از یک گره، به گره‌های دیگر رسید. توجه کنید که در شکل فوق نوع گره‌ها مشخص نشده و گره‌های فرزند می‌توانند از هر نوعی باشند.</p>
+<p style="text-align: justify;">برای بررسی این خاصیت‌ها ابتدا یک سند HTML را به شکل زیر تعریف می‌کنیم. توجه کنید که فقط محتوای تگ &lt;body&gt; نشان داده شده است و از سایر بخش‌ها صرف نظر شده است.</p>
+<pre class="ltr"><code class="language-markup">
+&lt;div id="main"&gt;
+	&lt;h1 id="heading"&gt;Test Heading&lt;/h1&gt;
+	&lt;p class="p1"&gt;
+	        This is test paragraph 1
+	&lt;/p&gt;
+	&lt;p class="p1"&gt;
+	        This is test paragraph 2
+	&lt;/p&gt;
+	&lt;p class="p2"&gt;
+	        This is test paragraph 3
+	&lt;/p&gt;
+	&lt;p class="p2"&gt;
+	        This is test paragraph 4
+	&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p style="text-align: justify;">با استفاده از خاصیت childNodes می‌توان تمام فرزندان یک عنصر را به دست آورد. در قطعه کد زیر با استفاده از این خاصیت کلیه‌ی فرزندان عنصر &lt;div&gt; انتخاب می‌شوند.</p>
+<pre class="ltr"><code class="language-javascript">
+let children = document.getElementById('main').childNodes;
+console.log(children.length);
+← 11
+</code></pre>
+<p style="text-align: justify;">شاید در نگاه اول نتیجه‌ی به دست آمده غیر منطقی به نظر بیاید. چرا که عنصر &lt;div&gt; ظاهراً فقط ۵ فرزند دارد. اما هیچ خطایی رخ نداده و نتیجه صحیح است. زیرا خاصیت childNodes یک شئ از نوع NodeList است که می‌تواند هر نوع گره‌ای را در خود ذخیره کند. در سند فوق عنصر &lt;div&gt; علاوه بر ۵ فرزندی که از نوع Element دارد، ۶ فرزند هم از نوع Text دارد. یعنی هر یک از فضاهای خالی بین Element ها، یک فرزند از نوع Text می‌باشد.</p>
+<p style="text-align: justify;">در صورتی که گره‌های متنی مورد نیاز نباشند، با استفاده از خاصیت children می‌توان فقط فرزندانی که از نوع Element هستند را انتخاب کرد. این خاصیت حاوی شیئی از نوع HTMLCollection است که در بخش قبلی با آن آشنا شدیم.</p>
+<pre class="ltr"><code class="language-javascript">
+let elementChildren = document.getElementById('main').children;
+console.log(elementChildren.length);
+← 5
+</code></pre>
+<p style="text-align: justify;">حال می‌بینید که تعداد گره‌های انتخاب شده برابر با ۵ است. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/qQNErx" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید.</p>
+<p style="text-align: justify;">با استفاده از خاصیت‌های firstChild و lastChild می‌توان به ترتیب اولین و آخرین فرزند یک عنصر را به دست آورد. این خاصیت‌ها نیز به نوع فرزندان اهمیتی نمی‌دهند. در صورتی که فقط فرزندان از نوع Element مورد نظر باشد، به ترتیب می‌توان از خاصیت‌های firstElementChild و lastElementChild استفاده کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+let first = document.getElementById('main').firstChild;
+console.log(first.nodeName);
+← "#text"
+
+let last = document.getElementById('main').lastChild;
+console.log(last.nodeName);
+← "#text"
+
+let firstElement = document.getElementById('main').firstElementChild;
+console.log(firstElement.nodeName);
+← "H1"
+
+let lastElement = document.getElementById('main').lastElementChild;
+console.log(lastElement.nodeName);
+← "P"
+</code></pre>
+<p style="text-align: justify;">مشاهده می‌کنید که خاصیت nodeName برای firstChild و lastChild برابر با &#8220;text#&#8221; است. زیرا اولین و آخرین فرزند عنصر &lt;div&gt; از نوع متنی (فضای خالی) هستند. اما برای گره‌های از نوع Element خاصیت nodeName برابر با نام تگ سازنده‌ی آن عنصر است. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/LXZVbv" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;">برای به دست آوردن همزاد قبلی و همزاد بعدی یک گره نیز می‌توان به ترتیب از خاصیت‌های previousSibling و nextSibling استفاده کرد. همچنین در صورتی که فقط گره‌های از نوع Element مورد نظر باشد، می‌توان به ترتیب از خاصیت‌های previousElementSibling و nextElementSibling استفاده کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+let heading = document.getElementById('heading');
+console.log(heading.nextSibling.nodeName);
+← "#text"
+
+console.log(heading.previousSibling.nodeName);
+← "#text"
+
+console.log(heading.nextElementSibling.nodeName);
+← "P"
+
+console.log(heading.previousElementSibling.nodeName);
+← "TypeError: heading.previousElementSibling is null"
+</code></pre>
+<p style="text-align: justify;">در این مثال ابتدا عنصر &lt;h1&gt; انتخاب شده و در متغیر heading ذخیره شده است. در دستور بعدی خاصیت nodeName از همزاد بعدی این عنصر نمایش داده شده است. با توجه به این که همزاد بعدی این عنصر یک گره‌ی متنی (فضای خالی) است، مقدار خاصیت nodeName آن نیز برابر با &#8220;text#&#8221; است. در دستور بعدی نیز خاصیت nodeName از همزاد قبلی این عنصر نمایش داده شده است که باز هم یک گره‌ی متنی است. اما در دستور بعدی با استفاده از خاصیت nextElementSibling اولین همزاد بعدی این عنصر که از نوع Element باشد انتخاب شده است. که در واقع یک تگ &lt;p&gt; است و خاصیت nodeName آن نیز در کنسول نمایش داده شده است.</p>
+<p style="text-align: justify;">نکته‌ی مهم این مثال در دستور آخر آن است که می‌بینید با خطا مواجه شده است. زیرا عنصر &lt;h1&gt; اولین عنصر در بین فرزندان عنصر &lt;div&gt; است. بنابراین هیچ عنصر دیگری قبل از آن وجود ندارد. در صورتی که گره‌ای اولین فرزند در بین همزادهایش باشد، خاصیت previousSibling آن برابر با null خواهد بود. همچنین مقدار nextSibling برای فرزند آخر نیز برابر با null خواهد بود. این موضوع در مورد خاصیت‌های nextElementSibling و previousElementSibling در صورتی که اولین یا آخرین فرزند از نوع Element باشند نیز صادق است.</p>
+<p style="text-align: justify;">بنابر توضیحات فوق، خاصیت previousElementSibling برای عنصر &lt;h1&gt; برابر با null است و مقدار null نیز خاصیتی به نام nodeName ندارد. به همین دلیل اجرای دستور آخر با خطا مواجه می‌شود. این مثال را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/WYxQNJ" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. (البته خطای دستور آخر در CodePen نمایش داده نمی‌شود)</p>
+<p style="text-align: justify;">تنها خاصیت باقی مانده از این بخش خاصیت parentNode است. تمام گره‌ها خاصیتی به نام parentNode دارند که به گره‌ی والد آنها اشاره می‌کند. مثلاً در سند HTML فوق، خاصیت parentNode از عنصر &lt;h1&gt; به عنصر &lt;div&gt; اشاره می‌کند. در قطعه کد زیر با در اختیار داشتن عنصر &lt;h1&gt;، تعداد فرزندان عنصر &lt;div&gt; که والد آن است به دست آمده و نمایش داده می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+let heading = document.getElementById('heading');
+console.log(heading.parentNode.childNodes.length);
+← 11
+</code></pre>
+<p>این مثال را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/WYxQKP" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong></span> در ترسیم درخت DOM، گره‌هایی که از نوع Attr هستند نیز به عنوان فرزندان یک عنصر در نظر گرفته می‌شوند. اما خاصیت‌هایی که در این بخش معرفی شدند، از این نوع گره‌ها صرف نظر می‌کنند.</p>
+</div>
+                

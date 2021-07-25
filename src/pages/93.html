@@ -1,0 +1,147 @@
+
+                <h2>آشنایی با Fetch API &#8211; بخش اول</h2>
+                <div><p style="text-align: justify;">در بخش‌های قبلی با روش سنتی ارسال درخواست‌های HTTP، یعنی استفاده از شئ XMLHttpRequest آشنا شدیم. اما در سال‌های اخیر روش جدیدی برای ارسال این نوع درخواست‌ها به جاوا اسکریپت اضافه شده است. این روش که با نام Fetch API شناخته می‌شود، جایگزین بسیار مناسبی برای روش قبلی است و در سال‌های اخیر تمایل برنامه‌نویسان به استفاده از این روش بسیار افزایش یافته است.</p>
+<p style="text-align: justify;">با توجه به اینکه Fetch API مبتنی بر پرامیس‌ها می‌باشد، مشکل جهنم Callback در این روش خود به خود حل شده است. همچنین بسیاری از جزئیات غیر ضروری و کم کاربرد شئ XMLHttpRequest در این روش حذف شده‌اند. بنابراین اگر برنامه‌های مبتنی بر Ajax با استفاده از Fetch API نوشته شوند. اولاً نیاز به کدنویسی کمتری دارند. ثانیاً خوانایی بسیار بیشتری دارند.</p>
+<p style="text-align: justify;">در این بخش و بخش بعد قصد داریم با Fetch API آشنا شویم. اما قبل از شروع این بحث لازم است به چند نکته‌ی زیر توجه کنید.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> Fetch API مبتی بر پرامیس‌ها می‌باشد. بنابراین برای درک صحیح نحوه‌ی عملکرد Fetch API، باید با پرامیس‌ها آشنایی خوبی داشته باشید.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> در این روش امکان استفاده از رویدادهای پیشرفت (Progress Events) وجود ندارد. پس اگر در برنامه‌هایتان نیاز به استفاده از این رویدادها داشته باشید، باید از همان روش سنتی استفاده کنید. البته در بیش ۹۵ درصد موارد نیازی به استفاده از رویدادهای پیشرفت نخواهید داشت.</p>
+<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong></span> با استفاده از Fetch API فقط می‌توان درخواست‌های HTTP را به صورت آسنکرون ارسال کرد. در صورتی که با استفاده از شئ XMLHttpRequest امکان ارسال درخواست‌های سنکرون نیز وجود دارد. هرچند در جاوا اسکریپت تقریباً همیشه درخواست‌های HTTP را به صورت آسنکرون ارسال می‌کنیم.</p>
+<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong></span> با توجه به اینکه Fetch API یکی از امکانات نسبتاً جدید در جاوا اسکریپت است. امکان استفاده از آن در مرورگرهای قدیمی وجود ندارد. هرچند با استفاده از برخی کتابخانه‌ها (اصطلاحاً Polyfill) می‌توان این امکان را به مرورگرهای قدیمی‌تر هم اضافه کرد. اما در این کتاب از هیچ کتابخانه‌ای برای این منظور استفاده نخواهیم کرد. با فرض عدم استفاده از کتابخانه‌های Polyfill، استفاده از Fetch API فقط در مرورگرهای زیر امکان‌پذیر است.</p>
+<ul>
+<li>+Microsoft Edge 14</li>
+<li>+Firefox 40</li>
+<li>+42 Google Chrome</li>
+<li>+Safari 10.1</li>
+<li>+Opera 29</li>
+</ul>
+<p>&nbsp;</p>
+<h3>نحوه‌ی استفاده از Fetch API</h3>
+<p style="text-align: justify;">برای شروع کار با Fetch API باید از تابع fetch استفاده کنیم. در ساده‌ترین حالت، تابع fetch یک آدرس URL را به عنوان ورودی دریافت می‌کند. سپس یک شئ از نوع Promise را بازمی‌گرداند. دستور زیر نحوه‌ی استفاده از این تابع را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript">
+const p = fetch('https://otedia.com/file.json');
+</code></pre>
+<p style="text-align: justify;">در این دستور تابع fetch یک پرامیس را ایجاد می‌کند و در تابع executor آن، یک درخواست HTTP را به آدرس مشخص شده ارسال می‌کند. سپس پرامیس ایجاد شده را به عنوان نتیجه بازمی‌گرداند. این پرامیس در تابع executor خود، در زمان مناسب توابع resolve و reject را فراخوانی می‌کند. بنابراین برای مدیریت این درخواست HTTP، تنها لازم است که با استفاده از متد then یک تابع را به عنوان تابع onFulfilled تعریف کنیم. همچنین برای مدیریت خطاها نیز می‌توان از متد catch و یک تابع به عنوان تابع onRejected استفاده کرد. قطعه کد زیر نحوه‌ی استفاده از متدهای then و catch را به صورت ساده شده نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript">
+p.then((response) =&gt; {
+		// دستورات مربوط به استفاده از پاسخ دریافت شده
+	})
+	.catch((error) =&gt; {
+		// دستورات مدیریت خطا
+	});
+</code></pre>
+<p style="text-align: justify;">همانطور که مشاهده می‌کنید هر دو تابع onFulfilled و onRejected یک آرگومان ورودی دریافت می‌کنند. در صورتی که درخواست با موفقیت به پایان برسد یک شئ از نوع Response به تابع onFulfilled ارسال خواهد شد. و در صورتی که ارسال درخواست با خطا مواجه شود، یک شئ از نوع TypeError به تابع onRejected ارسال خواهد شد.</p>
+<p style="text-align: justify;">شئ Response دارای تعداد زیادی خاصیت و متد است که جهت دسترسی به پاسخ دریافت شده باید از آنها استفاده کرد. در ادامه به معرفی مهمترین موارد و نحوه‌ی استفاده از آنها خواهیم پرداخت. لیست زیر برخی از خاصیت‌های شئ Response را همراه کاربردشان نشان می‌دهد.</p>
+<ul>
+<li>status : کد وضعیت پاسخ (مثلاً 200)</li>
+<li style="text-align: justify;">statusText : توضیح کوتاهی در مورد وضعیت پاسخ (مثلاً OK برای کد 200). این خاصیت در حال حاضر فقط در مرورگر Firefox قابل استفاده است.</li>
+<li style="text-align: justify;">ok : در صورتی که کد وضعیت بین 200 تا 299 باشد، مقدار این خاصیت true است. در غیر این صورت false است.</li>
+<li>url : آدرس URL ارسال کننده‌ی پاسخ.</li>
+</ul>
+<p style="text-align: justify;">قطعه کد زیر نحوه‌ی استفاده از خاصیت‌های فوق را نشان می‌دهد. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/BaBeLLp" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+	.then((response) =&gt; {
+		console.log(response.status);
+		console.log(response.statusText);
+		console.log(response.ok);
+		console.log(response.url);
+	});
+</code></pre>
+<p style="text-align: justify;">اما شئ Response دارای تعدادی متد نیز می‌باشد که برخی از آنها برای دسترسی به بدنه‌ی (Body) پاسخ دریافت شده به کار می‌روند. هر یک از این متدها پاسخ دریافت شده را در قالب متفاوتی در اختیار برنامه‌نویس قرار می‌دهند. ویژگی مشترک این متدها این است که مقدار بازگشتی از این متدها نیز یک پرامیس است. در نتیجه می‌توان در یک زنجیره‌ی پرامیس از این متدها استفاده کرد. در ادامه به معرفی این متدها می‌پردازیم.</p>
+<p>&nbsp;</p>
+<h4>متد text</h4>
+<p style="text-align: justify;">این متد یک پرامیس را بازمی‌گرداند که در صورت موفقیت پرامیس، بدنه‌ی پاسخ دریافت شده به صورت یک رشته‌ی متنی به تابع onFulfilled ارسال می‌شود. مثال زیر نحوه‌ی استفاده از این متد را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+	.then((response) =&gt; {
+		if(response.ok){
+			return response.text();
+		}else{
+			throw Error(response.status);
+		}
+	})
+	.then((text) =&gt; console.log(text))
+	.catch((error) =&gt; console.log(error));
+</code></pre>
+<p style="text-align: justify;">در این مثال ابتدا یک درخواست Ajax با استفاده از تابع fetch ارسال می‌شود. و با توجه به اینکه این تابع یک پرامیس را بازمی‌گرداند، بلافاصله به صورت زنجیره‌ای از متد then برای تعریف تابع onFulfilled استفاده شده است. داخل تابع onFulfilled و در خط 3، ابتدا بررسی می‌شود که پاسخ بدون اشکال دریافت شده است یا خیر؟ در صورتی که پاسخ به درستی دریافت شده باشد، با استفاده از متد text از شئ Response، یک پرامیس جدید ایجاد می‌شود که نتیجه‌ی این پرامیس به تابع onFulfilled در متد then بعدی ارسال می‌شود. و همانطور که اشاره شد نتیجه‌ی این پرامیس، بدنه‌ی پاسخ دریافت شده از سرور، به صورت یک رشته‌ی متنی است.</p>
+<p style="text-align: justify;">در خط 9 رشته‌ی متنی حاوی بدنه‌ی پاسخ در کنسول نمایش داده می‌شود. نکته‌ی مهمی که باید به آن توجه شود این است که پرامیس‌های ایجاد شده توسط تابع fetch، برای کدهای خطایی که توسط سرور ایجاد می‌شوند (مانند 404 یا 500) هیچ خطایی تولید نمی‌کنند. یعنی در چنین حالت‌هایی تابع reject فراخوانی نمی‌شود، بلکه تابع resolve فراخوانی می‌شود. بنابراین در صورتی که درخواست با خطاهایی مانند خطای 404 مواجه شود، متد catch مورد استفاده قرار نخواهد گرفت. در واقع پرامیس ایجاد شده توسط تابع fetch فقط زمانی تابع reject را فراخوانی می‌کند که خطایی در ارسال درخواست رخ داده باشد، نه در دریافت پاسخ. مثلاً اتصال شبکه قطع باشد و یا نام دامنه‌ی به کار رفته در آدرس URL وجود نداشته باشد.</p>
+<p style="text-align: justify;">به همین دلیل اگر قصد داشته باشیم برای کدهای خطای ارسال شده از سرور هم از متد catch استفاده شود، باید یک خطای سفارشی با استفاده از کلمه‌ی کلیدی throw ایجاد کنیم. به همین منظور در خط 6 یک خطای سفارشی تولید می‌شود. یعنی در صورتی که مقدار خاصیت ok برابر با true نباشد، یک خطای سفارشی تولید می‌شود. در نتیجه تابع تعریف شده در متد catch فراخوانی خواهد شد.</p>
+<p style="text-align: justify;">به عنوان مثال اگر به جای عدد 1 در انتهای آدرس URL، عدد 1000 را قرار دهید، کد خطای 404 را از سرور دریافت خواهید کرد. در این صورت همین عدد به عنوان آرگومان ورودی به تابع onRejected تعریف شده در خط 10 ارسال شده و در نهایت در کنسول نمایش داده می‌شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/zYOQdYJ" target="_blank" rel="noopener noreferrer">اینجا </a>اجرا کنید.</p>
+<p>&nbsp;</p>
+<h4>متد json</h4>
+<p style="text-align: justify;">این متد نیز یک پرامیس را بازمی‌گرداند که در صورت موفقیت، بدنه‌ی پاسخ به صورت یک رشته‌ی JSON تفسیر شده و به یک شئ جاوا اسکریپت تبدیل می‌شود و به تابع onFulfilled ارسال می‌شود. این متد پرکاربردترین متد شئ Response است. زیرا همانطور که قبلاً هم اشاره شد، معمولاً در Ajax داده‌ها در قالب JSON ارسال و دریافت می‌شوند. مثال زیر نحوه‌ی استفاده از این متد را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+	.then((response) =&gt; {
+		if(response.ok){
+			return response.json();
+		}else{
+			throw Error(response.status);
+		}
+	})
+	.then((obj) =&gt; console.log(obj.title))
+	.catch((error) =&gt; console.log(error));
+</code></pre>
+<p style="text-align: justify;">در این مثال نیز پس از بررسی مقدار خاصیت ok، با استفاده از متد json یک پرامیس بازگردانده می‌شود. نتیجه‌ی این پرامیس یک شی جاوا اسکریپت است که به تابع تعریف شده در خط 9 ارسال می‌شود. این شئ دارای خاصیتی به نام title است که در کنسول نمایش داده می‌شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/oNvRedX" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p>&nbsp;</p>
+<h4>متد blob</h4>
+<p style="text-align: justify;">این متد نیز یک پرامیس را بازمی‌گرداند که در صورت موفقیت، بدنه‌ی پاسخ در قالب یک فایل (blob یا Binary Large Object) به تابع onFulfilled ارسال می‌شود. در نتیجه از متد blob معمولاً زمانی استفاده می‌شود که قصد داشته باشیم یک فایل را به صورت کامل دریافت کرده و در صفحه‌ی وب درج کنیم (مانند یک فایل JPEG). همچنین از این متد می‌توان برای دانلود فایل‌ها از سرور به صورت آسنکرون استفاده کرد. هرچند این متد کاربرد زیادی ندارد و به ندرت از آن استفاده می‌شود. اما آشنایی با این متد و نحوه‌ی استفاده از آن، در برخی شرایط خاص بسیار مفید خواهد بود. مثال زیر نحوه‌ی دریافت یک فایل JPEG و نمایش آن در صفحه‌ی وب را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+const myImage = document.querySelector('img');
+const p = fetch('https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg');
+
+p.then(response =&gt; response.blob())
+	.then(function (myBlob) {
+		let fileURL = URL.createObjectURL(myBlob);
+		myImage.src = fileURL;
+	});
+</code></pre>
+<p style="text-align: justify;">در این مثال فرض شده است که یک تگ &lt;img&gt; در صفحه‌ی وب وجود دارد. همچنین جهت سادگی از بررسی خطا و استفاده از متد catch صرف‌نظر شده است. همانطور که مشاهده می‌کنید در خط 4 از متد blob استفاده شده است. این متد یک پرامیس را بازمی‌گرداند که نتیجه‌ی آن در متد then بعدی به تابع onFulfilled (در این مثال پارامتر myBlob) ارسال می‌شود.</p>
+<p style="text-align: justify;">در خط 6 با ارسال متغیر myBlob به متد createObjectURL از شئ URL، یک آدرس URL موقت برای فایل دانلود شده در حافظه ایجاد می‌شود. سپس URL ایجاد شده را در صفت src از تگ &lt;img&gt; قرار می‌دهیم. این کار باعث می‌شود که تصویر دانلود شده در صفحه‌ی وب نمایش داده شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/oNvRqgE" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;">حال فرض کنید قصد داریم فایل دریافت شده از سرور را در اختیار کاربر قرار دهیم تا آن را دانلود کرده و در کامپیوتر خود ذخیره کند. برای این منظور می‌توان از دستورات زیر استفاده کرد.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+const p = fetch('https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg');
+
+p.then(response =&gt; response.blob())
+	.then(function (myBlob) {
+		let fileURL = URL.createObjectURL(myBlob);
+		let link = document.createElement('a');
+		link.innerHTML = 'Download Picture';
+		link.download = 'my-image.jpg';
+		document.body.appendChild(link);
+		link.href= fileURL;
+	});
+</code></pre>
+<p style="text-align: justify;">در این مثال پس از ایجاد یک آدرس URL موقت برای فایل دریافت شده و ذخیره‌ی آدرس ایجاد شده در متغیر fileURL (خط 5)، یک عنصر از نوع &lt;a&gt; ایجاد شده و رشته‌ی &#8220;Download Picture&#8221; در خاصیت innerHTML آن قرار داده می‌شود. سپس صفت download برابر با &#8220;my-image.jpg&#8221; قرار می‌گیرد. حتماً می‌دانید که استفاده از صفت download باعث می‌شود که در زمان کلیک کردن کاربر بر روی لینک ایجاد شده، فایل مورد نظر دانلود شود (و در مرورگر نمایش داده نشود). مقداری که به صفت download می‌دهیم نیز نام فایل دانلود شونده را مشخص می‌کند.</p>
+<p style="text-align: justify;">سپس در خط 9 لینک ایجاد شده را به عنصر &lt;body&gt; ضمیمه کرده و در نهایت صفت href از عنصر &lt;a&gt; را برابر با آدرس URL موقت قرار می‌دهیم. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/VwZOXed" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. با اجرای این مثال و کلیک کردن بر روی لینک ایجاد شده، فایل تصویری که از سرور به صورت آسنکرون دریافت شده است به صورت یک فایل با نام &#8220;my-image.jpg&#8221; بر روی کامپیوتر شما دانلود خواهد شد.</p>
+<p>&nbsp;</p>
+<h3>جلوگیری از ایجاد جهنم Callback</h3>
+<p style="text-align: justify;">در بخش قبل دیدیم که با استفاده از پرامیس‌ها می‌توان از به وجود آمدن جهنم Callback جلوگیری کرد. همچنین مثالی در این رابطه ارائه شد و نحوه‌ی رفع جهنم Callback در آن مثال تشریح شد. حال می‌خواهیم همان مثال را با استفاده از Fetch API پیاده‌سازی کنیم. با توجه به اینکه Fetch API مبتنی بر پرامیس‌ها می‌باشد، می‌تواند از به وجود آمدن جهنم Callback نیز جلوگیری کند.</p>
+<p style="text-align: justify;">اما با توجه به اینکه ارسال درخواست‌های HTTP با استفاده از Fetch API بسیار ساده‌تر است. پیاده‌سازی این مثال با استفاده از Fetch API، بسیار ساده‌تر از روشی است که در بخش قبل دیدیم. زیرا نیازی به تعریف یک تابع اضافی برای ارسال درخواست‌ها نداریم (تابع getData در بخش قبل). قطعه کد زیر نحوه‌ی پیاده‌سازی مثال بخش قبل را با استفاده از Fetch API نشان می‌دهد. توجه کنید که برای سادگی بیشتر، از بررسی خطاها صرف‌نظر شده است.</p>
+<pre class="ltr"><code class="language-javascript line-numbers">
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+	.then((response) =&gt; response.json())
+	.then((obj) =&gt; {
+		console.log(obj.id);
+		return fetch('https://jsonplaceholder.typicode.com/todos/2');
+	})
+	.then((response) =&gt; response.json())
+	.then((obj) =&gt; {
+		console.log(obj.id);
+		return fetch('https://jsonplaceholder.typicode.com/todos/3');
+	})
+	.then((response) =&gt; response.json())
+	.then((obj) =&gt; {
+		console.log(obj.id);
+		return fetch('https://jsonplaceholder.typicode.com/todos/4');
+	})
+	.then((response) =&gt; response.json())
+	.then((obj) =&gt; {
+		console.log(obj.id);
+	});
+</code></pre>
+<p style="text-align: justify;">توجه کنید که برای پردازش هر درخواست دو بار از متد then استفاده شده است. متد اول شئ response را دریافت کرده و با استفاده از متد json، بدنه‌ی پاسخ را که یک رشته‌ی JSON است به یک شئ جاوا اسکریپت تبدیل کرده و به متد دوم می‌فرستد. در متد دوم نیز ابتدا خاصیت id از شئ obj در کنسول نمایش داده می‌شود. سپس یک درخواست جدید با استفاده از تابع fetch ارسال می‌شود. و با توجه به اینکه پرامیس بازگشتی از متد fetch، توسط دستور return بازگردانده شده است. بنابراین در متد then بعدی می‌توان این درخواست را پردازش کرد.</p>
+<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/ZEzNoOo" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. با اجرای این مثال مشاهده خواهید کرد که همانطور که انتظار داریم، همیشه ترتیب ارسال درخواست‌ها و ترتیب دریافت پاسخ آنها یکسان است. همچنین می‌بینید که استفاده از Fetch API علاوه بر جلوگیری از به وجود آمدن جهنم Callback، خوانایی برنامه را نیز بسیار افزایش می‌دهد.</p>
+<p style="text-align: justify;">در این بخش با مقدمات کار با Fetch API آشنا شدیم. اما جزئیات بیشتری در رابطه با این API وجود دارد که در بخش بعدی به آنها نیز خواهیم پرداخت.</p>
+</div>
+                

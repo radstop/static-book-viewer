@@ -1,0 +1,112 @@
+
+                <h2>متدها و خواص آرایه ها &#8211; بخش اول</h2>
+                <div><p style="text-align: justify;">در بخش قبلی با مفهوم آرایه، نحوه‌ی تعریف آرایه‌ها و مقدمات کار با آرایه‌ها آشنا شدیم. در این بخش قصد داریم تا کمی بیشتر وارد جزئیات این مبحث شویم و مباحث پیشرفته‌تری در رابطه با آرایه‌ها را مطرح کنیم.</p>
+<p>&nbsp;</p>
+<h3>طول آرایه</h3>
+<p style="text-align: justify;">به تعداد عناصر موجود در یک آرایه، اصطلاحاً طول آرایه گفته می‌شود. با استفاده از خاصیت length می‌توان طول یک آرایه را به دست آورد.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits = ['Apple' , 'Orange' , 'Banana'];
+fruits.length;
+← 3
+</code></pre>
+<p style="text-align: justify;">به عنوان مثال برای دسترسی به آخرین عنصر یک آرایه می‌توان از کد زیر استفاده کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+fruits[fruits.length - 1];
+← "Banana"
+</code></pre>
+<p style="text-align: justify;">توجه کنید که برای دسترسی به n اُمین عنصر یک آرایه، باید از اندیس n &#8211; 1 استفاده شود. به همین دلیل در کد فوق از اندیس fruits.length &#8211; 1 استفاده شده است. همچنین دقت کنید که می‌توان مقدار خاصیت length را تغییر داد. به قطعه کد زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+fruits.length = 5;
+fruits;
+← ["Apple", "Orange", "Banana", undefined , undefined];
+fruits.length = 2;
+fruits;
+← ["Apple", "Orange"]
+</code></pre>
+<p style="text-align: justify;">همانطور که مشاهده می‌شود، در صورتی که مقدار length را از مقدار فعلی آن بیشتر کنید. به تعداد لازم عنصر جدید به انتهای آرایه با مقدار undefined اضافه می‌شود. همچنین اگر مقدار length را کاهش دهید، به تعداد لازم از عناصر انتهای آرایه حذف می‌شود.</p>
+<p>&nbsp;</p>
+<h3>متدهای shift، push، pop و unshift</h3>
+<p style="text-align: justify;">با استفاده از متد pop می‌توان به آخرین عنصر یک آرایه دست یافت. این متد ضمن بازگرداندن آخرین عنصر آرایه، عنصر مذکور را از آرایه حذف می‌کند. به قطعه کد زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits = ['Apple' , 'Orange' , 'Banana'];
+let a = fruits.pop();
+a;
+← "Banana"
+fruits;
+← ["Apple", "Orange"]
+</code></pre>
+<p style="text-align: justify;">با استفاده از متد push نیز می‌توان یک عنصر را به انتهای آرایه اضافه کرد. این متد طول جدید آرایه را بازمی‌گرداند.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits = ['Apple' , 'Orange' , 'Banana'];
+fruits.push('Berry');
+← 4
+fruits;
+← ["Apple", "Orange" , "Banana" , "Berry"]
+</code></pre>
+<p style="text-align: justify;">همچنین با استفاده از متد shift نیز می‌توان به اولین عنصر یک آرایه دست یافت. این متد نیز مانند متد pop، عنصر خوانده شده را از آرایه حذف می‌کند.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits = ['Apple' , 'Orange' , 'Banana'];
+let a = fruits.shift();
+a;
+← "Apple"
+fruits;
+← ["Orange" , "Banana"]
+</code></pre>
+<p style="text-align: justify;">با استفاده از متد unshift نیز می‌توان یک عنصر جدید را به ابتدای آرایه اضافه کرد. این متد نیز مانند متد push طول جدید آرایه را بازمی‌گرداند.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits = ['Apple' , 'Orange' , 'Banana'];
+fruits.unshift('Berry');
+← 4
+fruits;
+← ["Berry" , "Apple" , "Orange" , "Banana"]
+</code></pre>
+<p>&nbsp;</p>
+<h3>ترکیب آرایه‌ها</h3>
+<p style="text-align: justify;">با استفاده از متد concat می‌توان دو یا چند آرایه را به هم متصل کرده و آرایه‌ی بزرگتری ایجاد کرد. به قطعه کد زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits1 = ['Apple' , 'Orange' , 'Banana'];
+let fruits2 = ['Berry' , 'Cherry'];
+fruits1.concat(fruits2);
+← ["Apple" , "Orange" , "Banana" , "Berry" , "Cherry"]
+</code></pre>
+<p style="text-align: justify;">توجه کنید که متد concat هیچ تغییری در دو آرایه‌ی اولیه ایجاد نمی‌کند. بلکه‌ یک آرایه‌ی جدید از ترکیب دو آرایه ساخته و بازمی‌گرداند. در صورتی که بخواهیم آرایه‌ی جدید را در یکی از آرایه‌های اولیه (یا یک متغیر جدید) ذخیره کنیم، باید از عملگر &#8220;=&#8221; استفاده کنیم.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits1 = ['Apple' , 'Orange' , 'Banana'];
+let fruits2 = ['Berry' , 'Cherry'];
+fruits1 = fruits1.concat(fruits2);
+fruits1;
+← ["Apple" , "Orange" , "Banana" , "Berry" , "Cherry"]
+</code></pre>
+<p style="text-align: justify;">یک روش جایگزین برای انجام عمل فوق، استفاده از عملگر spread است. این عملگر که به صورت <strong>سه نقطه</strong> نشان داده می‌شود، به صورت زیر قابل استفاده است.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits1 = ['Apple' , 'Orange' , 'Banana'];
+let fruits2 = ['Berry' , 'Cherry'];
+fruits1 = [ ...fruits1 , ...fruits2];
+fruits1;
+← ["Apple" , "Orange" , "Banana" , "Berry" , "Cherry"]
+</code></pre>
+<p style="text-align: justify;">توجه کنید که در روش فوق استفاده از عملگر spread ضروری است. در صورتی که از این عملگر استفاده نشود، خروجی به صورت زیر خواهد بود که در واقع یک آرایه به طول ۲ است که هر عنصر آن خود یک آرایه است.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits1 = ['Apple' , 'Orange' , 'Banana'];
+let fruits2 = ['Berry' , 'Cherry'];
+fruits1 = [fruits1 , fruits2];
+fruits1;
+← [["Apple" , "Orange" , "Banana"] , ["Berry" , "Cherry"]]
+fruits1.length;
+← 2
+</code></pre>
+<p style="text-align: justify;">با استفاده از متد join نیز می‌توان عناصر یک آرایه را به صورت یک رشته به هم متصل کرد. به طوری که عناصر با استفاده از کاراکتر کاما از هم جدا شوند. به قطعه کد زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits = ['Apple' , 'Orange' , 'Banana' , 'Berry'];
+fruits.join();
+← "Apple,Orange,Banana,Berry"
+</code></pre>
+<p style="text-align: justify;">همچنین در صورت نیاز می‌توان با مشخص کردن یک کاراکتر یا رشته‌ی خاص در متد join، کاراکتر یا رشته‌ی جدا کننده‌ی دیگری را جایگزین کاراکتر کاما کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruits = ['Apple' , 'Orange' , 'Banana' , 'Berry'];
+fruits.join(' &amp; ');
+← "Apple &amp; Orange &amp; Banana &amp; Berry"
+</code></pre>
+<p>در بخش بعدی نیز این مبحث را ادامه داده و متدهای بیشتری در رابطه با آرایه‌ها را معرفی می‌کنیم.</p>
+</div>
+                

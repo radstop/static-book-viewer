@@ -1,0 +1,45 @@
+
+                <h2>رشته ها در جاوا اسکریپت</h2>
+                <div><p style="text-align: justify;">همانطور که پیش‌تر اشاره شد، یکی از انواع داده‌ی اولیه در جاوا اسکریپت، نوع داده‌ی رشته‌ای یا String است. یک رشته از کنار هم قرار گرفتن تعدادی کاراکتر تشکیل می‌شود. رشته‌ای که تعداد کاراکترهای آن صفر باشد را <strong>رشته‌ی تهی</strong> می‌نامیم.</p>
+<p style="text-align: justify;">برای تعریف یک رشته، باید کاراکترهای مورد نظر را داخل علامت Single Quotes یا Double Quotes قرار دهیم. نمونه‌هایی از تعریف رشته‌ها را در قطعه کد زیر می‌بینید.</p>
+<pre class="ltr"><code class="language-javascript" style="font-family: consolas;">
+let message = 'Hello';					// Single Quotes تعریف یک متغیر رشته‌ای با
+let name = "Sohrab";					// Double Quotes تعریف یک متغیر رشته‌ای با
+const companyName = "Microsoft";		// Double Quotes تعریف یک ثابت رشته‌ای با
+</code></pre>
+<p style="text-align: justify;">در شرایط عادی هیچ تفاوتی بین Single Quotes و Double Quotes وجود ندارد و هیچ کدام نسبت به دیگری ارجحیت ندارد. اما اگر در کاراکترهای یک رشته بخواهیم از کاراکتر Single Quote یا Double Quote استفاده کنیم، وضعیت متفاوت خواهد بود. مثلاً تعریف دو متغیر رشته‌ای که اولی شامل کاراکتر Single Quote و دومی شامل کاراکتر Double Quote است به شکل زیر صحیح نیست و هر دو دستور موجب تولید خطا و توقف برنامه خواهند شد.</p>
+<pre class="ltr"><code class="language-javascript" style="font-family: consolas;">
+let firstString = 'It's a car';
+let secondString = "My name is "Hamid"";
+</code></pre>
+<p style="text-align: justify;">دلیل بروز خطا در دستورات فوق کاملاً واضح است. چرا که مثلاً در دستور اول، کاراکتر Single Quote که بعد از کلمه‌ی It آمده است به عنوان پایان رشته تلقی خواهد شد و مابقی کاراکترها نیز با دستور زبان جاوا اسکریپت مطابقت ندارند و یک عبارت غلط ارزیابی می‌شوند. اما اگر در دستور اول، برای تعریف رشته از Double Quotes استفاده می‌کردیم مشکل حل می‌شد. چرا که ابتدا و انتهای رشته کاملاً قابل تشخیص خواهد بود. در نتیجه زمانی که یک رشته شامل کاراکتر Single Quote باشد، باید آن را داخل Double Quotes قرار دهیم. و زمانی که شامل کاراکتر Double Quote باشد، باید آن را داخل Single Quotes قرار دهیم. پس شکل صحیح دو دستور فوق به صورت زیر خواهد بود.</p>
+<pre class="ltr"><code class="language-javascript" style="font-family: consolas;">
+let firstString = "It's a car";
+let secondString = 'My name is "Hamid"';
+</code></pre>
+<p style="text-align: justify;">حال فرض کنید که رشته‌ای شامل هر دو کاراکتر Single Quote و Double Quote باشد. در این صورت رشته را باید به چه شکل تعریف کرد تا با خطا مواجه نشویم؟ پاسخ این سوال در روشی است که اصطلاحاً به آن <strong>escape</strong> کردن کاراکترهای خاص گفته می‌شود. در این روش، بدون توجه به این که رشته را با Single Quotes تعریف کرده‌ایم یا با Double Quotes، می‌توانیم با قرار دادن کاراکتر &#8220;\&#8221; قبل از کاراکتر مورد نظر (Single Quote یا Double Quote)، اصطلاحاً آن کاراکتر را escape کنیم. توجه کنید که اگر رشته را با Double Quotes تعریف کرده باشید، نیازی به escape کردن کاراکترهای Single Quote نخواهید داشت و برعکس. مثلاً قطعه کد زیر دو روش برای تعریف یک رشته که هم شامل Single Quote و هم شامل Double Quote است را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript" style="font-family: consolas;">
+let string1 = "My name is \"Hamid\" and It's my car";
+let string2 = 'My name is "Hamid" and it\'s my car';
+</code></pre>
+<p style="text-align: justify;">پس برای قرار دادن کاراکترهای خاص در یک رشته، می‌توان با قرار دادن &#8220;\&#8221; قبل از کاراکتر مورد نظر، آن کاراکتر را escape کرد. اما کاراکترهای خاص محدود به Single Quote و Double Quote نیستند. از مهمترین کاراکترهای خاصی که معمولاً نیاز به escape کردن آنها پیدا می‌کنیم؛ می‌توان به موارد زیر اشاره کرد :</p>
+<ul>
+<li class="mb-2"><strong>کاراکتر &#8220;\&#8221; :</strong> برای escape کردن کاراکتر &#8220;\&#8221; باید دو بار از همین کاراکتر به صورت &#8220;\\&#8221; استفاده کنیم.</li>
+<li class="mb-2"><strong>کاراکتر خط جدید (معادل Enter) :</strong> برای escape کردن این کاراکتر باید از <span class="ltr d-inline-block">&#8220;\n&#8221;</span> استفاده کرد.</li>
+<li class="mb-2"><strong>کاراکتر جدول‌بندی افقی (معادل کلید Tab) :</strong> برای escape کردن این کاراکتر باید از <span class="ltr d-inline-block">&#8220;\t&#8221;</span> استفاده کرد.</li>
+</ul>
+<p style="text-align: justify;">به عنوان مثال رشته‌ی زیر را در نظر بگیرید که علاوه بر Single Quote و Double Quote، شامل خط جدید و &#8220;\&#8221; نیز می‌باشد.</p>
+<pre class="ltr"><code class="language-">
+Hello World!
+My name is "Hamid" and It's my car
+My profile folder is : C:\Users\Hamid
+</code></pre>
+<p style="text-align: justify;">برای قرار دادن چنین مقداری در یک متغیر رشته‌ای می‌توان به صورت زیر عمل کرد.</p>
+<pre class="ltr"><code class="language-javascript" style="font-family: consolas;">
+let str = "Hello World!\nMy name is \"Hamid\" and It's my car\nMy profile folder is : C:\\Users\\Hamid";
+</code></pre>
+<p style="text-align: justify;">همین حالا کنسول مرورگر خود را باز کنید و دستور فوق را در آن اجرا کنید. سپس برای مشاهده‌ی مقداری که در متغیر فوق ذخیره شده است، نام متغیر، یعنی str را در کنسول وارد کنید. نتیجه‌ای که مشاهده خواهید کرد به شکل زیر است که کاملاً رفتار کاراکتر &#8220;\&#8221; را برای escape کردن کاراکترهای خاص نشان می‌دهد.</p>
+<p><img loading="lazy" src="https://otedia.com/wp-content/uploads/2018/09/escape-1024x265.png" alt="" width="1024" height="265" /></p>
+<p>پس در این بخش با نحوه‌ی تعریف متغیرهای رشته‌ای آشنا شدیم. اما جزئیات بیشتری در مورد رشته‌ها وجود دارد که به مرور با آنها آشنا خواهیم شد.</p>
+</div>
+                

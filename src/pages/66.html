@@ -1,0 +1,140 @@
+
+                <h2>رویدادهای فرم ها</h2>
+                <div><h3>رویداد submit</h3>
+<p style="text-align: justify;">یکی از رویدادهای پرکاربرد در فرم‌ها، رویداد submit است. این رویداد در زمان کلیک کردن بر روی دکمه‌های موجود در یک فرم که از نوع submit یا image هستند رخ می‌دهد. در واقع با کلیک کردن بر روی این نوع دکمه‌ها، اطلاعات وارد شده در فرم، به آدرس تعیین شده در صفت action از تگ &lt;form&gt; ارسال می‌شوند. البته این رفتار پیش‌فرض این رویداد است. اما همانطور که در فصل هفتم دیدیم، با استفاده از متد preventDefault می‌توان از رفتار پیش‌فرض رویدادها جلوگیری کرد.</p>
+<p style="text-align: justify;">از این رویداد معمولاً برای بررسی اطلاعات وارد شده در فیلدهای فرم و اعتبارسنجی آنها استفاده می‌شود. به عنوان مثال فرم زیر را در نظر بگیرید که از یک فیلد متنی و یک دکمه‌ی submit تشکیل شده است.</p>
+<pre class="ltr"><code class="language-markup">
+&lt;form action="https://otedia.com"&gt;
+	&lt;input type="text" name="search" id="search" /&gt;
+	&lt;button type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p style="text-align: justify;">فرض کنید که در برنامه‌ای که این فرم در آن قرار دارد، امکان جستجوی کلماتی که کمتر از <span class="text-dark">۳</span> کاراکتر داشته باشند وجود ندارد. یعنی طول رشته‌ی وارد شده در فیلد متنی باید حداقل برابر با <span class="text-dark">۳</span> باشد. در غیر این صورت باید از ارسال یا Submit شدن فرم جلوگیری شود. برنامه‌ی زیر طول رشته‌ی وارد شده در فیلد متنی را که در خاصیت value ذخیره می‌شود بررسی می‌کند. و در صورتی که مقدار آن کمتر از <span class="text-dark">۳</span> باشد با فراخوانی متد preventDefault از ارسال فرم جلوگیری می‌کند.</p>
+<pre class="ltr"><code class="language-javascript">
+const form = document.querySelector('form');
+form.addEventListener('submit' , validateForm);
+
+function validateForm(event){
+	const input = document.getElementById('search');
+	if(input.value.length &lt; 3){
+		alert('لطفاً 3 کاراکتر یا بیشتر وارد کنید');
+		event.preventDefault();
+	}
+}
+</code></pre>
+<p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/jQeJmJ" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید. با اجرای این برنامه و وارد کردن رشته‌ای که کمتر از <span class="text-dark">۳</span> کاراکتر دارد. در صورتی که روی دکمه‌ی Submit کلیک کنید، ابتدا یک پیغام خطا با تابع alert نمایش داده می‌شود. سپس با متد preventDefault از ارسال فرم جلوگیری می‌شود. اما در صورتی که طول رشته‌ی وارد شده <span class="text-dark">۳</span> کاراکتر یا بیشتر باشد، فرم بدون هیچ مشکلی ارسال می‌شود.</p>
+<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong></span> در جاوا اسکریپت می‌توان با استفاده متد submit فرم‌ها را ارسال کرد. یعنی می‌توان بدون دخالت مستقیم کاربر و بدون کلیک کردن بر روی دکمه‌ی Submit، در هر نقطه‌ای از برنامه، یکی از فرم‌های موجود در صفحه‌ی وب را ارسال کرد. مثلاً در مورد مثال فوق بعد از انتخاب فرم، با اجرای دستور <span class="ltr d-inline-block">&#8220;form.submit()&#8221;</span> فرم موجود در صفحه ارسال می‌شود. اما نکته‌ی مهم در این حالت این است که در صورت ارسال فرم‌ها با متد submit، رویداد submit رخ نمی‌دهد. در نتیجه تابع Event Handler مربوط به رویداد submit نیز اجرا نشده و اعتبارسنجی نیز انجام نمی‌شود.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> رویداد reset نیز یکی دیگر از رویدادهای مربوط به فرم‌ها است. این رویداد در زمان کلیک کردن بر روی دکمه‌های از نوع reset اتفاق می‌افتد و نحوه‌ی استفاده از آن مشابه رویداد submit است. اما از دکمه‌های reset به ندرت در فرم‌ها استفاده می‌شود و به همین دلیل از رویداد reset نیز به ندرت استفاده می‌شود. همچنین با استفاده از متد reset نیز می‌توان عمل دکمه‌ی reset را از طریق جاوا اسکریپت شبیه‌سازی کرد. اما بر خلاف متد submit، فراخوانی متد reset موجب وقوع رویداد reset نیز می‌شود.</p>
+<p>&nbsp;</p>
+<h3>رویدادهای focus و blur</h3>
+<p style="text-align: justify;">دو رویدار پرکاربرد دیگر در رابطه با فرم‌ها، رویدادهای focus و blur هستند. زمانی که یکی از کنترل‌های فرم focus را در اختیار می‌گیرد (یعنی می‌تواند ورودی‌های کاربر را از صفحه کلید دریافت کند)، رویداد foucs رخ می‌دهد. رویداد blur نیز زمانی رخ می‌دهد که یک کنترل focus را از دست بدهد. این رویداد معمولا با زدن کلید Tab و یا کلیک کردن در خارج از محدوده‌ی کنترل رخ می‌دهد.</p>
+<p style="text-align: justify;">یکی از کاربردهای رویداد focus انتخاب کردن متن موجود در یک فیلد متنی است. زمانی که کاربر مشغول پر کردن فیلدهای یک فرم است، معمولاً با زدن کلید Tab به فیلد بعدی مراجعه می‌کند. اگر در زمان وارد شدن به یک فیلد، مقداری از قبل در آن فیلد وجود داشته باشد، معمولاً کاربر ترجیح می‌دهد مقدار قبلی را حذف کرده و مقدار جدیدی وارد کند. در صورتی که متن موجود در فیلد انتخاب شده باشد، برای وارد کردن مقدار جدید، نیازی به حذف مقدار قبلی نیست. و با وارد کردن اولین کاراکتر، مقدار قبلی حذف می‌شود.</p>
+<p style="text-align: justify;">به عنوان مثال فرم زیر را در نظر بگیرید. در این فرم دو فیلد متنی برای دریافت نام و نام خانوادگی قرار داده شده است. فرض کنید هدف ما این است که زمانی که کاربر با زدن کلید Tab یا با استفاده از ماوس وارد یکی از این فیلد‌ها می‌شود، متن موجود در فیلد انتخاب شود تا کاربر بتواند بدون نیاز به حذف مقدار قبلی، مقدار جدید را وارد کند.</p>
+<pre class="ltr"><code class="language-markup">
+&lt;form action="https://otedia.com"&gt;
+	&lt;input type="text" name="firstname" id="firstname" value="name" /&gt;&lt;br /&gt;&lt;br /&gt;
+	&lt;input type="text" name="lastname" id="lastname" value="family" /&gt;&lt;br /&gt;&lt;br /&gt;
+	&lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p style="text-align: justify;">حال می‌توان از رویداد focus برای پیاده‌سازی سناریوی فوق استفاده کرد. توجه کنید که در کدهای زیر از متد select استفاده شده است. با فراخوانی این متد در یک فیلد متنی، متن موجود در آن فیلد انتخاب می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+const first = document.getElementById('firstname');
+const last = document.getElementById('lastname');
+
+first.addEventListener('focus' , selectText);
+last.addEventListener('focus' , selectText);
+
+function selectText(event){
+	event.target.select();
+}
+</code></pre>
+<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/mQQmed" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;">از رویداد blur نیز معمولاً برای اعتبارسنجی مقدار وارد شده در فیلدها استفاده می‌شود. یعنی به جای این که اعتبارسنجی با رویداد submit برای تمام فیلدها انجام شود. می‌توان اعتبارسنجی هر فیلد را به صورت جداگانه در زمان وقوع رویداد blur انجام داد.</p>
+<p style="text-align: justify;">به عنوان مثال فرم زیر را در نظر بگیرید. در این فرم روز و ماه تولد از کاربر سوال می‌شود. کاربر باید عددی بین <span class="text-dark">۱</span> تا <span class="text-dark">۳</span><span class="text-dark">۱</span> را برای روز، و عددی بین <span class="text-dark">۱</span> تا <span class="text-dark">۱</span><span class="text-dark">۲</span> را برای ماه وارد کند. در صورتی که عدد وارد شده خارج از محدوده‌ی معتبر باشد، به محض ترک کردن فیلد مورد نظر و وقوع رویداد blur، باید پیام خطا به کاربر نمایش داده شود.</p>
+<pre class="ltr"><code class="language-markup">
+&lt;form&gt;
+	&lt;label&gt;Day&lt;/label&gt; &lt;input type="text" name="day" id="day" /&gt;&lt;br /&gt;
+	&lt;label&gt;Month&lt;/label&gt; &lt;input type="text" name="month" id="month" /&gt;&lt;br /&gt;&lt;br /&gt;
+	&lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p style="text-align: justify;">حال می‌توان از رویداد blur به شکل زیر برای پیاده‌سازی این سناریو استفاده کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+const day = document.getElementById('day');
+const month = document.getElementById('month');
+
+day.addEventListener('blur' , (event) =&gt; {
+	if(!(day.value &gt;= 1 &amp;&amp; day.value &lt;= 31)){ 
+		alert('روز باید عددی بین 1 تا 31 باشد'); 
+	}
+});
+month.addEventListener('blur' , (event) =&gt; {
+	if(!(month.value &gt;= 1 &amp;&amp; month.value &lt;= 12)){
+		alert('ماه باید عددی بین 1 تا 12 باشد');
+	}
+});
+</code></pre>
+<p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/RqqgLL" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;">همچنین برای شبیه‌سازی رویدادهای focus و blur می‌توان از متدهای focus و blur استفاده کرد. یعنی در صورت فراخوانی متد focus در هر کنترل، focus به کنترل فراخوانی کننده منتقل می‌شود و در صورت فراخوانی متد blur، کنترل مورد نظر focus را از دست می‌دهد.</p>
+<p style="text-align: justify;">البته متد blur کاربرد چندانی ندارد. اما متد focus در برخی شرایط بسیار مفید است. مثلاً فرض کنید بعد از اعتبارسنجی یک فرم در رویداد submit، در صورت وجود مقدار نامعتبر در یکی از فیلدها، قصد داریم ابتدا یک پیغام خطای مناسب به کاربر نمایش دهیم. سپس focus را به فیلد نامعتبر منتقل کرده و متن داخل آن را نیز انتخاب کنیم. در این صورت هم کاربر متوجه فیلد نامعتبر می‌شود و هم می‌تواند به راحتی مقدار وارد شده را اصلاح کند.</p>
+<p style="text-align: justify;">به عنوان مثال برنامه‌ی فوق را می‌توان به صورت زیر اصلاح کرد تا در صورت کلیک کردن کاربر بر روی دکمه‌ی Send، پس از نمایش پیغام مناسب، focus به اولین فیلد نامعتبر منتقل شده و متن داخل آن نیز انتخاب شود.</p>
+<pre class="ltr"><code class="language-javascript">
+const form = document.querySelector('form');
+const day = document.getElementById('day');
+const month = document.getElementById('month');
+
+form.addEventListener('submit' , validateForm);
+
+function validateForm(event){
+	if(!(day.value &gt;= 1 &amp;&amp; day.value &lt;= 31)){ 
+		alert('روز باید عددی بین 1 تا 31 باشد');
+		day.focus();
+		day.select();
+		event.preventDefault();
+	}else if(!(month.value &gt;= 1 &amp;&amp; month.value &lt;= 12)){ 
+		alert('ماه باید عددی بین 1 تا 12 باشد');
+		month.focus();
+		month.select();
+		event.preventDefault();
+	}
+}
+</code></pre>
+<p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/zMMzbB" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span> </strong>در بیشتر مرورگرها در صورت فراخوانی متد select، نیازی به فراخوانی متد focus نیست. زیرا در بیشتر مرورگرها متد select علاوه بر انتخاب کردن متن داخل فیلد، focus را نیز به فیلد مورد نظر منتقل می‌کند. بنابراین در برنامه‌ی فوق در صورت حذف دو دستوری که برای فراخوانی متد focus به کار رفته‌اند، باز هم برنامه به درستی کار می‌کند. اما بهتر است برای سازگاری با تمام مروگرها و همچنین خوانایی بیشتر برنامه از متد focus نیز استفاده شود.</p>
+<p>&nbsp;</p>
+<h3>رویداد change</h3>
+<p style="text-align: justify;">یکی دیگر از رویدادهای پرکاربرد در فرم‌ها رویداد change است. این رویداد در زمان تغییر مقدار یک کنترل رخ می‌دهد. توجه کنید که رفتار این رویداد در کنترل‌های مختلف کمی متفاوت است.</p>
+<p style="text-align: justify;">این رویداد در فیلدهای متنی در صورتی رخ می‌دهد که اولاً فیلد مورد نظر focus را از دست بدهد. و ثانیاً مقدار فیلد متنی با مقداری که قبل از در اختیار گرفتن focus داشته است متفاوت باشد. اما در Checkbox ها و Radio Button ها به محض تغییر وضعیت کنترل (با ماوس یا صفحه کلید)، رویداد change رخ می‌دهد. همچنین در عناصر &lt;select&gt; نیز به محض تغییر گزینه‌ی انتخاب شده این رویداد رخ می‌دهد.</p>
+<p style="text-align: justify;">چند نمونه از کاربردهای رویداد change در مثال زیر نشان داده شده است.</p>
+<pre class="ltr"><code class="language-markup">
+&lt;form action="https://otedia.com"&gt;
+	&lt;input type="text" name="text" id="text" /&gt;&lt;br /&gt;&lt;br /&gt;
+	&lt;input type="checkbox" name="check" id="check" /&gt;&lt;br /&gt;&lt;br /&gt;
+	&lt;textarea name="textarea" id="textarea"&gt;&lt;/textarea&gt;&lt;br /&gt;&lt;br /&gt;
+	&lt;select name="select" id="select"&gt;
+		&lt;option value="1"&gt;Option 1&lt;/option&gt;
+		&lt;option value="2"&gt;Option 2&lt;/option&gt;
+		&lt;option value="3"&gt;Option 3&lt;/option&gt;
+	&lt;/select&gt;&lt;br /&gt;&lt;br /&gt;
+	&lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<pre class="ltr"><code class="language-javascript">
+const text = document.getElementById('text');
+const check = document.getElementById('check');
+const textarea = document.getElementById('textarea');
+const select = document.getElementById('select');
+
+text.addEventListener('change' , handler);
+check.addEventListener('change' , handler);
+textarea.addEventListener('change' , handler);
+select.addEventListener('change' , handler);
+
+function handler(event){
+	alert('Changed');
+}
+</code></pre>
+<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/PxxXxM" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. با تغییر مقدار فیلدهای متنی و سپس انتقال focus به سایر کنترل‌ها و یا تغییر وضعیت Checkbox و یا تغییر گزینه‌ی انتخاب شده در عنصر &lt;select&gt; نحوه‌ی رخ دادن رویداد change را بررسی کنید.</p>
+</div>
+                

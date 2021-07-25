@@ -1,0 +1,121 @@
+
+                <h2>مجموعه ها (Sets)</h2>
+                <div><p style="text-align: justify;">در این بخش نیز قصد داریم با نوع داده‌ی دیگری در جاوا اسکریپت به نام <strong>مجموعه</strong> یا <strong>Set</strong> آشنا شویم. مجموعه‌ها در جاوا اسکریپت، شباهت زیادی به مجموعه‌ها در ریاضیات دارند. در واقع یک مجموعه نیز مانند یک آرایه می‌تواند تعدادی عضو داشته باشد. اما تفاوت مهم بین مجموعه‌ها و آرایه‌ها در این است که در یک آرایه می‌توان از عناصری با مقدار یکسان یا تکراری استفاده کرد. ولی در مجموعه‌ها هر مقدار فقط یک بار می‌تواند در مجموعه وجود داشته باشد و امکان تکرار وجود ندارد.</p>
+<p style="text-align: justify;">جهت ایجاد یک مجموعه‌ی جدید باید از تابع سازنده‌ی Set و عملگر new به شکل زیر استفاده کنیم.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set();
+</code></pre>
+<p style="text-align: justify;">جهت افزودن یک عضو جدید به مجموعه‌ی فوق باید از متد add به شکل زیر استفاده کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+list.add(1);
+← Set {1}
+</code></pre>
+<p style="text-align: justify;">همچنین می‌توان متد add را به صورت زنجیره‌ای به کار برد و چندین مقدار را با یک دستور به مجموعه اضافه کرد. در قطعه کد زیر ۳ عضو جدید به مجموعه‌ی list با یک دستور اضافه می‌شوند.</p>
+<pre class="ltr"><code class="language-javascript">
+list.add(2).add(3).add(4);
+← Set {1 , 2 , 3 , 4}
+</code></pre>
+<p style="text-align: justify;">همانطور که اشاره شد، امکان قرار دادن دو عضو با مقدار یکسان در مجموعه‌ها وجود ندارد. بنابراین دستور زیر هیچ تغییری در مجموعه‌ی فوق ایجاد نمی‌کند. زیرا مقدار 1 از قبل در این مجموعه وجود دارد.</p>
+<pre class="ltr"><code class="language-javascript">
+list.add(1);
+← Set {1 , 2 , 3 , 4}
+</code></pre>
+<p style="text-align: justify;">همچنین می‌توان در زمان ایجاد یک مجموعه، اعضای آن را نیز ایجاد کرد. برای این منظور باید اعضای مجموعه را به صورت یک آرایه به تابع Set ارسال کنیم. البته در این حالت نیز، باز هم می‌توان با استفاده از متد add اعضای جدیدی را به مجموعه اضافه کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set([1 , 2 , 2 , 3 , 3 , 4]);
+list;
+← Set {1 , 2 , 3 , 4}
+</code></pre>
+<p style="text-align: justify;">همانطور که مشاهده می‌کنید، با توجه به اینکه مجموعه‌ها نمی‌توانند اعضای تکراری داشته باشند. عناصر تکراری موجود در آرایه‌ی اولیه فقط یک بار در مجموعه‌ی جدید ظاهر می‌شوند. همچنین اگر یک رشته را به عنوان ورودی تابع Set مشخص کنیم. هر یک از کاراکترهای رشته‌ی مذکور به عنوان یک عضو از مجموعه‌ی جدید در نظر گرفته می‌شوند و در این حالت نیز کاراکترهای تکراری حذف خواهند شد. به قطعه کد زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set('Hello');
+list;
+← Set {"H", "e", "l", "o"}
+</code></pre>
+<p style="text-align: justify;">در صورتی که بخواهیم یک رشته را به طور کامل به عنوان یک عضو از مجموعه تعریف کنیم. باید رشته را به عنوان یک عنصر از آرایه به تابع Set ارسال کنیم. در این حالت می‌توان چند رشته‌ی مجزا را به صورت عناصر یک آرایه به تابع Set ارسال کرد تا هر یک از رشته‌ها به عنوان یک عضو مجموعه‌ی جدید در نظر گرفته شوند. به قطعه کد زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set(['Apple' , 'Orange' , 'Banana']);
+list;
+← Set {"Apple", "Orange", "Banana"}
+</code></pre>
+<p style="text-align: justify;">توجه کنید که در مجموعه‌ها برای تشخیص تکراری بودن اعضاء، هیچ تبدیل نوعی انجام نمی‌شود. در نتیجه یک مقدار عددی با مقدار رشته‌ای معادلش یکسان نیستند و می‌توانند همزمان در یک مجموعه حضور داشته باشند. مثلاً در قطعه کد زیر عدد 2 و کاراکتر &#8220;2&#8221; در یک مجموعه قرار می‌گیرند و تکراری محسوب نمی‌شوند.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set(['2' , 2]);
+list;
+← Set {"2", 2}
+</code></pre>
+<p style="text-align: justify;">نکته‌ی بسیار مهم دیگر این است که انواع داده‌ی غیر اولیه (non-primitive) مانند آرایه‌ها، حتی در صورتی که مقدار داده‌هایشان یکسان باشد، با هم برابر نیستند و می‌توانند همزمان در یک مجموعه حضور داشته باشند. یعنی تکراری بودن اعضاء، فقط برای داده‌های اولیه (primitive) در نظر گرفته می‌شود. به عنوان مثال در قطعه کد زیر دو آرایه با داده‌های کاملاً یکسان در یک مجموعه قرار می‌گیرند.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set([[1] , [1]]);
+list;
+← Set {[1] , [1]}
+</code></pre>
+<p style="text-align: justify;">دلیل رفتار فوق این است که انواع داده‌ی غیر اولیه (مانند آرایه‌ها) در زمان مقایسه، مقدار داده‌هایشان با هم مقایسه نمی‌شود. بلکه مقدار اشاره‌گر آنها (آدرسشان در حافظه) با هم مقایسه می‌شود. به همین دلیل دستور زیر که دو آرایه با عناصر کاملاً یکسان را با هم مقایسه می‌کند، مقدار false تولید می‌کند. زیرا اشاره‌گر این دو آرایه با هم متفاوت است. (در مورد اشاره‌گرها و انواع ارجاع در فصل <span class="text-dark">۴</span> بیشتر صحبت خواهیم کرد.)</p>
+<pre class="ltr"><code class="language-javascript">
+[1] == [1]
+← false
+</code></pre>
+<p>&nbsp;</p>
+<h3>متدها و خواص مجموعه‌ها</h3>
+<p style="text-align: justify;">با استفاده از خاصیت size می‌توان تعداد اعضای یک مجموعه را به دست آورد. به قطعه کد زیر توجه کنید.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set(['Apple' , 'Orange' , 'Banana']);
+list.size;
+← 3
+</code></pre>
+<p style="text-align: justify;">با استفاده از متد has می‌توان بررسی کرد که آیا یک عضو خاص در اعضای یک مجموعه وجود دارد یا خیر؟ این متد در واقع همان کاری را می‌کند که متد includes در آرایه‌ها انجام می‌داد. اما سرعت اجرای متد has از متد includes بیشتر است.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set(['Apple' , 'Orange' , 'Banana']);
+list.has('Apple');
+← true
+list.has('Cherry');
+← false
+</code></pre>
+<p>توجه کنید که برای دسترسی به اعضای مجموعه‌ها نمی‌توان از اندیس (مثلاً list[0]) استفاده کرد.</p>
+<p style="text-align: justify;">با استفاده از متد delete نیز می‌توان یک عضو خاص را از مجموعه حذف کرد. در صورتی که عضو مورد نظر در مجموعه وجود داشته باشد، پس از حذف آن عضو، مقدار true و در صورت عدم وجود عضو مورد نظر، مقدار false بازگردانده می‌شود.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set(['Apple' , 'Orange' , 'Banana']);
+list.delete('Apple');
+← true
+list.delete('Cherry');
+← false
+</code></pre>
+<p style="text-align: justify;">با استفاده از متد clear نیز می‌توان کل اعضای یک مجموعه را حذف کرد.</p>
+<pre class="ltr"><code class="language-javascript">
+let list = new Set(['Apple' , 'Orange' , 'Banana']);
+list.clear();
+list;
+← Set {}
+list.size;
+← 0
+</code></pre>
+<p>&nbsp;</p>
+<h3>تبدیل مجموعه‌ها به آرایه</h3>
+<p style="text-align: justify;">دو روش برای تبدیل یک مجموعه به آرایه وجود دارد. روش اول استفاده از عملگر spread است که باید داخل علامت &#8220;[ ]&#8221; به کار برده شود.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruitsSet = new Set(['Apple' , 'Orange' , 'Banana']);
+fruitsSet;
+← Set {"Apple" , "Orange" , "Banana"}
+let fruitsArray = [...fruitsSet];
+fruitsArray;
+← ["Apple" , "Orange" , "Banana"]
+</code></pre>
+<p style="text-align: justify;">روش دوم تبدیل یک مجموعه به آرایه، با استفاده از متد from از شئ Array است. قطعه کد زیر نحوه‌ی انجام این کار را نشان می‌دهد.</p>
+<pre class="ltr"><code class="language-javascript">
+let fruitsSet = new Set(['Apple' , 'Orange' , 'Banana']);
+let fruitsArray = Array.from(fruitsSet);
+fruitsArray;
+← ["Apple" , "Orange" , "Banana"]
+</code></pre>
+<p style="text-align: justify;">با استفاده از هر یک از روش‌های فوق می‌توان در صورت نیاز، عناصر تکراری یک آرایه را حذف کرد. یعنی ابتدا آرایه‌ای که دارای عناصر تکراری است را به یک مجموعه تبدیل می‌کنیم تا عناصر تکراری آن حذف شوند. سپس مجموعه‌ی به دست آمده را با یکی از روش‌های فوق، دوباره به آرایه تبدیل می‌کنیم.</p>
+<pre class="ltr"><code class="language-javascript">
+let duplicate = [3 , 1 , 4 , 1 , 5 , 9 , 2 , 6 , 5 , 3 , 5 , 9];
+duplicate;
+← [3 , 1 , 4 , 1 , 5 , 9 , 2 , 6 , 5 , 3 , 5 , 9]
+let nonDuplicate = Array.from(new Set(duplicate));
+nonDuplicate;
+← [3 , 1 , 4 , 5 , 9 , 2 , 6]
+</code></pre>
+<p style="text-align: justify;">همانطور که مشاهده می‌کنید آرایه‌ی nonDuplicate هیچ عنصر تکراری ندارد. این روش بسیار ساده در برخی موارد می‌تواند بسیار مفید واقع شود. لازم به ذکر است که در جاوا اسکریپت نوع دیگری از مجموعه‌ها نیز وجود دارد. این نوع از مجموعه‌ها به مجموعه‌های ضعیف (WeakSets) مشهور هستند. در رابطه با این نوع مجموعه‌ها و خواص آنها در فصل ۱۱ بیشتر صحبت خواهیم کرد.</p>
+</div>
+                
