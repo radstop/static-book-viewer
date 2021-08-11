@@ -1,0 +1,38 @@
+.btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: inline-block;
+  transition: background 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
+
+  &:active {
+    transform: translateY(-2px);
+  }
+
+  &--primary {
+    background: $primary_color;
+    color: #fff;
+
+    &:hover {
+      background: darken($color: $primary_color, $amount: 5%);
+    }
+  }
+
+  &--secondary {
+    background: $secondary_color;
+    color: #fff;
+
+    &:hover {
+      background: darken($color: $secondary_color, $amount: 5%);
+    }
+  }
+
+  // hover to all type of buttons
+  &:hover {
+    box-shadow: 0 0 0.5rem rgba($color: #000, $alpha: 0.1);
+  }
+}
