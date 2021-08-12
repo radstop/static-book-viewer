@@ -18,7 +18,7 @@
     color: #fff;
 
     &:hover {
-      background: darken($color: $primary_color, $amount: 5%);
+      background: darken($color: $primary_color, $amount: 10%);
     }
   }
 
@@ -27,12 +27,25 @@
     color: #fff;
 
     &:hover {
-      background: darken($color: $secondary_color, $amount: 5%);
+      background: darken($color: $secondary_color, $amount: 10%);
     }
   }
 
-  // hover to all type of buttons
-  &:hover {
-    box-shadow: 0 0 0.5rem rgba($color: #000, $alpha: 0.1);
+  &--success {
+    background: $success_color;
+    color: #fff;
+
+    &:hover {
+      background: darken($color: $success_color, $amount: 10%);
+    }
+  }
+
+  &--danger {
+    background: $danger_color;
+    color: #fff;
+
+    &:hover {
+      background: darken($color: $danger_color, $amount: 10%);
+    }
   }
 }

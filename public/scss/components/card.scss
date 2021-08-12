@@ -1,2 +1,17 @@
 .card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+  &__header {
+    border-bottom: 2px solid #eee;
+  }
+
+  &__body {
+    p {
+      text-align: justify;
+    }
+  }
 }
