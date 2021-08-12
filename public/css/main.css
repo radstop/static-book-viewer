@@ -87,4 +87,52 @@ code {
   background: #ff2a3e;
 }
 
+.menu {
+  background: #364f6b;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 3px;
+}
+.menu ul {
+  margin: 0;
+  padding: 0;
+}
+.menu ul li {
+  list-style: none;
+}
+.menu__item {
+  padding: 1rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  background: #2d425a;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+.menu__item--active {
+  text-indent: 0.3rem;
+  background: #fff;
+  color: #333 !important;
+  font-weight: bold;
+  border-left: 5px solid #81b214;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.menu__item:last-of-type {
+  margin: 0;
+}
+.menu__item h4 {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+.menu__item a {
+  color: #fff;
+  padding: 0.5rem;
+  display: block;
+  margin-bottom: 0.3rem;
+  transition: all ease-in 0.2s;
+}
+.menu__item a:hover {
+  text-indent: 0.3rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+}
+
 /*# sourceMappingURL=main.css.map */
