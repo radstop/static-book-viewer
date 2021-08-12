@@ -6,19 +6,27 @@
 
   ul {
     margin: 0;
-    padding: 0;
+    padding: 0 1rem;
+
     li {
       list-style: none;
     }
   }
 
   &__item {
-    padding: 1rem;
     border-radius: 3px;
     margin-bottom: 1rem;
     background: darken($color: $secondary_color, $amount: 5%);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    max-height: 3.5rem;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &--open {
+      max-height: 500px;
+      background: darken($color: $secondary_color, $amount: 15%);
+    }
 
     &--active {
       text-indent: 0.3rem;
@@ -35,9 +43,18 @@
       margin: 0;
     }
 
-    h4 {
-      margin: 0;
+    button {
+      margin: 0 !important;
       margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: transparent;
+      width: 100%;
+      text-align: inherit;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 1rem;
     }
 
     a {
