@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="/public/css/main.css">
+</head>
+
+<body>
+	<h1>This is body</h1>
+
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<!-- <script src="https://unpkg.com/@babel/helper-module-imports"></script> -->
+
+	<script type="module">
+		import T, {test2} from "./src/helpers/test.js";
+
+		let arr = [];
+		for(let i = 1; i <= 95 ; i++){
+			fetch('./src/pages/'+ i +'.html').then(function (response) {
+				return response.text();
+			}).then(function (text) {
+				document.body.innerHTML = text;
+			}).then(function(html){
+				let body = document.body;
+				let title = body.getElementsByTagName("h2")[0].innerHTML;
+				arr.push([i , title]);
+
+				// console.log(arr.sort(function(a , b){
+				// 	return a[0] < b[0] ? -1 : (a[0] > b[0] ? 1 : 0);
+				// }));
+
+				if(i==95){
+					// return arr.sort(function(a , b){
+					// 	return a[0] < b[0] ? -1 : (a[0] > b[0] ? 1 : 0);
+					// });
+				}
+				// console.log(body.getElementsByTagName("h2")[0].innerHTML);
+			})
+		}
+
+		let nnn = arr.sort(function(a , b){
+				return a < b ? -1 : (a > b ? 1 : 0);
+			});
+		console.log(nnn);
+	</script>
+</body>
+
+</html>
