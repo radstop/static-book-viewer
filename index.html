@@ -17,13 +17,13 @@
 	<!-- <script src="https://unpkg.com/@babel/helper-module-imports"></script> -->
 
 	<script type="module">
-		import T, {test2} from "./src/helpers/test.js";
+		import T, { test2 } from "./src/helpers/test.js";
 		import fetchInventory from "./src/components/Sidebar.js";
 
 		let arr = [
 			{
-				"cat" : "test" ,
-				"lesson" : [
+				"cat": "test",
+				"lesson": [
 					"a",
 					"b",
 					"c"
@@ -33,15 +33,15 @@
 
 		// TODO: must be fix due to return promise but should be return inventory array
 		let inventory = fetchInventory();
-		console.log(inventory);
+		// console.log(inventory);
 		// console.log(inventory.length);
-		
 
-		fetch('./src/pages/1.html').then(function (response) {
-			return response.text();
-		}).then(function (text) {
-			document.body.innerHTML = text
-		});
+
+		// fetch('./src/pages/1.html').then(function (response) {
+		// 	return response.text();
+		// }).then(function (text) {
+		// 	document.body.innerHTML = text
+		// });
 	</script>
 </body>
 
