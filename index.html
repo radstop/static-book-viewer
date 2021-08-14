@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="public/css/main.css">
 </head>
 
 <body>
@@ -18,6 +18,24 @@
 
 	<script type="module">
 		import T, {test2} from "./src/helpers/test.js";
+		import fetchInventory from "./src/components/Sidebar.js";
+
+		let arr = [
+			{
+				"cat" : "test" ,
+				"lesson" : [
+					"a",
+					"b",
+					"c"
+				]
+			}
+		];
+
+		// TODO: must be fix due to return promise but should be return inventory array
+		let inventory = fetchInventory();
+		console.log(inventory);
+		// console.log(inventory.length);
+		
 
 		fetch('./src/pages/1.html').then(function (response) {
 			return response.text();
