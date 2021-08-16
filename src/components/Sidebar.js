@@ -3,7 +3,28 @@ async function fetchInventory() {
 
   let data = await response.json();
 
-  return data;
+  let sidebarTemplate = '<div class="menu">';
+  data.forEach(chapter => {
+    let lessons = chapter.lessons;
+    sidebarTemplate += `<div class="menu__item">
+      <button>
+          ${chapter.season}
+      </button>
+      <ul>`;
+
+    lessons.forEach(lesson => {
+      sidebarTemplate += `<li>
+            <a href="${lesson.id}">${lesson.title}</a>
+        </li>`;
+    });
+
+    sidebarTemplate += `</ul>
+      </div>`;
+  });
+
+  sidebarTemplate += `</div>`;
+  
+  return sidebarTemplate;
 }
 
 export default fetchInventory;

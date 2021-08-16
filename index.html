@@ -10,9 +10,8 @@
 	<link rel="stylesheet" href="public/css/main.css">
 </head>
 
-<body>
-	<h1>This is body</h1>
-
+<body style="direction: rtl;">
+	
 	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 	<!-- <script src="https://unpkg.com/@babel/helper-module-imports"></script> -->
 
@@ -22,9 +21,10 @@
 
 		(async () => {
 			const res = await fetchInventory();
-			console.log(res)
+			document.body.innerHTML = res;
 		})()
 	</script>
+	<script src="src/helpers/handleSidebar.js"></script>
 </body>
 
 </html>
