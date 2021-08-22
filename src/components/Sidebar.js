@@ -14,7 +14,7 @@ async function fetchInventory() {
 
     lessons.forEach(lesson => {
       sidebarTemplate += `<li>
-            <a href="${lesson.id}">${lesson.title}</a>
+            <a href=""  data-link="${lesson.id}">${lesson.title}</a>
         </li>`;
     });
 
