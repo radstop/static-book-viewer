@@ -27,11 +27,11 @@
 			document.querySelector(".inventory").innerHTML = res;
 
 			document.querySelectorAll(".menu__item a").forEach(lessonLink => {
-				lessonLink.addEventListener("click" , async function(e){
+				lessonLink.addEventListener("click", function(e){
 					e.preventDefault();
 					let lessonID = lessonLink.dataset.link;
 
-					const mainContent = await getCourse(lessonID);
+					const mainContent = getCourse(lessonID);
 					document.querySelector(".container").innerHTML = mainContent;
 				});
 			});

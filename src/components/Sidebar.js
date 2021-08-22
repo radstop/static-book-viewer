@@ -4,23 +4,20 @@ async function fetchInventory() {
   let data = await response.json();
 
   let sidebarTemplate = `<div class="menu__toggle-btn">open/close</div><div class="menu">`;
-  data.forEach(chapter => {
-    let lessons = chapter.lessons;
-    sidebarTemplate += `<div class="menu__item">
+
+  sidebarTemplate += data.map(item => {
+    return `
+    <div class="menu__item">
       <button>
-          ${chapter.season}
+            ${item.season}
       </button>
-      <ul>`;
 
-    lessons.forEach(lesson => {
-      sidebarTemplate += `<li>
-            <a href=""  data-link="${lesson.id}">${lesson.title}</a>
-        </li>`;
-    });
-
-    sidebarTemplate += `</ul>
-      </div>`;
-  });
+      <ul>
+      ${item.lessons.map(lesson => (`<li><a href=""  data-link="${lesson.id}">${lesson.title}</a></li>`)).join('')}
+      </ul>
+    </div>
+    `
+  }).join('')
 
   sidebarTemplate += `</div>`;
   
