@@ -11,17 +11,30 @@
 </head>
 
 <body style="direction: rtl;">
-	
+	<div class="inventory"></div>
+	<div class="container"></div>
+
 	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 	<!-- <script src="https://unpkg.com/@babel/helper-module-imports"></script> -->
 
 	<script type="module">
 		import T, { test2 } from "./src/helpers/test.js";
 		import fetchInventory from "./src/components/Sidebar.js";
+		import getCourse from "./src/components/Course.js";
 
 		(async () => {
 			const res = await fetchInventory();
-			document.body.innerHTML = res;
+			document.querySelector(".inventory").innerHTML = res;
+
+			document.querySelectorAll(".menu__item a").forEach(lessonLink => {
+				lessonLink.addEventListener("click" , async function(e){
+					e.preventDefault();
+					let lessonID = lessonLink.dataset.link;
+
+					const mainContent = await getCourse(lessonID);
+					document.querySelector(".container").innerHTML = mainContent;
+				});
+			});
 		})()
 	</script>
 	<script src="src/helpers/handleSidebar.js"></script>

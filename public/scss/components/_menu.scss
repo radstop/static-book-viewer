@@ -2,20 +2,24 @@
   background: $secondary_color;
   color: #fff;
   padding: 1rem 0;
-  border-radius: 3px;
-  width: 0;
+  // border-radius: 3px;
+  width: 350px;
   overflow: hidden;
   transition: all 0.3s;
+  position: absolute;
+  right: -350px;
+  top: 45px;
 
   &__collapse-on {
-    width: 350px;
+    right: 0;
   }
 
   &__toggle-btn {
     background-color: #333;
-    padding: 1rem;
     color: #fff;
     cursor: pointer;
+    height: 45px;
+    line-height: 45px;
   }
 
   ul {
