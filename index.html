@@ -25,7 +25,8 @@
 		(async () => {
 			const res = await fetchInventory();
 			document.querySelector(".inventory").innerHTML = res;
-			const firstLesson = await getCourse(1);
+			const [pageTitle , firstLesson] = await getCourse(1);
+			document.title = pageTitle;
 			document.querySelector(".container").innerHTML = firstLesson;
 
 			document.querySelectorAll(".menu__item a").forEach(lessonLink => {
@@ -33,7 +34,8 @@
 					e.preventDefault();
 					let lessonID = lessonLink.dataset.link;
 
-					const mainContent = await getCourse(lessonID);
+					const [clickedPageTitle , mainContent] = await getCourse(lessonID);
+					document.title = clickedPageTitle;
 					document.querySelector(".container").innerHTML = mainContent;
 				});
 			});
