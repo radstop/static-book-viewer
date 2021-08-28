@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+blockquote {
+  padding: 0;
+}
+
 body {
   background: #f1f1f1;
   color: #444;
@@ -18,17 +22,40 @@ body {
 }
 
 .container {
-  width: 1000px;
+  max-width: 1200px;
+  margin-right: 350px;
+  padding: 1.5rem 2rem;
+  transition: margin-right 0.4s;
+}
+.container__with_sb {
   margin: 0 auto;
-  padding: 2rem 0;
+}
+@media screen and (max-width: 600px) {
+  .container {
+    margin-right: 0;
+  }
+}
+
+pre.ltr {
+  direction: ltr;
+  background-color: #272822;
+  border-radius: 3px;
+  padding: 0 20px 20px;
+  margin: 10px 0;
 }
 
 code {
-  background: #fff;
   color: darksalmon;
   border-radius: 3px;
   padding: 0 0.3rem;
   font-family: "Fira Mono", monospace;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .card {
@@ -92,14 +119,21 @@ code {
   color: #fff;
   padding: 1rem 0;
   width: 350px;
-  overflow: hidden;
+  height: 100%;
+  overflow-x: hidden;
   transition: all 0.3s;
-  position: absolute;
-  right: -350px;
-  top: 45px;
-}
-.menu__collapse-on {
+  position: fixed;
+  padding-top: 45px;
+  top: 0;
   right: 0;
+}
+@media screen and (max-width: 600px) {
+  .menu {
+    max-width: 100%;
+  }
+}
+.menu__collapse {
+  right: -350px;
 }
 .menu__toggle-btn {
   background-color: #333;
@@ -107,6 +141,8 @@ code {
   cursor: pointer;
   height: 45px;
   line-height: 45px;
+  position: relative;
+  z-index: 2;
 }
 .menu ul {
   margin: 0;
