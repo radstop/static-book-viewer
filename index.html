@@ -14,7 +14,7 @@
 	<div class="inventory"></div>
 	<div class="container"></div>
 
-	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
 	<!-- <script src="https://unpkg.com/@babel/helper-module-imports"></script> -->
 
 	<script type="module">
@@ -23,25 +23,22 @@
 		import getCourse from "./src/components/Course.js";
 
 		(async () => {
+			// put inventory content in sidebar 
 			const res = await fetchInventory();
 			document.querySelector(".inventory").innerHTML = res;
-			const [pageTitle , firstLesson] = await getCourse(1);
-			document.title = pageTitle;
-			document.querySelector(".container").innerHTML = firstLesson;
-
+			// get first lesson content
+			getLessonContent(1 , getCourse);
+			// get clicked lesson content
 			document.querySelectorAll(".menu__item a").forEach(lessonLink => {
 				lessonLink.addEventListener("click", async function(e){
 					e.preventDefault();
-					let lessonID = lessonLink.dataset.link;
-
-					const [clickedPageTitle , mainContent] = await getCourse(lessonID);
-					document.title = clickedPageTitle;
-					document.querySelector(".container").innerHTML = mainContent;
+					getLessonContent(lessonLink.dataset.link , getCourse);
 				});
 			});
-		})()
+		})();
 	</script>
 	<script src="src/helpers/handleSidebar.js"></script>
+	<script src="src/helpers/handleCourse.js"></script>
 </body>
 
 </html>
