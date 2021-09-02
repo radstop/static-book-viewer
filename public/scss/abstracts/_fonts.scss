@@ -1,0 +1,28 @@
+@font-face {
+  font-family: Estedad;
+  src: url("../fonts/estedad/Estedad[wght,kshd].woff2") format("woff2"),
+    url("../fonts/estedad/Estedad[wght,kshd].ttf") format("truetype");
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Vazir;
+  src: url("../fonts/vazir/Vazir-Variable.eot") format("embedded-opentype"),
+    url("../fonts/vazir/Vazir-Variable.ttf") format("truetype"),
+    url("../fonts/vazir/Vazir-Variable.woff2") format("woff2"),
+    url("../fonts/vazir/Vazir-Variable.woff") format("woff");
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Sahel;
+  src: url("../fonts/sahel/Sahel-VF.woff2") format("woff2"),
+    url("../fonts/sahel/Sahel-VF.ttf") format("truetype");
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: normal;
+}

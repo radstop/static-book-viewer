@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 
 <head>
 	<meta charset="UTF-8">
@@ -8,9 +8,15 @@
 	<title>Document</title>
 
 	<link rel="stylesheet" href="public/css/main.css">
+
+	<style>
+		body {
+			font-family: Estedad;
+		}
+	</style>
 </head>
 
-<body style="direction: rtl;">
+<body>
 	<div class="inventory"></div>
 	<div class="container"></div>
 
@@ -27,12 +33,12 @@
 			const res = await fetchInventory();
 			document.querySelector(".inventory").innerHTML = res;
 			// get first lesson content
-			getLessonContent(1 , getCourse);
+			getLessonContent(1, getCourse);
 			// get clicked lesson content
 			document.querySelectorAll(".menu__item a").forEach(lessonLink => {
-				lessonLink.addEventListener("click", async function(e){
+				lessonLink.addEventListener("click", async function (e) {
 					e.preventDefault();
-					getLessonContent(lessonLink.dataset.link , getCourse);
+					getLessonContent(lessonLink.dataset.link, getCourse);
 				});
 			});
 		})();
