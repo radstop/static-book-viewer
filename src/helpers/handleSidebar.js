@@ -10,7 +10,8 @@ window.addEventListener('load', function () {
   // control collaps-in and collapse-out sidebar menu
   document.querySelector(".menu__toggle-btn").addEventListener("click" , function (e) {
     e.preventDefault();
-    console.log(this.nextElementSibling.classList.toggle("menu__collapse-on"));
+    this.nextElementSibling.classList.toggle("menu__collapse");
+    document.querySelector(".container").classList.toggle("container__with_sb");
   });
   
 }, false);

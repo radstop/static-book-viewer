@@ -7,15 +7,39 @@ body {
 }
 
 .container {
-  width: 1000px;
-  margin: 0 auto;
-  padding: 2rem 0;
+  max-width: 1200px;
+  margin-right: $sidebar_width;
+  padding: 1.5rem 2rem;
+  transition: margin-right 0.4s;
+
+  &__with_sb {
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width:600px){
+    margin-right: 0;
+  }
+}
+
+pre.ltr {
+  direction: ltr;
+  background-color: #272822;
+  border-radius: 3px;
+  padding: 0 20px 20px;
+  margin: 10px 0;
 }
 
 code {
-  background: #fff;
+  // background: #fff;
   color: darksalmon;
   border-radius: 3px;
   padding: 0 0.3rem;
   font-family: "Fira Mono", monospace;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }

@@ -2,20 +2,31 @@
   background: $secondary_color;
   color: #fff;
   padding: 1rem 0;
-  border-radius: 3px;
-  width: 0;
-  overflow: hidden;
+  width: $sidebar_width;
+  height: 100%;
+  overflow-x: hidden;
   transition: all 0.3s;
+  position: fixed;
+  padding-top: 45px;
+  top: 0;
+  right: 0;
 
-  &__collapse-on {
-    width: 350px;
+  @media screen and (max-width:600px){
+    max-width: 100%;
+  }
+
+  &__collapse {
+    right: -1 * $sidebar_width;
   }
 
   &__toggle-btn {
     background-color: #333;
-    padding: 1rem;
     color: #fff;
     cursor: pointer;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    z-index: 2;
   }
 
   ul {

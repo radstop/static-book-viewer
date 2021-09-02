@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 
 <head>
 	<meta charset="UTF-8">
@@ -10,21 +10,41 @@
 	<link rel="stylesheet" href="public/css/main.css">
 </head>
 
-<body style="direction: rtl;">
-	
-	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<body>
+	<div class="inventory"></div>
+	<div class="container"></div>
+
+	<!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
 	<!-- <script src="https://unpkg.com/@babel/helper-module-imports"></script> -->
 
 	<script type="module">
 		import T, { test2 } from "./src/helpers/test.js";
 		import fetchInventory from "./src/components/Sidebar.js";
+		import getCourse from "./src/components/Course.js";
+		import Setting from './src/helpers/setting.js'
+
+
 
 		(async () => {
+			// put inventory content in sidebar 
 			const res = await fetchInventory();
-			document.body.innerHTML = res;
-		})()
+			document.querySelector(".inventory").innerHTML = res;
+			// get first lesson content
+			getLessonContent(1, getCourse);
+			// get clicked lesson content
+			document.querySelectorAll(".menu__item a").forEach(lessonLink => {
+				lessonLink.addEventListener("click", async function (e) {
+					e.preventDefault();
+					getLessonContent(lessonLink.dataset.link, getCourse);
+				});
+			});
+
+			const config = await Setting();
+			document.body.style.fontFamily = config.fontFamily; // load and set font
+		})();
 	</script>
 	<script src="src/helpers/handleSidebar.js"></script>
+	<script src="src/helpers/handleCourse.js"></script>
 </body>
 
 </html>
