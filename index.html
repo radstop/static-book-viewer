@@ -8,12 +8,6 @@
 	<title>Document</title>
 
 	<link rel="stylesheet" href="public/css/main.css">
-
-	<style>
-		body {
-			font-family: Estedad;
-		}
-	</style>
 </head>
 
 <body>
@@ -27,6 +21,9 @@
 		import T, { test2 } from "./src/helpers/test.js";
 		import fetchInventory from "./src/components/Sidebar.js";
 		import getCourse from "./src/components/Course.js";
+		import Setting from './src/helpers/setting.js'
+
+
 
 		(async () => {
 			// put inventory content in sidebar 
@@ -41,6 +38,9 @@
 					getLessonContent(lessonLink.dataset.link, getCourse);
 				});
 			});
+
+			const config = await Setting();
+			document.body.style.fontFamily = config.fontFamily; // load and set font
 		})();
 	</script>
 	<script src="src/helpers/handleSidebar.js"></script>
