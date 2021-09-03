@@ -36,6 +36,7 @@
 				lessonLink.addEventListener("click", async function (e) {
 					e.preventDefault();
 					getLessonContent(lessonLink.dataset.link, getCourse);
+					window.scrollTo(0, 0);
 				});
 			});
 
