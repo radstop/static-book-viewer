@@ -1,6 +1,4 @@
 .menu {
-  background: $secondary_color;
-  color: #fff;
   padding: 1rem 0;
   width: $sidebar_width;
   height: 100%;
@@ -11,7 +9,7 @@
   top: 0;
   right: 0;
 
-  @media screen and (max-width:600px){
+  @media screen and (max-width: 600px) {
     max-width: 100%;
   }
 
@@ -20,11 +18,9 @@
   }
 
   &__toggle-btn {
-    background-color: #333;
-    color: #fff;
     cursor: pointer;
-    height: 45px;
-    line-height: 45px;
+    height: 1rem;
+    line-height: 1rem;
     position: relative;
     z-index: 2;
   }
@@ -39,18 +35,27 @@
   }
 
   &__item {
-    border-radius: 3px;
-    margin-bottom: 1rem;
-    background: darken($color: $secondary_color, $amount: 5%);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
-      rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-    max-height: 3.5rem;
+    margin-bottom: 0.5rem;
+    max-height: 1.5rem;
     overflow: hidden;
     transition: all 0.3s;
 
+    ul {
+      padding-right: 3rem;
+
+      li {
+        list-style-type: circle;
+
+        a {
+          font-size: 0.8rem;
+          padding: 0;
+          color: #444;
+        }
+      }
+    }
+
     &--open {
-      max-height: 500px;
-      background: darken($color: $secondary_color, $amount: 15%);
+      max-height: 550px;
     }
 
     &--active {
@@ -71,20 +76,19 @@
     button {
       margin: 0 !important;
       margin-bottom: 1rem;
-      font-size: 1.1rem;
+      font-size: 0.8rem;
       font-weight: bold;
       background: transparent;
       width: 100%;
       text-align: inherit;
       border: none;
-      color: #fff;
       cursor: pointer;
-      padding: 1rem;
+      padding: 0 1rem;
       display: block;
+      font-family: inherit;
     }
 
     a {
-      color: #fff;
       padding: 0.5rem;
       display: block;
       margin-bottom: 0.3rem;
@@ -92,8 +96,6 @@
 
       &:hover {
         text-indent: 0.3rem;
-        background: rgba($color: #fff, $alpha: 0.9);
-        color: #333;
       }
     }
   }

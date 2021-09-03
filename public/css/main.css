@@ -136,8 +136,6 @@ img {
 }
 
 .menu {
-  background: #364f6b;
-  color: #fff;
   padding: 1rem 0;
   width: 350px;
   height: 100%;
@@ -157,11 +155,9 @@ img {
   right: -350px;
 }
 .menu__toggle-btn {
-  background-color: #333;
-  color: #fff;
   cursor: pointer;
-  height: 45px;
-  line-height: 45px;
+  height: 1rem;
+  line-height: 1rem;
   position: relative;
   z-index: 2;
 }
@@ -173,17 +169,24 @@ img {
   list-style: none;
 }
 .menu__item {
-  border-radius: 3px;
-  margin-bottom: 1rem;
-  background: #2d425a;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  max-height: 3.5rem;
+  margin-bottom: 0.5rem;
+  max-height: 1.5rem;
   overflow: hidden;
   transition: all 0.3s;
 }
+.menu__item ul {
+  padding-right: 3rem;
+}
+.menu__item ul li {
+  list-style-type: circle;
+}
+.menu__item ul li a {
+  font-size: 0.8rem;
+  padding: 0;
+  color: #444;
+}
 .menu__item--open {
-  max-height: 500px;
-  background: #1c2938;
+  max-height: 550px;
 }
 .menu__item--active {
   text-indent: 0.3rem;
@@ -199,19 +202,18 @@ img {
 .menu__item button {
   margin: 0 !important;
   margin-bottom: 1rem;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   background: transparent;
   width: 100%;
   text-align: inherit;
   border: none;
-  color: #fff;
   cursor: pointer;
-  padding: 1rem;
+  padding: 0 1rem;
   display: block;
+  font-family: inherit;
 }
 .menu__item a {
-  color: #fff;
   padding: 0.5rem;
   display: block;
   margin-bottom: 0.3rem;
@@ -219,8 +221,6 @@ img {
 }
 .menu__item a:hover {
   text-indent: 0.3rem;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
 }
 
 /*# sourceMappingURL=main.css.map */
