@@ -1,25 +1,44 @@
-
-                <h2>ارسال و دریافت داده‌ها با Ajax</h2>
-                <div><p style="text-align: justify;">در بخش قبل با مقدمات تکنیک Ajax آشنا شدیم. البته درخواست‌هایی که در مثال‌های بخش قبل با استفاده از Ajax ارسال کردیم، بسیار ساده بودند. یعنی هیچ داده‌ای به سرور ارسال نمی‌شد. همچنین با داده‌هایی که از سرور دریافت می‌کردیم، خیلی ساده و مانند یک رشته رفتار کردیم. در این بخش قصد داریم با روش‌های مختلف ارسال داده‌ها در درخواست‌های Ajax آشنا شویم. همچنین با نحوه‌ی استخراج اجزاء مختلف داده‌ها از پاسخ‌های HTTP آشنا خواهیم شد.</p>
-<p>&nbsp;</p>
-<h3>ارسال داده‌ها با روش GET</h3>
-<p style="text-align: justify;">به دلیل سادگی و سرعت بالای روش GET، بیشتر درخواست‌های HTTP با روش GET ارسال می‌شوند. در این روش برای ارسال داده‌ها به سرور، باید داده‌ها را به صورت Query String به آرگومان دوم متد open اضافه کرد. به عنوان مثال قطعه کد زیر دو پارامتر (داده) را با نام‌های firstname و lastname به صورت Query String به سرور ارسال می‌کند.</p>
-<pre class="ltr"><code class="language-javascript">
+<h2>ارسال و دریافت داده‌ها با Ajax</h2>
+<div>
+	<p style="text-align: justify;">در بخش قبل با مقدمات تکنیک Ajax آشنا شدیم. البته درخواست‌هایی که در مثال‌های بخش قبل
+		با استفاده از Ajax ارسال کردیم، بسیار ساده بودند. یعنی هیچ داده‌ای به سرور ارسال نمی‌شد. همچنین با داده‌هایی که
+		از سرور دریافت می‌کردیم، خیلی ساده و مانند یک رشته رفتار کردیم. در این بخش قصد داریم با روش‌های مختلف ارسال
+		داده‌ها در درخواست‌های Ajax آشنا شویم. همچنین با نحوه‌ی استخراج اجزاء مختلف داده‌ها از پاسخ‌های HTTP آشنا خواهیم
+		شد.</p>
+	<p>&nbsp;</p>
+	<h3>ارسال داده‌ها با روش GET</h3>
+	<p style="text-align: justify;">به دلیل سادگی و سرعت بالای روش GET، بیشتر درخواست‌های HTTP با روش GET ارسال می‌شوند.
+		در این روش برای ارسال داده‌ها به سرور، باید داده‌ها را به صورت Query String به آرگومان دوم متد open اضافه کرد.
+		به عنوان مثال قطعه کد زیر دو پارامتر (داده) را با نام‌های firstname و lastname به صورت Query String به سرور
+		ارسال می‌کند.</p>
+	<pre class="ltr"><code class="language-javascript">
 const xhr = new XMLHttpRequest();
 xhr.open('GET' , 'page1.php?firstname=Abbas&amp;lastname=Moqaddam');
 xhr.send();
 </code></pre>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> در مثال فوق از یک آدرس نسبی (Relative) استفاده شده است. بنابراین نام دامین و نام پوشه‌ی آدرس جاری (آدرس صفحه‌ای که دستورات فوق در آن اجرا می‌شوند)، به صورت خودکار به ابتدای آدرس اضافه خواهند شد. به عنوان مثال اگر این دستورات در صفحه‌ای به آدرس زیر اجرا شوند.</p>
-<pre class="ltr"><code class="language-">
+	<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span></strong> در مثال فوق از یک آدرس
+		نسبی (Relative) استفاده شده است. بنابراین نام دامین و نام پوشه‌ی آدرس جاری (آدرس صفحه‌ای که دستورات فوق در آن
+		اجرا می‌شوند)، به صورت خودکار به ابتدای آدرس اضافه خواهند شد. به عنوان مثال اگر این دستورات در صفحه‌ای به آدرس
+		زیر اجرا شوند.</p>
+	<pre class="ltr"><code class="language-">
 http://example.com/dir/mypage.html
 </code></pre>
-<p style="text-align: justify;">در این صورت آرگومان دوم متد open به صورت خودکار به رشته‌ی زیر تغییر کرده و درخواست HTTP به این آدرس ارسال خواهد شد.</p>
-<pre class="ltr"><code class="language-">
+	<p style="text-align: justify;">در این صورت آرگومان دوم متد open به صورت خودکار به رشته‌ی زیر تغییر کرده و درخواست
+		HTTP به این آدرس ارسال خواهد شد.</p>
+	<pre class="ltr"><code class="language-">
 http://example.com/dir/page1.php?firstname=Abbas&lastname=Moqaddam
 </code></pre>
-<p style="text-align: justify;">در واقع هر آدرسی که با <span class="ltr d-inline-block">http://</span> یا <span class="ltr d-inline-block">https://</span> شروع نشود، یک آدرس نسبی تلقی شده و به شکل فوق با آن رفتار خواهد شد.</p>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span> </strong>برخی کاراکترها (مانند &#8220;?&#8221; یا &#8220;&amp;&#8221; یا &#8220;=&#8221;) در آدرس‌های URL دارای معنی خاصی هستند. به همین دلیل نباید از این کاراکترها در آدرس‌های URL استفاده کرد (مگر برای کاربرد خاص خودشان). در صورتی که نام یا مقدار داده‌هایی که در Query String قرار می‌گیرند حاوی کاراکترهای خاص باشد. حتماً باید قبل از اضافه کردن آنها به Query String، با استفاده از تابع encodeURIComponent آنها را رمزگذاری کرد. توجه کنید که این تابع هیچ تغییری در رشته‌هایی که شامل کاراکترهای خاص نیستند ایجاد نمی‌کند. در نتیجه بهتر است تمام داده‌ها را قبل از قرار دادن در Query String با این تابع رمزگذاری کنید. به مثال‌های زیر توجه کنید.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">در واقع هر آدرسی که با <span class="ltr d-inline-block">http://</span> یا <span
+			class="ltr d-inline-block">https://</span> شروع نشود، یک آدرس نسبی تلقی شده و به شکل فوق با آن رفتار خواهد
+		شد.</p>
+	<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span> </strong>برخی کاراکترها (مانند
+		&#8220;?&#8221; یا &#8220;&amp;&#8221; یا &#8220;=&#8221;) در آدرس‌های URL دارای معنی خاصی هستند. به همین دلیل
+		نباید از این کاراکترها در آدرس‌های URL استفاده کرد (مگر برای کاربرد خاص خودشان). در صورتی که نام یا مقدار
+		داده‌هایی که در Query String قرار می‌گیرند حاوی کاراکترهای خاص باشد. حتماً باید قبل از اضافه کردن آنها به Query
+		String، با استفاده از تابع encodeURIComponent آنها را رمزگذاری کرد. توجه کنید که این تابع هیچ تغییری در
+		رشته‌هایی که شامل کاراکترهای خاص نیستند ایجاد نمی‌کند. در نتیجه بهتر است تمام داده‌ها را قبل از قرار دادن در
+		Query String با این تابع رمزگذاری کنید. به مثال‌های زیر توجه کنید.</p>
+	<pre class="ltr"><code class="language-javascript">
 console.log(encodeURIComponent('Abbas'));
 ← "Abbas"
 console.log(encodeURIComponent('x=y'));
@@ -29,18 +48,29 @@ console.log(encodeURIComponent('x = y'));
 console.log(encodeURIComponent('E=mc^2'));
 ← "E%253Dmc%255E2"
 </code></pre>
-<p style="text-align: justify;">مشاهده می‌کنید که هر یک از کاراکترهای خاص با <span class="text-dark">۳</span> کاراکتر جایگزین شده‌اند. مثلاً به جای کاراکتر &#8220;=&#8221;، کاراکترهای &#8220;<span class="ltr d-inline-block">%3D</span>&#8221; و به جای کاراکتر &#8220;^&#8221;، کاراکترهای &#8220;<span class="ltr d-inline-block">%5E</span>&#8221; جایگزین شده‌اند. به طور کلی تمام کدهای جایگزین با یک کاراکتر &#8220;%&#8221; شروع می‌شوند.</p>
-<p style="text-align: justify;">جهت ساده‌سازی روند رمزگذاری و اضافه کردن پارامترها به آدرس‌های URL، می‌توان از تابع زیر استفاده کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">مشاهده می‌کنید که هر یک از کاراکترهای خاص با <span class="text-dark">۳</span>
+		کاراکتر جایگزین شده‌اند. مثلاً به جای کاراکتر &#8220;=&#8221;، کاراکترهای &#8220;<span
+			class="ltr d-inline-block">%3D</span>&#8221; و به جای کاراکتر &#8220;^&#8221;، کاراکترهای &#8220;<span
+			class="ltr d-inline-block">%5E</span>&#8221; جایگزین شده‌اند. به طور کلی تمام کدهای جایگزین با یک کاراکتر
+		&#8220;%&#8221; شروع می‌شوند.</p>
+	<p style="text-align: justify;">جهت ساده‌سازی روند رمزگذاری و اضافه کردن پارامترها به آدرس‌های URL، می‌توان از تابع
+		زیر استفاده کرد.</p>
+	<pre class="ltr"><code class="language-javascript">
 function addParam(url , name , value) {
 	url += (url.indexOf("?") == -1 ? "?" : "&amp;");
 	url += encodeURIComponent(name) + "=" + encodeURIComponent(value);
 	return url;
 }
 </code></pre>
-<p style="text-align: justify;">تابع فوق یک URL، یک نام و یک مقدار را به عنوان ورودی دریافت می‌کند. سپس بررسی می‌شود که کاراکتر &#8220;?&#8221; در URL وجود دارد یا خیر؟ در صورت عدم وجود این کاراکتر، یعنی هنوز هیچ پارامتری به URL اضافه نشده است. در این صورت یک کاراکتر &#8220;?&#8221; به انتهای URL اضافه می‌شود. در غیر این صورت نیز یک کاراکتر &#8220;&amp;&#8221; به انتهای URL اضافه می‌شود. سپس در خط بعدی نام و مقدار پارامتر با استفاده از تابع encodeURIComponent رمزگذاری شده و با یک کاراکتر &#8220;=&#8221; به هم الحاق شده و به انتهای URL اضافه می‌شوند.</p>
-<p style="text-align: justify;">قطعه کد زیر نحوه‌ی استفاده از این تابع و نتیجه‌ی آن برای دو پارامتر مختلف را نشان می‌دهد.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">تابع فوق یک URL، یک نام و یک مقدار را به عنوان ورودی دریافت می‌کند. سپس بررسی می‌شود
+		که کاراکتر &#8220;?&#8221; در URL وجود دارد یا خیر؟ در صورت عدم وجود این کاراکتر، یعنی هنوز هیچ پارامتری به URL
+		اضافه نشده است. در این صورت یک کاراکتر &#8220;?&#8221; به انتهای URL اضافه می‌شود. در غیر این صورت نیز یک
+		کاراکتر &#8220;&amp;&#8221; به انتهای URL اضافه می‌شود. سپس در خط بعدی نام و مقدار پارامتر با استفاده از تابع
+		encodeURIComponent رمزگذاری شده و با یک کاراکتر &#8220;=&#8221; به هم الحاق شده و به انتهای URL اضافه می‌شوند.
+	</p>
+	<p style="text-align: justify;">قطعه کد زیر نحوه‌ی استفاده از این تابع و نتیجه‌ی آن برای دو پارامتر مختلف را نشان
+		می‌دهد.</p>
+	<pre class="ltr"><code class="language-javascript">
 let url = 'page.php';
 url = addParam(url , 'username' , 'Abbas');
 console.log(url);
@@ -49,76 +79,116 @@ url = addParam(url , 'password' , '123&amp;^%');
 console.log(url);
 ← "page.php?username=Abbas&amp;password=123%2526%255E%2525"
 </code></pre>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> در بیشتر زبان‌های برنامه‌نویسی سمت سرور (مانند PHP)، عمل رمزگشایی پارامترهای موجود در Query String به صورت خودکار انجام می‌شود. یعنی نیازی به رمزگشایی (Decode) توسط برنامه‌نویس نیست.</p>
-<p>&nbsp;</p>
-<h3>ارسال داده‌ها به روش POST</h3>
-<p style="text-align: justify;">در روش POST چند حالت مختلف برای ارسال داده‌ها به سرور وجود دارد. البته در تمام حالت‌ها باید داده‌ی مورد نظر را به عنوان آرگومان ورودی به متد send ارسال کرد. اما نحوه‌ی آماده‌سازی داده‌ها در هر حالت متفاوت است.</p>
-<p style="text-align: justify;">ساده‌ترین حالت این است که داده‌ی مورد نظر را به صورت یک رشته به متد send ارسال کنیم. دستورات زیر نحوه‌ی انجام این کار را نشان می‌دهند.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span></strong> در بیشتر زبان‌های
+		برنامه‌نویسی سمت سرور (مانند PHP)، عمل رمزگشایی پارامترهای موجود در Query String به صورت خودکار انجام می‌شود.
+		یعنی نیازی به رمزگشایی (Decode) توسط برنامه‌نویس نیست.</p>
+	<p>&nbsp;</p>
+	<h3>ارسال داده‌ها به روش POST</h3>
+	<p style="text-align: justify;">در روش POST چند حالت مختلف برای ارسال داده‌ها به سرور وجود دارد. البته در تمام
+		حالت‌ها باید داده‌ی مورد نظر را به عنوان آرگومان ورودی به متد send ارسال کرد. اما نحوه‌ی آماده‌سازی داده‌ها در
+		هر حالت متفاوت است.</p>
+	<p style="text-align: justify;">ساده‌ترین حالت این است که داده‌ی مورد نظر را به صورت یک رشته به متد send ارسال کنیم.
+		دستورات زیر نحوه‌ی انجام این کار را نشان می‌دهند.</p>
+	<pre class="ltr"><code class="language-javascript">
 const xhr = new XMLHttpRequest();
 xhr.open('POST' , 'http://example.com');
 xhr.send('Hello World');
 </code></pre>
-<p style="text-align: justify;">در این دستورات رشته‌ی &#8220;Hello World&#8221; به عنوان بخش Body از درخواست HTTP، به سرور ارسال می‌شود. برنامه‌ی موجود در سرور نیز با خواندن بخش Body از درخواست HTTP، می‌تواند این داده را به دست آورد. مثلاً در زبان PHP با استفاده از فایل &#8220;php://input&#8221; می‌توان بخش Body از درخواست HTTP را به دست آورد.</p>
-<pre class="ltr"><code class="language-php">
+	<p style="text-align: justify;">در این دستورات رشته‌ی &#8220;Hello World&#8221; به عنوان بخش Body از درخواست HTTP،
+		به سرور ارسال می‌شود. برنامه‌ی موجود در سرور نیز با خواندن بخش Body از درخواست HTTP، می‌تواند این داده را به دست
+		آورد. مثلاً در زبان PHP با استفاده از فایل &#8220;php://input&#8221; می‌توان بخش Body از درخواست HTTP را به دست
+		آورد.</p>
+	<pre class="ltr"><code class="language-php">
 $postdata = file_get_contents("php://input");
 echo $postdata;										// Hello World
 </code></pre>
-<p style="text-align: justify;">البته معمولاً داده‌هایی که به سرور ارسال می‌شوند از چند بخش تشکیل شده‌اند. یعنی مانند Query String ها در درخواست‌های GET، ممکن است بخواهیم چند پارامتر را به سرور ارسال کنیم. در این صورت می‌توان داده‌ها را دقیقاً مشابه یک Query String به سرور ارسال کرد. دستورات زیر نحوه‌ی انجام این کار را نشان می‌دهند.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">البته معمولاً داده‌هایی که به سرور ارسال می‌شوند از چند بخش تشکیل شده‌اند. یعنی
+		مانند Query String ها در درخواست‌های GET، ممکن است بخواهیم چند پارامتر را به سرور ارسال کنیم. در این صورت
+		می‌توان داده‌ها را دقیقاً مشابه یک Query String به سرور ارسال کرد. دستورات زیر نحوه‌ی انجام این کار را نشان
+		می‌دهند.</p>
+	<pre class="ltr"><code class="language-javascript">
 const xhr = new XMLHttpRequest();
 xhr.open('POST' , 'http://example.com');
 xhr.send('firstname=Abbas&amp;lastname=Moqaddam');
 </code></pre>
-<p style="text-align: justify;">توجه کنید که در این حالت نیازی به قرار دادن کاراکتر &#8220;?&#8221; در ابتدای Query String نیست. البته از دید سرور هیچ تفاوتی میان دو حالت فوق وجود ندارد. و در هر دو حالت، سرور یک رشته را به عنوان بدنه‌ی درخواست دریافت می‌کند. یعنی برای دسترسی به هر یک از پارامترهای موجود در Query String، باید رشته‌ی دریافت شده را در سرور پردازش کرده و اجزاء آن را استخراج کرد.</p>
-<p style="text-align: justify;">اما اگر با برنامه‌نویسی سمت سرور آشنایی داشته باشید، حتماً می‌دانید که برای دسترسی به داده‌هایی که توسط یک فرم و به روش POST ارسال شده‌اند، نیازی به تفسیر و پردازش بدنه‌ی درخواست نیست. مثلاً در زبان PHP برای دسترسی به داده‌هایی که با روش POST و توسط یک فرم ارسال شده‌اند، می‌توان از آرایه‌ی فوق سراسری <span class="ltr d-inline-block">$_POST</span> استفاده کرد. دستور زیر نحوه‌ی استفاده از این آرایه را نشان می‌دهد.</p>
-<pre class="ltr"><code class="language-php">
+	<p style="text-align: justify;">توجه کنید که در این حالت نیازی به قرار دادن کاراکتر &#8220;?&#8221; در ابتدای Query
+		String نیست. البته از دید سرور هیچ تفاوتی میان دو حالت فوق وجود ندارد. و در هر دو حالت، سرور یک رشته را به عنوان
+		بدنه‌ی درخواست دریافت می‌کند. یعنی برای دسترسی به هر یک از پارامترهای موجود در Query String، باید رشته‌ی دریافت
+		شده را در سرور پردازش کرده و اجزاء آن را استخراج کرد.</p>
+	<p style="text-align: justify;">اما اگر با برنامه‌نویسی سمت سرور آشنایی داشته باشید، حتماً می‌دانید که برای دسترسی
+		به داده‌هایی که توسط یک فرم و به روش POST ارسال شده‌اند، نیازی به تفسیر و پردازش بدنه‌ی درخواست نیست. مثلاً در
+		زبان PHP برای دسترسی به داده‌هایی که با روش POST و توسط یک فرم ارسال شده‌اند، می‌توان از آرایه‌ی فوق سراسری
+		<span class="ltr d-inline-block">$_POST</span> استفاده کرد. دستور زیر نحوه‌ی استفاده از این آرایه را نشان
+		می‌دهد.
+	</p>
+	<pre class="ltr"><code class="language-php">
 $firstname = $_POST['firstname'];
 echo $firstname;								// Abbas
 </code></pre>
-<p style="text-align: justify;">برای اینکه این امکان در درخواست‌های Ajax نیز فراهم شود. باید هدر Content-Type را برابر با مقدار &#8220;application/x-www-form-urlencoded&#8221; قرار دهیم. در این صورت سرور داده‌ها را مانند داده‌های یک فرم تفسیر می‌کند. در واقع زمانی که یک فرم توسط کاربر با روش POST ارسال می‌شود. مرورگر به صورت خودکار هدر فوق را تنظیم می‌کند. اما در درخواست‌های Ajax باید این هدر توسط برنامه‌نویس تنظیم شود. (مقدار این هدر در صفت enctype از تگ &lt;form&gt; نیز قابل تنظیم است.)</p>
-<p style="text-align: justify;">برای اضافه کردن یک هدر به درخواست‌های Ajax می‌توان از متد setRequestHeader استفاده کرد. توجه کنید که این متد را به تعداد دفعات دلخواه می‌توانید به کار ببرید. اما تمام موارد استفاده از این متد باید بعد از فراخوانی متد open و قبل از فراخوانی متد send انجام شود. مثال زیر نحوه‌ی اضافه کردن هدر Content-Type به درخواست Ajax را با استفاده از متد setRequestHeader نشان می‌دهد.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">برای اینکه این امکان در درخواست‌های Ajax نیز فراهم شود. باید هدر Content-Type را
+		برابر با مقدار &#8220;application/x-www-form-urlencoded&#8221; قرار دهیم. در این صورت سرور داده‌ها را مانند
+		داده‌های یک فرم تفسیر می‌کند. در واقع زمانی که یک فرم توسط کاربر با روش POST ارسال می‌شود. مرورگر به صورت خودکار
+		هدر فوق را تنظیم می‌کند. اما در درخواست‌های Ajax باید این هدر توسط برنامه‌نویس تنظیم شود. (مقدار این هدر در صفت
+		enctype از تگ &lt;form&gt; نیز قابل تنظیم است.)</p>
+	<p style="text-align: justify;">برای اضافه کردن یک هدر به درخواست‌های Ajax می‌توان از متد setRequestHeader استفاده
+		کرد. توجه کنید که این متد را به تعداد دفعات دلخواه می‌توانید به کار ببرید. اما تمام موارد استفاده از این متد
+		باید بعد از فراخوانی متد open و قبل از فراخوانی متد send انجام شود. مثال زیر نحوه‌ی اضافه کردن هدر Content-Type
+		به درخواست Ajax را با استفاده از متد setRequestHeader نشان می‌دهد.</p>
+	<pre class="ltr"><code class="language-javascript">
 const xhr = new XMLHttpRequest();
 xhr.open('POST' , 'http://example.com');
 xhr.setRequestHeader('Content-Type' , 'application/x-www-form-urlencoded');
 xhr.send('firstname=Abbas&amp;lastname=Moqaddam');
 </code></pre>
-<p style="text-align: justify;">در این حالت دسترسی به پارامترهای موجود در Query String در سرور بسیار ساده‌تر خواهد بود. مثلاً در PHP می‌توان با استفاده از آرایه‌ی فوق سراسری <span class="ltr d-inline-block">$_POST</span> به هر یک از پارامتر‌ها دسترسی داشت.</p>
-<pre class="ltr"><code class="language-php">
+	<p style="text-align: justify;">در این حالت دسترسی به پارامترهای موجود در Query String در سرور بسیار ساده‌تر خواهد
+		بود. مثلاً در PHP می‌توان با استفاده از آرایه‌ی فوق سراسری <span class="ltr d-inline-block">$_POST</span> به هر
+		یک از پارامتر‌ها دسترسی داشت.</p>
+	<pre class="ltr"><code class="language-php">
 $firstname = $_POST['firstname'];
 </code></pre>
-<p>&nbsp;</p>
-<h4>شئ FormData</h4>
-<p style="text-align: justify;">سومین حالت برای ارسال داده‌ها با روش POST، استفاده از شئ FormData است. برای استفاده از این شئ ابتدا باید یک متغیر از نوع FormData ایجاد کنیم.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p>&nbsp;</p>
+	<h4>شئ FormData</h4>
+	<p style="text-align: justify;">سومین حالت برای ارسال داده‌ها با روش POST، استفاده از شئ FormData است. برای استفاده
+		از این شئ ابتدا باید یک متغیر از نوع FormData ایجاد کنیم.</p>
+	<pre class="ltr"><code class="language-javascript">
 const data = new FormData();
 </code></pre>
-<p style="text-align: justify;">حال برای اضافه کردن هر یک از پارامترهای ارسالی، باید از متد append به شکل زیر استفاده کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">حال برای اضافه کردن هر یک از پارامترهای ارسالی، باید از متد append به شکل زیر
+		استفاده کرد.</p>
+	<pre class="ltr"><code class="language-javascript">
 data.append('firstname' , 'Abbas');
 data.append('lastname' , 'Moqaddam');
 </code></pre>
-<p style="text-align: justify;">سپس برای ارسال داده‌ها کافی است شئ data را به متد send ارسال کنیم.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">سپس برای ارسال داده‌ها کافی است شئ data را به متد send ارسال کنیم.</p>
+	<pre class="ltr"><code class="language-javascript">
 xhr.send(data);
 </code></pre>
-<p style="text-align: justify;">استفاده از شئ FormData نسبت به حالت قبل دارای مزایای زیر است.</p>
-<ul>
-<li style="text-align: justify;">عمل رمزگذاری پارامترها به صورت خودکار انجام می‌شود و نیازی به استفاده از تابع encodeURIComponent نیست.</li>
-<li style="text-align: justify;">هدر Content-Type به صورت خودکار تنظیم می‌شود و نیازی به استفاده از متد setRequestHeader نیست.</li>
-</ul>
-<p style="text-align: justify;">همچنین با استفاده از شئ FormData می‌توان کل داده‌های موجود در یک فرم را استخراج کرده و برای ارسال آماده کرد. به عنوان مثال با فرض وجود یک تگ &lt;form&gt; در صفحه‌ی وب که صفت id آن برابر با &#8220;info&#8221; است. دستورات زیر نحوه‌ی ارسال این فرم به صورت Ajax و با استفاده از شئ FormData را نشان می‌دهند.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">استفاده از شئ FormData نسبت به حالت قبل دارای مزایای زیر است.</p>
+	<ul>
+		<li style="text-align: justify;">عمل رمزگذاری پارامترها به صورت خودکار انجام می‌شود و نیازی به استفاده از تابع
+			encodeURIComponent نیست.</li>
+		<li style="text-align: justify;">هدر Content-Type به صورت خودکار تنظیم می‌شود و نیازی به استفاده از متد
+			setRequestHeader نیست.</li>
+	</ul>
+	<p style="text-align: justify;">همچنین با استفاده از شئ FormData می‌توان کل داده‌های موجود در یک فرم را استخراج کرده
+		و برای ارسال آماده کرد. به عنوان مثال با فرض وجود یک تگ &lt;form&gt; در صفحه‌ی وب که صفت id آن برابر با
+		&#8220;info&#8221; است. دستورات زیر نحوه‌ی ارسال این فرم به صورت Ajax و با استفاده از شئ FormData را نشان
+		می‌دهند.</p>
+	<pre class="ltr"><code class="language-javascript">
 const myForm = document.getElementById('info');
 const data = new FormData(myForm);
 xhr.send(data);
 </code></pre>
-<p style="text-align: justify;">مشاهده می‌کنید که پس از انتخاب عنصر &lt;form&gt;، با ارسال آن به تابع سازنده‌ی FormData، تمام داده‌های موجود در فرم به شئ data اضافه شده و نیازی به استفاده از متد append برای اضافه کردن هر یک از فیلدها نیست. در نهایت نیز با استفاده از متد send می‌توان شئ data را ارسال کرد.</p>
-<p>&nbsp;</p>
-<h3>ارسال داده‌ها در قالب JSON</h3>
-<p style="text-align: justify;">تمام مثال‌هایی که تا اینجا دیدیم بسیار ساده بودند و داده‌های کمی را به سرور ارسال می‌کردند. در بسیاری از مواقع حجم داده‌های ارسالی به سرور و یا داده‌های دریافتی از سرور بسیار زیاد است. در چنین مواردی بهتر است داده‌ها را در قالب JSON ارسال و دریافت کنیم. به عنوان مثال فرض کنید قصد داریم تمام داده‌های موجود در آرایه‌ی زیر را به سرور ارسال کنیم.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">مشاهده می‌کنید که پس از انتخاب عنصر &lt;form&gt;، با ارسال آن به تابع سازنده‌ی
+		FormData، تمام داده‌های موجود در فرم به شئ data اضافه شده و نیازی به استفاده از متد append برای اضافه کردن هر یک
+		از فیلدها نیست. در نهایت نیز با استفاده از متد send می‌توان شئ data را ارسال کرد.</p>
+	<p>&nbsp;</p>
+	<h3>ارسال داده‌ها در قالب JSON</h3>
+	<p style="text-align: justify;">تمام مثال‌هایی که تا اینجا دیدیم بسیار ساده بودند و داده‌های کمی را به سرور ارسال
+		می‌کردند. در بسیاری از مواقع حجم داده‌های ارسالی به سرور و یا داده‌های دریافتی از سرور بسیار زیاد است. در چنین
+		مواردی بهتر است داده‌ها را در قالب JSON ارسال و دریافت کنیم. به عنوان مثال فرض کنید قصد داریم تمام داده‌های
+		موجود در آرایه‌ی زیر را به سرور ارسال کنیم.</p>
+	<pre class="ltr"><code class="language-javascript">
 const books = [
 	{
 		title: 'Beginning Functional JavaScript, 2nd Edition',
@@ -146,36 +216,51 @@ const books = [
 	}
 ];
 </code></pre>
-<p style="text-align: justify;">هرچند می‌توان هر یک از خاصیت‌های اشیاء موجود در این آرایه را به صورت مجزا به یکی از پارامترهای Query String تبدیل کرده و آنها را ارسال کرد. اما راه ساده‌تر این است که کل آرایه‌ی فوق را به یک رشته‌ی JSON تبدیل و ارسال کنیم. در زبان سمت سرور نیز با روش‌هایی که برای کار با JSON وجود دارد، می‌توان آرایه‌ی فوق را بازسازی کرد. دستورات زیر نحوه‌ی انجام این کار را نشان می‌دهند.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">هرچند می‌توان هر یک از خاصیت‌های اشیاء موجود در این آرایه را به صورت مجزا به یکی از
+		پارامترهای Query String تبدیل کرده و آنها را ارسال کرد. اما راه ساده‌تر این است که کل آرایه‌ی فوق را به یک
+		رشته‌ی JSON تبدیل و ارسال کنیم. در زبان سمت سرور نیز با روش‌هایی که برای کار با JSON وجود دارد، می‌توان آرایه‌ی
+		فوق را بازسازی کرد. دستورات زیر نحوه‌ی انجام این کار را نشان می‌دهند.</p>
+	<pre class="ltr"><code class="language-javascript">
 const json = JSON.stringify(books);
 xhr.send(json);
 </code></pre>
-<p style="text-align: justify;">با فرض استفاده از زبان PHP در سرور، با استفاده از دستورات زیر می‌توان آرایه‌ی ارسال شده را بازسازی کرده و در متغیر <span class="ltr d-inline-block">$books</span> ذخیره کرد.</p>
-<pre class="ltr"><code class="language-php">
+	<p style="text-align: justify;">با فرض استفاده از زبان PHP در سرور، با استفاده از دستورات زیر می‌توان آرایه‌ی ارسال
+		شده را بازسازی کرده و در متغیر <span class="ltr d-inline-block">$books</span> ذخیره کرد.</p>
+	<pre class="ltr"><code class="language-php">
 $postdata = file_get_contents("php://input");
 $books = json_decode($postdata , true);
 </code></pre>
-<p style="text-align: justify;">همچنین می‌توان رشته‌ی JSON را به صورت یک پارامتر از Query String هم ارسال کرد. این کار را هم با روش GET و هم با روش POST می‌توان انجام داد. اما در این حالت حتماً باید با استفاده از تابع encodeURIComponent رشته‌ی JSON را رمزگذاری کنید. یا اینکه از شئ FormData استفاده کنید. دستورات زیر نحوه‌ی انجام این کار را نشان می‌دهند.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">همچنین می‌توان رشته‌ی JSON را به صورت یک پارامتر از Query String هم ارسال کرد. این
+		کار را هم با روش GET و هم با روش POST می‌توان انجام داد. اما در این حالت حتماً باید با استفاده از تابع
+		encodeURIComponent رشته‌ی JSON را رمزگذاری کنید. یا اینکه از شئ FormData استفاده کنید. دستورات زیر نحوه‌ی انجام
+		این کار را نشان می‌دهند.</p>
+	<pre class="ltr"><code class="language-javascript">
 const json = JSON.stringify(books);
 const data = new FormData();
 data.append('mydata' , json);
 xhr.send(data);
 </code></pre>
-<p style="text-align: justify;">در این حالت بازسازی آرایه از رشته‌ی JSON در PHP به صورت زیر خواهد بود.</p>
-<pre class="ltr"><code class="language-php">
+	<p style="text-align: justify;">در این حالت بازسازی آرایه از رشته‌ی JSON در PHP به صورت زیر خواهد بود.</p>
+	<pre class="ltr"><code class="language-php">
 $books = json_decode($_POST['mydata'] , true);
 </code></pre>
-<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong></span> در تمام وب‌سرورها تنظیماتی برای محدود کردن حجم داده‌های ارسال شده در درخواست‌های HTTP وجود دارد. یعنی نمی‌توان هر داده‌ای را با هر حجمی در یک درخواست HTTP به سرور ارسال کرد. میزان این محدودیت در وب‌سرورهای مختلف متفاوت است. اما به طور معمول محدودیت درخواست‌های GET حدود چند کیلوبایت و محدودیت درخواست‌های POST بین چند مگابایت تا چند گیگابیت است. بنابراین داده‌های حجیم را همیشه باید با روش POST ارسال کرد.</p>
-<p>&nbsp;</p>
-<h3>دریافت داده‌ها در قالب JSON</h3>
-<p style="text-align: justify;">در بسیاری از موارد داده‌هایی که توسط سرور به عنوان پاسخ بازگردانده می‌شوند در قالب JSON هستند. در چنین شرایطی نیز می‌توان با استفاده از متد parse از شئ JSON، داده‌های موجود در رشته‌ی JSON را استخراج کرد. به عنوان مثال فرض کنید قصد داریم داده‌هایی را در قالب JSON از آدرس زیر دریافت کنیم.</p>
-<pre class="ltr"><code class="language-">
+	<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته:</strong></span> در تمام وب‌سرورها
+		تنظیماتی برای محدود کردن حجم داده‌های ارسال شده در درخواست‌های HTTP وجود دارد. یعنی نمی‌توان هر داده‌ای را با هر
+		حجمی در یک درخواست HTTP به سرور ارسال کرد. میزان این محدودیت در وب‌سرورهای مختلف متفاوت است. اما به طور معمول
+		محدودیت درخواست‌های GET حدود چند کیلوبایت و محدودیت درخواست‌های POST بین چند مگابایت تا چند گیگابیت است.
+		بنابراین داده‌های حجیم را همیشه باید با روش POST ارسال کرد.</p>
+	<p>&nbsp;</p>
+	<h3>دریافت داده‌ها در قالب JSON</h3>
+	<p style="text-align: justify;">در بسیاری از موارد داده‌هایی که توسط سرور به عنوان پاسخ بازگردانده می‌شوند در قالب
+		JSON هستند. در چنین شرایطی نیز می‌توان با استفاده از متد parse از شئ JSON، داده‌های موجود در رشته‌ی JSON را
+		استخراج کرد. به عنوان مثال فرض کنید قصد داریم داده‌هایی را در قالب JSON از آدرس زیر دریافت کنیم.</p>
+	<pre class="ltr"><code class="language-">
 https://jsonplaceholder.typicode.com/todos/1
 </code></pre>
-<p style="text-align: justify;">پس از دریافت داده‌ها که به صورت یک رشته‌ی JSON ارسال شده‌اند. می‌خواهیم مقدار خاصیت title از شئ موجود در رشته‌ی JSON را در کنسول نمایش دهیم. دستورات زیر نحوه‌ی انجام این کار را به صورت کامل نشان می‌دهند.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">پس از دریافت داده‌ها که به صورت یک رشته‌ی JSON ارسال شده‌اند. می‌خواهیم مقدار خاصیت
+		title از شئ موجود در رشته‌ی JSON را در کنسول نمایش دهیم. دستورات زیر نحوه‌ی انجام این کار را به صورت کامل نشان
+		می‌دهند.</p>
+	<pre class="ltr"><code class="language-javascript">
 const xhr = new XMLHttpRequest();
 xhr.open('GET' , 'https://jsonplaceholder.typicode.com/todos/1');
 xhr.addEventListener('readystatechange' , function(){
@@ -190,11 +275,17 @@ xhr.addEventListener('readystatechange' , function(){
 });
 xhr.send();
 </code></pre>
-<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/vYBgoWg" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید. با اجرای این مثال رشته‌ی &#8220;delectus aut autem&#8221; در کنسول نمایش داده خواهد شد.</p>
-<p>&nbsp;</p>
-<h3>مشاهده‌ی هدرهای پاسخ</h3>
-<p style="text-align: justify;">همانطور که اشاره شد با استفاده از متد setRequestHeader می‌توان یک هدر را به درخواست HTTP اضافه کرد. در جاوا اسکریپت امکان اضافه کردن هدر به پاسخ‌های HTTP وجود ندارد. زیرا هدرهای پاسخ در سرور ایجاد می‌شوند. اما امکان خواندن هدرهای ارسال شده از سرور در جاوا اسکریپت وجود دارد. برای به دست آوردن مقدار یک هدر خاص از پاسخ، می‌توان از متد getResponseHeader استفاده کرد. دستورات زیر نحوه‌ی استفاده از این متد را نشان می‌دهند.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/vYBgoWg"
+			target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید. با اجرای این مثال رشته‌ی
+		&#8220;delectus aut autem&#8221; در کنسول نمایش داده خواهد شد.</p>
+	<p>&nbsp;</p>
+	<h3>مشاهده‌ی هدرهای پاسخ</h3>
+	<p style="text-align: justify;">همانطور که اشاره شد با استفاده از متد setRequestHeader می‌توان یک هدر را به درخواست
+		HTTP اضافه کرد. در جاوااسکریپت امکان اضافه کردن هدر به پاسخ‌های HTTP وجود ندارد. زیرا هدرهای پاسخ در سرور ایجاد
+		می‌شوند. اما امکان خواندن هدرهای ارسال شده از سرور در جاوااسکریپت وجود دارد. برای به دست آوردن مقدار یک هدر خاص
+		از پاسخ، می‌توان از متد getResponseHeader استفاده کرد. دستورات زیر نحوه‌ی استفاده از این متد را نشان می‌دهند.
+	</p>
+	<pre class="ltr"><code class="language-javascript">
 const xhr = new XMLHttpRequest();
 xhr.open('GET' , 'https://jsonplaceholder.typicode.com/todos/1');
 xhr.addEventListener('readystatechange' , function(){
@@ -208,13 +299,17 @@ xhr.addEventListener('readystatechange' , function(){
 });
 xhr.send();
 </code></pre>
-<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/YzKZKGY" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. با اجرای این مثال رشته‌ی &#8220;application/json; charset=utf-8&#8221; در کنسول نمایش داده خواهد شد. همچنین در صورتی که هدر مشخص شده در متد getResponseHeader در هدرهای پاسخ وجود نداشته باشد، این متد مقدار null را بازمی‌گرداند.</p>
-<p style="text-align: justify;">با استفاده از متد getAllResponseHeaders نیز می‌توان کل هدرهای ارسال شده توسط سرور را در قالب یک رشته‌ی چند خطی دریافت کرد. مثلاً اگر در مثال فوق از این متد به جای متد getResponseHeader استفاده کنیم. چیزی شبیه به رشته‌ی زیر را دریافت خواهیم کرد.</p>
-<pre class="ltr"><code class="language-">
+	<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/YzKZKGY"
+			target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. با اجرای این مثال رشته‌ی
+		&#8220;application/json; charset=utf-8&#8221; در کنسول نمایش داده خواهد شد. همچنین در صورتی که هدر مشخص شده در
+		متد getResponseHeader در هدرهای پاسخ وجود نداشته باشد، این متد مقدار null را بازمی‌گرداند.</p>
+	<p style="text-align: justify;">با استفاده از متد getAllResponseHeaders نیز می‌توان کل هدرهای ارسال شده توسط سرور را
+		در قالب یک رشته‌ی چند خطی دریافت کرد. مثلاً اگر در مثال فوق از این متد به جای متد getResponseHeader استفاده
+		کنیم. چیزی شبیه به رشته‌ی زیر را دریافت خواهیم کرد.</p>
+	<pre class="ltr"><code class="language-">
 pragma: no-cache
 content-type: application/json; charset=utf-8
 cache-control: public, max-age=14400
 expires: Sat, 24 Aug 2019 15:42:04 GMT
 </code></pre>
 </div>
-                

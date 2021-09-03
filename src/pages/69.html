@@ -1,19 +1,38 @@
-
-                <h2>دیالوگ های سیستمی (System Dialogs)</h2>
-                <div><p style="text-align: justify;">دیالوگ‌های سیستمی، انواع خاصی از پنجره‌ها هستند که برای اعمالی مانند نمایش اطلاعات به کاربر و یا پرسیدن سوال از کاربر به کار می‌روند. دلیل این نامگذاری این است که نحوه‌ی نمایش آنها توسط سیستم عامل و مرورگر تعیین می‌شود. یعنی توسط جاوا اسکریپت و یا CSS نمی‌توان نحوه‌ی نمایش این دیالوگ‌ها را تغییر داد. بنابراین در مرورگرهای مختلف و سیستم عامل‌های مختلف ظاهر این دیالوگ‌ها متفاوت خواهد بود.</p>
-<p>&nbsp;</p>
-<h3>دیالوگ alert</h3>
-<p style="text-align: justify;">پر کاربردترین نوع دیالوگ‌ها، دیالوگ alert است. از این دیالوگ برای نمایش اطلاعات به کاربر استفاده می‌شود. پیش از این نیز از دیالوگ alert بارها استفاده کرده‌ایم. این دیالوگ با فراخوانی تابع alert که یکی از متدهای شئ widnow است نمایش داده می‌شود. تنها آرگومان ورودی این تابع پیامی است که باید به کاربر نمایش دهد. به عنوان مثال دستور زیر پیام &#8220;Hello User&#8221; را به کاربر نمایش می‌دهد.</p>
-<pre class="ltr"><code class="language-javascript">
+<h2>دیالوگ های سیستمی (System Dialogs)</h2>
+<div>
+    <p style="text-align: justify;">دیالوگ‌های سیستمی، انواع خاصی از پنجره‌ها هستند که برای اعمالی مانند نمایش اطلاعات
+        به کاربر و یا پرسیدن سوال از کاربر به کار می‌روند. دلیل این نامگذاری این است که نحوه‌ی نمایش آنها توسط سیستم
+        عامل و مرورگر تعیین می‌شود. یعنی توسط جاوااسکریپت و یا CSS نمی‌توان نحوه‌ی نمایش این دیالوگ‌ها را تغییر داد.
+        بنابراین در مرورگرهای مختلف و سیستم عامل‌های مختلف ظاهر این دیالوگ‌ها متفاوت خواهد بود.</p>
+    <p>&nbsp;</p>
+    <h3>دیالوگ alert</h3>
+    <p style="text-align: justify;">پر کاربردترین نوع دیالوگ‌ها، دیالوگ alert است. از این دیالوگ برای نمایش اطلاعات به
+        کاربر استفاده می‌شود. پیش از این نیز از دیالوگ alert بارها استفاده کرده‌ایم. این دیالوگ با فراخوانی تابع alert
+        که یکی از متدهای شئ widnow است نمایش داده می‌شود. تنها آرگومان ورودی این تابع پیامی است که باید به کاربر نمایش
+        دهد. به عنوان مثال دستور زیر پیام &#8220;Hello User&#8221; را به کاربر نمایش می‌دهد.</p>
+    <pre class="ltr"><code class="language-javascript">
 alert('Hello User');			// or window.alert('Hello User');
 </code></pre>
-<p style="text-align: justify;">همانطور که اشاره شد، ظاهر دیالوگ‌های سیستمی با توجه به نوع سیستم عامل و نوع مرورگر (و حتی نسخه‌ی مرورگر) متفاوت است. شکل زیر دیالوگ حاصل از اجرای دستور فوق را در مرورگر Chrome و سیستم عامل Windows 10 نشان می‌دهد.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-741 size-full" src="https://otedia.com/wp-content/uploads/2018/12/alert-dialog.png" alt="alert-dialog" width="452" height="135" srcset="https://otedia.com/wp-content/uploads/2018/12/alert-dialog.png 452w, https://otedia.com/wp-content/uploads/2018/12/alert-dialog-300x90.png 300w" sizes="(max-width: 452px) 100vw, 452px" /></p>
-<p>&nbsp;</p>
-<h3>دیالوگ confirm</h3>
-<p style="text-align: justify;">دیالوگ confirm برای پرسیدن سوال از کاربر به کار می‌روند. البته پاسخ سوال فقط می‌تواند &#8220;بله&#8221; و &#8220;خیر&#8221; باشد. با استفاده از تابع confirm می‌توان این دیالوگ را نمایش داد. تنها آرگومان ورودی این تابع، سوالی است که باید از کاربر پرسیده شود. این سوال به صورت یک دیالوگ از کاربر پرسیده می‌شود و کاربر می‌تواند روی یکی از دکمه‌های &#8220;OK&#8221; (به معنی &#8220;بله&#8221;) و یا &#8220;Cancel&#8221; (به معنی &#8220;خیر&#8221;) کلیک کند. در صورتی که کاربر بر روی دکمه‌ی &#8220;OK&#8221; کلیک کند، تابع confirm مقدار true را بازمی‌گرداند. و در صورت کلیک بر روی دکمه‌ی &#8220;Cancel&#8221;، این تابع مقدار false را بازمی‌گرداند.</p>
-<p style="text-align: justify;">در مثال زیر ابتدا با استفاده از تابع confirm سوالی از کاربر پرسیده می‌شود. سپس با توجه به پاسخ کاربر، با استفاده از تابع alert پیام مناسبی به کاربر نمایش داده می‌شود.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">همانطور که اشاره شد، ظاهر دیالوگ‌های سیستمی با توجه به نوع سیستم عامل و نوع مرورگر
+        (و حتی نسخه‌ی مرورگر) متفاوت است. شکل زیر دیالوگ حاصل از اجرای دستور فوق را در مرورگر Chrome و سیستم عامل
+        Windows 10 نشان می‌دهد.</p>
+    <p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-741 size-full"
+            src="https://otedia.com/wp-content/uploads/2018/12/alert-dialog.png" alt="alert-dialog" width="452"
+            height="135"
+            srcset="https://otedia.com/wp-content/uploads/2018/12/alert-dialog.png 452w, https://otedia.com/wp-content/uploads/2018/12/alert-dialog-300x90.png 300w"
+            sizes="(max-width: 452px) 100vw, 452px" /></p>
+    <p>&nbsp;</p>
+    <h3>دیالوگ confirm</h3>
+    <p style="text-align: justify;">دیالوگ confirm برای پرسیدن سوال از کاربر به کار می‌روند. البته پاسخ سوال فقط
+        می‌تواند &#8220;بله&#8221; و &#8220;خیر&#8221; باشد. با استفاده از تابع confirm می‌توان این دیالوگ را نمایش داد.
+        تنها آرگومان ورودی این تابع، سوالی است که باید از کاربر پرسیده شود. این سوال به صورت یک دیالوگ از کاربر پرسیده
+        می‌شود و کاربر می‌تواند روی یکی از دکمه‌های &#8220;OK&#8221; (به معنی &#8220;بله&#8221;) و یا
+        &#8220;Cancel&#8221; (به معنی &#8220;خیر&#8221;) کلیک کند. در صورتی که کاربر بر روی دکمه‌ی &#8220;OK&#8221; کلیک
+        کند، تابع confirm مقدار true را بازمی‌گرداند. و در صورت کلیک بر روی دکمه‌ی &#8220;Cancel&#8221;، این تابع مقدار
+        false را بازمی‌گرداند.</p>
+    <p style="text-align: justify;">در مثال زیر ابتدا با استفاده از تابع confirm سوالی از کاربر پرسیده می‌شود. سپس با
+        توجه به پاسخ کاربر، با استفاده از تابع alert پیام مناسبی به کاربر نمایش داده می‌شود.</p>
+    <pre class="ltr"><code class="language-javascript">
 let answer = confirm('آیا مطمئن هستید؟');
 if(answer){
 	alert('پاسخ شما مثبت بود');
@@ -21,47 +40,111 @@ if(answer){
 	alert('پاسخ شما منفی بود');
 }
 </code></pre>
-<p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/zMQbEP" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید. با اجرای این برنامه، بدون نیاز به انجام عمل خاصی از طرف کاربر، به محض بارگذاری صفحه‌ی وب، یک دیالوگ برای گرفتن تاییدیه از کاربر نمایش داده می‌شود. در صورتی که کاربر بر روی دکمه‌ی &#8220;OK&#8221; کلیک کند، مقدار answer برابر با true خواهد بود. در نتیجه بلاک if اجرا می‌شود. و در صورت کلیک کردن کاربر بر روی &#8220;Cancel&#8221;، مقدار false در متغیر answer ذخیره می‌شود. در نتیجه بلاک else اجرا خواهد شد. ظاهر این دیالوگ در مرورگر Chrome به شکل زیر است.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-742 size-full" src="https://otedia.com/wp-content/uploads/2018/12/confirm-dialog.png" alt="confirm-dialog" width="451" height="135" srcset="https://otedia.com/wp-content/uploads/2018/12/confirm-dialog.png 451w, https://otedia.com/wp-content/uploads/2018/12/confirm-dialog-300x90.png 300w" sizes="(max-width: 451px) 100vw, 451px" /></p>
-<p>&nbsp;</p>
-<h3>دیالوگ prompt</h3>
-<p style="text-align: justify;">دیدیم که با استفاده از تابع confrim می‌توان سوالی را از کاربر پرسید. اما کاربر فقط می‌تواند پاسخ &#8220;بله&#8221; و &#8220;خیر&#8221; به این سوال بدهد. در برخی شرایط لازم است تا کاربر بتواند پاسخ دلخواه خود را وارد کند. در چنین شرایطی می‌توان از تابع prompt استفاده کرد. این تابع نیز مانند تابع confirm سوالی را از کاربر می‌پرسد. اما دیالوگی که با تابع prompt ظاهر می‌شود، حاوی یک فیلد متنی است که کاربر می‌تواند پاسخ خود را در آن وارد کند.</p>
-<p style="text-align: justify;">تابع prompt می‌تواند دو آرگومان ورودی دریافت کند که آرگومان اول اجباری و آرگومان دوم اختیاری است. آرگومان اول متن سوال را مشخص می‌کند. و آرگومان دوم در صورت وجود، به عنوان پاسخ پیش‌فرض در فیلد متنی قرار می‌گیرد و کاربر در صورت نیاز می‌تواند این مقدار پیش‌فرض را تغییر دهد.</p>
-<p style="text-align: justify;">در مثال زیر ابتدا با استفاده از تابع prompt نام و نام خانوادگی از کاربر پرسیده می‌شود. سپس با اجرای مجدد تابع prompt، سن کاربر پرسیده می‌شود که در این مورد مقدار &#8220;33&#8221; به صورت پیش‌فرض به عنوان پاسخ در فیلد متنی قرار دارد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/zMQbEP"
+            target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید. با اجرای این برنامه، بدون نیاز به
+        انجام عمل خاصی از طرف کاربر، به محض بارگذاری صفحه‌ی وب، یک دیالوگ برای گرفتن تاییدیه از کاربر نمایش داده می‌شود.
+        در صورتی که کاربر بر روی دکمه‌ی &#8220;OK&#8221; کلیک کند، مقدار answer برابر با true خواهد بود. در نتیجه بلاک
+        if اجرا می‌شود. و در صورت کلیک کردن کاربر بر روی &#8220;Cancel&#8221;، مقدار false در متغیر answer ذخیره می‌شود.
+        در نتیجه بلاک else اجرا خواهد شد. ظاهر این دیالوگ در مرورگر Chrome به شکل زیر است.</p>
+    <p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-742 size-full"
+            src="https://otedia.com/wp-content/uploads/2018/12/confirm-dialog.png" alt="confirm-dialog" width="451"
+            height="135"
+            srcset="https://otedia.com/wp-content/uploads/2018/12/confirm-dialog.png 451w, https://otedia.com/wp-content/uploads/2018/12/confirm-dialog-300x90.png 300w"
+            sizes="(max-width: 451px) 100vw, 451px" /></p>
+    <p>&nbsp;</p>
+    <h3>دیالوگ prompt</h3>
+    <p style="text-align: justify;">دیدیم که با استفاده از تابع confrim می‌توان سوالی را از کاربر پرسید. اما کاربر فقط
+        می‌تواند پاسخ &#8220;بله&#8221; و &#8220;خیر&#8221; به این سوال بدهد. در برخی شرایط لازم است تا کاربر بتواند
+        پاسخ دلخواه خود را وارد کند. در چنین شرایطی می‌توان از تابع prompt استفاده کرد. این تابع نیز مانند تابع confirm
+        سوالی را از کاربر می‌پرسد. اما دیالوگی که با تابع prompt ظاهر می‌شود، حاوی یک فیلد متنی است که کاربر می‌تواند
+        پاسخ خود را در آن وارد کند.</p>
+    <p style="text-align: justify;">تابع prompt می‌تواند دو آرگومان ورودی دریافت کند که آرگومان اول اجباری و آرگومان دوم
+        اختیاری است. آرگومان اول متن سوال را مشخص می‌کند. و آرگومان دوم در صورت وجود، به عنوان پاسخ پیش‌فرض در فیلد متنی
+        قرار می‌گیرد و کاربر در صورت نیاز می‌تواند این مقدار پیش‌فرض را تغییر دهد.</p>
+    <p style="text-align: justify;">در مثال زیر ابتدا با استفاده از تابع prompt نام و نام خانوادگی از کاربر پرسیده
+        می‌شود. سپس با اجرای مجدد تابع prompt، سن کاربر پرسیده می‌شود که در این مورد مقدار &#8220;33&#8221; به صورت
+        پیش‌فرض به عنوان پاسخ در فیلد متنی قرار دارد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let name = prompt('نام و نام خانوادگی خود را وارد کنید');
 let age = prompt('سن خود را وارد کنید' , '33');
 const p = document.createElement('p');
 p.textContent = 'شما ' + name + ' هستید و ' + age + ' سال دارید.';
 document.body.appendChild(p);
 </code></pre>
-<p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/oQROqg" target="_blank" rel="noopener noreferrer">اینجا </a>اجرا کنید. در این برنامه پس از وارد کردن نام و نام خانوادگی و سن کاربر، یک عنصر از نوع &lt;p&gt; ایجاد شده و پیامی متناسب با مقادیر وارد شده در این عنصر قرار داده می‌شود و به انتهای عنصر &lt;body&gt; اضافه می‌شود. ظاهر دیالوگ prompt در مرورگر Chrome به شکل زیر است.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-743 size-full" src="https://otedia.com/wp-content/uploads/2018/12/prompt-dialog.png" alt="prompt-dialog" width="451" height="183" srcset="https://otedia.com/wp-content/uploads/2018/12/prompt-dialog.png 451w, https://otedia.com/wp-content/uploads/2018/12/prompt-dialog-300x122.png 300w" sizes="(max-width: 451px) 100vw, 451px" /></p>
-<p style="text-align: justify;">همانطور که مشاهده می‌کنید این دیالوگ نیز دارای دو دکمه‌ی &#8220;OK&#8221; و &#8220;Cancel&#8221; است. توجه کنید که فقط در صورتی که کاربر بر روی دکمه‌ی &#8220;OK&#8221; کلیک کند، مقدار وارد شده در فیلد متنی بازگردانده می‌شود. در صورت کلیک کردن کاربر بر روی دکمه‌ی &#8220;Cancel&#8221; مقدار null توسط تابع prompt بازگردانده می‌شود.</p>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> هر سه دیالوگ confirm ،alert و prompt به صورت سنکرون (Synchronous) اجرا می‌شوند. یعنی با نمایش هر یک از این دیالوگ‌ها، اجرای برنامه کاملاً متوقف شده و پس از بسته شدن دیالوگ، اجرای برنامه ادامه پیدا می‌کند. در برخی برنامه‌ها این ویژگی می‌تواند بسیار مضر باشد. پس در هنگام استفاده از این دیالوگ‌ها حتماً به این نکته توجه کنید.</p>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> با توجه به اینکه نحوه‌ی نمایش دیالوگ‌های سیستمی را نمی‌توان با جاوا اسکریپت یا CSS تغییر داد. بهتر است فقط در برنامه‌های نسبتاً ساده که ظاهر کار اهمیت چندانی ندارد از این دیالوگ‌ها استفاده شود. در برنامه‌های بزرگ بهتر است از دیالوگ‌های سفارشی که با HTML و CSS ایجاد می‌شوند و در تمام مرورگرها نمایش یکسانی دارند استفاده کرد. همچنین در برخی کتابخانه‌ها و فریمورک‌ها (مانند Bootstrap و jQuery UI) امکاناتی جهت ایجاد دیالوگ‌های سفارشی در نظر گرفته شده است که با استفاده از آنها ایجاد دیالوگ‌های سفارشی کار نسبتاً ساده‌ای است.</p>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> به دلیل استفاده‌ی نامناسبی که در گذشته از این دیالوگ‌ها شده است. تقریباً در تمام مرورگرهای امروزی، در صورتی که یک برنامه‌ی جاوا اسکریپت اقدام به نمایش چند دیالوگ به صورت متوالی کند، این امکان به کاربر داده می‌شود که نمایش دیالوگ‌ها را کاملاً غیر فعال کند. برای این منظور یک چک باکس در دیالوگ ظاهر می‌شود که با تیک زدن آن، تا زمانی که صفحه‌ی وب مجدداً بارگذاری نشود، دیالوگ دیگری نمایش داده نمی‌شود. شکل زیر نمونه‌ای از این حالت را در مرورگر Edge نشان می‌دهد.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-744 size-full" src="https://otedia.com/wp-content/uploads/2018/12/prevent-dialog.png" alt="prevent-dialog" width="452" height="299" srcset="https://otedia.com/wp-content/uploads/2018/12/prevent-dialog.png 452w, https://otedia.com/wp-content/uploads/2018/12/prevent-dialog-300x198.png 300w" sizes="(max-width: 452px) 100vw, 452px" /></p>
-<p>&nbsp;</p>
-<h3>دیالوگ print</h3>
-<p style="text-align: justify;">دیالوگ سیستمی دیگری که کاربرد کمتری نسبت به موارد قبلی دارد، دیالوگ print است. در منوی تمام مرورگرها گزینه‌ای برای چاپ صفحه‌ی وب وجود دارد که با کلیک بر روی این گزینه، دیالوگی ظاهر می‌شود که شامل تنظیماتی برای چاپ صفحه‌ی وب است. معمولاً این دیالوگ را می‌توان با زدن کلیدهای <kbd>Ctrl + P</kbd> نمایش داد.</p>
-<p style="text-align: justify;">اما در جاوا اسکریپت نیز می‌توان با فراخوانی تابع print این دیالوگ را نمایش داد. در صفحات وبی که وجود امکان چاپ صفحه در آنها بسیار ضروری است، استفاده از این متد می‌تواند بسیار مفید باشد. هرچند کاربر می‌تواند با استفاده از منوی مرورگر اقدام به چاپ صفحه‌ی وب کند، اما ممکن است برخی کاربران مبتدی با نحوه‌ی چاپ کردن صفحه‌ی وب از طریق منوی مرورگر آشنا نباشند. به همین دلیل بهتر است در صفحات وبی که نیاز به چاپ دارند (مثلاً چاپ رسید بانکی) دکمه‌ای برای چاپ قرار داده شود تا کاربران مبتدی نیز به راحتی بتوانند به دیالوگ چاپ دسترسی پیدا کنند.</p>
-<p style="text-align: justify;">در مثال زیر با کلیک کردن کاربر بر روی دکمه‌ی چاپ، دیالوگ چاپ نمایش داده می‌شود.</p>
-<pre class="ltr"><code class="language-markup">
+    <p style="text-align: justify;">این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/oQROqg"
+            target="_blank" rel="noopener noreferrer">اینجا </a>اجرا کنید. در این برنامه پس از وارد کردن نام و نام
+        خانوادگی و سن کاربر، یک عنصر از نوع &lt;p&gt; ایجاد شده و پیامی متناسب با مقادیر وارد شده در این عنصر قرار داده
+        می‌شود و به انتهای عنصر &lt;body&gt; اضافه می‌شود. ظاهر دیالوگ prompt در مرورگر Chrome به شکل زیر است.</p>
+    <p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-743 size-full"
+            src="https://otedia.com/wp-content/uploads/2018/12/prompt-dialog.png" alt="prompt-dialog" width="451"
+            height="183"
+            srcset="https://otedia.com/wp-content/uploads/2018/12/prompt-dialog.png 451w, https://otedia.com/wp-content/uploads/2018/12/prompt-dialog-300x122.png 300w"
+            sizes="(max-width: 451px) 100vw, 451px" /></p>
+    <p style="text-align: justify;">همانطور که مشاهده می‌کنید این دیالوگ نیز دارای دو دکمه‌ی &#8220;OK&#8221; و
+        &#8220;Cancel&#8221; است. توجه کنید که فقط در صورتی که کاربر بر روی دکمه‌ی &#8220;OK&#8221; کلیک کند، مقدار وارد
+        شده در فیلد متنی بازگردانده می‌شود. در صورت کلیک کردن کاربر بر روی دکمه‌ی &#8220;Cancel&#8221; مقدار null توسط
+        تابع prompt بازگردانده می‌شود.</p>
+    <p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span></strong> هر سه دیالوگ confirm
+        ،alert و prompt به صورت سنکرون (Synchronous) اجرا می‌شوند. یعنی با نمایش هر یک از این دیالوگ‌ها، اجرای برنامه
+        کاملاً متوقف شده و پس از بسته شدن دیالوگ، اجرای برنامه ادامه پیدا می‌کند. در برخی برنامه‌ها این ویژگی می‌تواند
+        بسیار مضر باشد. پس در هنگام استفاده از این دیالوگ‌ها حتماً به این نکته توجه کنید.</p>
+    <p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span></strong> با توجه به اینکه نحوه‌ی
+        نمایش دیالوگ‌های سیستمی را نمی‌توان با جاوااسکریپت یا CSS تغییر داد. بهتر است فقط در برنامه‌های نسبتاً ساده که
+        ظاهر کار اهمیت چندانی ندارد از این دیالوگ‌ها استفاده شود. در برنامه‌های بزرگ بهتر است از دیالوگ‌های سفارشی که با
+        HTML و CSS ایجاد می‌شوند و در تمام مرورگرها نمایش یکسانی دارند استفاده کرد. همچنین در برخی کتابخانه‌ها و
+        فریمورک‌ها (مانند Bootstrap و jQuery UI) امکاناتی جهت ایجاد دیالوگ‌های سفارشی در نظر گرفته شده است که با استفاده
+        از آنها ایجاد دیالوگ‌های سفارشی کار نسبتاً ساده‌ای است.</p>
+    <p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span></strong> به دلیل استفاده‌ی
+        نامناسبی که در گذشته از این دیالوگ‌ها شده است. تقریباً در تمام مرورگرهای امروزی، در صورتی که یک برنامه‌ی
+        جاوااسکریپت اقدام به نمایش چند دیالوگ به صورت متوالی کند، این امکان به کاربر داده می‌شود که نمایش دیالوگ‌ها را
+        کاملاً غیر فعال کند. برای این منظور یک چک باکس در دیالوگ ظاهر می‌شود که با تیک زدن آن، تا زمانی که صفحه‌ی وب
+        مجدداً بارگذاری نشود، دیالوگ دیگری نمایش داده نمی‌شود. شکل زیر نمونه‌ای از این حالت را در مرورگر Edge نشان
+        می‌دهد.</p>
+    <p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-744 size-full"
+            src="https://otedia.com/wp-content/uploads/2018/12/prevent-dialog.png" alt="prevent-dialog" width="452"
+            height="299"
+            srcset="https://otedia.com/wp-content/uploads/2018/12/prevent-dialog.png 452w, https://otedia.com/wp-content/uploads/2018/12/prevent-dialog-300x198.png 300w"
+            sizes="(max-width: 452px) 100vw, 452px" /></p>
+    <p>&nbsp;</p>
+    <h3>دیالوگ print</h3>
+    <p style="text-align: justify;">دیالوگ سیستمی دیگری که کاربرد کمتری نسبت به موارد قبلی دارد، دیالوگ print است. در
+        منوی تمام مرورگرها گزینه‌ای برای چاپ صفحه‌ی وب وجود دارد که با کلیک بر روی این گزینه، دیالوگی ظاهر می‌شود که
+        شامل تنظیماتی برای چاپ صفحه‌ی وب است. معمولاً این دیالوگ را می‌توان با زدن کلیدهای <kbd>Ctrl + P</kbd> نمایش
+        داد.</p>
+    <p style="text-align: justify;">اما در جاوااسکریپت نیز می‌توان با فراخوانی تابع print این دیالوگ را نمایش داد. در
+        صفحات وبی که وجود امکان چاپ صفحه در آنها بسیار ضروری است، استفاده از این متد می‌تواند بسیار مفید باشد. هرچند
+        کاربر می‌تواند با استفاده از منوی مرورگر اقدام به چاپ صفحه‌ی وب کند، اما ممکن است برخی کاربران مبتدی با نحوه‌ی
+        چاپ کردن صفحه‌ی وب از طریق منوی مرورگر آشنا نباشند. به همین دلیل بهتر است در صفحات وبی که نیاز به چاپ دارند
+        (مثلاً چاپ رسید بانکی) دکمه‌ای برای چاپ قرار داده شود تا کاربران مبتدی نیز به راحتی بتوانند به دیالوگ چاپ دسترسی
+        پیدا کنند.</p>
+    <p style="text-align: justify;">در مثال زیر با کلیک کردن کاربر بر روی دکمه‌ی چاپ، دیالوگ چاپ نمایش داده می‌شود.</p>
+    <pre class="ltr"><code class="language-markup">
 &lt;p&gt;یک متن آزمایشی&lt;/p&gt;
 &lt;button type="button"&gt;چاپ&lt;/button&gt;
 </code></pre>
-<pre class="ltr"><code class="language-javascript">
+    <pre class="ltr"><code class="language-javascript">
 const button = document.querySelector('button');
 button.addEventListener('click' , () =&gt; window.print());
 </code></pre>
-<p style="text-align: justify;">معمولاً بهتر است قبل از چاپ صفحات وب، تغییراتی در صفحه‌ی وب انجام شود تا ظاهر صفحه برای چاپ مناسب‌تر شود. مثلاً می‌توان نوع فونت صفحه را تغییر داد. و یا بخش‌های اضافی صفحه مانند منوها را از صفحه حذف کرد تا در نسخه‌ی چاپی صفحه، نمایش داده نشوند. برای اعمال چنین تغییراتی می‌توان از دو رویداد afterprint و beforeprint استفاده کرد.</p>
-<p style="text-align: justify;">همانطور که از نام این رویدادها مشخص است، رویداد beforeprint قبل از باز شدن دیالوگ چاپ رخ می‌دهد. و رویداد afterprint بعد از بسته شدن این دیالوگ رخ می‌دهد. پس باید تغییرات لازم برای نسخه‌ی چاپی را با رویداد beforeprint ایجاد کرد. و با رویداد afterprint این تغییرات را لغو کرد تا صفحه به حالت اولیه بازگردد. به عنوان مثال می‌توان دستورات زیر را به برنامه‌ی فوق اضافه کرد تا در صورت وقوع رویداد beforeprint فونت صفحه به Tahoma تغییر می‌کند. و بعد از بسته شدن دیالوگ چاپ و وقوع رویداد afterprint، دوباره فونت قبلی در صفحه‌ی وب به کار رود.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">معمولاً بهتر است قبل از چاپ صفحات وب، تغییراتی در صفحه‌ی وب انجام شود تا ظاهر صفحه
+        برای چاپ مناسب‌تر شود. مثلاً می‌توان نوع فونت صفحه را تغییر داد. و یا بخش‌های اضافی صفحه مانند منوها را از صفحه
+        حذف کرد تا در نسخه‌ی چاپی صفحه، نمایش داده نشوند. برای اعمال چنین تغییراتی می‌توان از دو رویداد afterprint و
+        beforeprint استفاده کرد.</p>
+    <p style="text-align: justify;">همانطور که از نام این رویدادها مشخص است، رویداد beforeprint قبل از باز شدن دیالوگ
+        چاپ رخ می‌دهد. و رویداد afterprint بعد از بسته شدن این دیالوگ رخ می‌دهد. پس باید تغییرات لازم برای نسخه‌ی چاپی
+        را با رویداد beforeprint ایجاد کرد. و با رویداد afterprint این تغییرات را لغو کرد تا صفحه به حالت اولیه بازگردد.
+        به عنوان مثال می‌توان دستورات زیر را به برنامه‌ی فوق اضافه کرد تا در صورت وقوع رویداد beforeprint فونت صفحه به
+        Tahoma تغییر می‌کند. و بعد از بسته شدن دیالوگ چاپ و وقوع رویداد afterprint، دوباره فونت قبلی در صفحه‌ی وب به کار
+        رود.</p>
+    <pre class="ltr"><code class="language-javascript">
 window.addEventListener('beforeprint' , () =&gt; document.body.style.fontFamily = 'Tahoma');
 window.addEventListener('afterprint' , () =&gt; document.body.style.fontFamily = '');
 </code></pre>
-<p>این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/WYBVgM" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. شکل زیر ظاهر دیالوگ print را در مرورگر Edge نشان می‌دهد.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-745 size-full" src="https://otedia.com/wp-content/uploads/2018/12/print-dialog.png" alt="print-dialog" width="769" height="683" srcset="https://otedia.com/wp-content/uploads/2018/12/print-dialog.png 769w, https://otedia.com/wp-content/uploads/2018/12/print-dialog-300x266.png 300w, https://otedia.com/wp-content/uploads/2018/12/print-dialog-768x682.png 768w" sizes="(max-width: 769px) 100vw, 769px" /></p>
+    <p>این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/WYBVgM" target="_blank"
+            rel="noopener noreferrer">اینجا</a> اجرا کنید. شکل زیر ظاهر دیالوگ print را در مرورگر Edge نشان می‌دهد.</p>
+    <p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-745 size-full"
+            src="https://otedia.com/wp-content/uploads/2018/12/print-dialog.png" alt="print-dialog" width="769"
+            height="683"
+            srcset="https://otedia.com/wp-content/uploads/2018/12/print-dialog.png 769w, https://otedia.com/wp-content/uploads/2018/12/print-dialog-300x266.png 300w, https://otedia.com/wp-content/uploads/2018/12/print-dialog-768x682.png 768w"
+            sizes="(max-width: 769px) 100vw, 769px" /></p>
 </div>
-                

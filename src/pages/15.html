@@ -1,9 +1,15 @@
-
-                <h2>کلمات رزرو شده در جاوا اسکریپت</h2>
-                <div><p style="text-align: justify;">در بخش قبلی دیدیم که یکی از قوانینی که برای نامگذاری شناسه‌ها باید رعایت شود، عدم استفاده از <strong>کلمات رزرو شده</strong> (<strong>Reserved Words</strong>) است. اما کلمات رزرو شده چه کلماتی هستند؟</p>
-<p style="text-align: justify;">در هر زبان برنامه‌نویسی تعدادی کلمه‌ی از پیش تعریف شده وجود دارد که هر یک به منظور خاصی در آن زبان به کار برده می‌شوند. مثلاً برای تعریف یک ثابت از کلمه‌ی const و برای تعریف یک تابع از کلمه‌ی function استفاده می‌شود. به این کلمات در هر زبان برنامه نویسی کلمات رزرو شده یا <strong>کلمات کلیدی</strong> (<strong>Keywords</strong>) گفته می‌شود.</p>
-<p style="text-align: justify;">فهرست تمام کلمات رزرو شده در زبان جاوا اسکریپت (یا به طور دقیق‌تر ECMAScript) به شرح زیر است.</p>
-<pre class="ltr"><code class="language-javascript">await , break , case , catch , class , const , continue
+<h2>کلمات رزرو شده در جاوااسکریپت</h2>
+<div>
+    <p style="text-align: justify;">در بخش قبلی دیدیم که یکی از قوانینی که برای نامگذاری شناسه‌ها باید رعایت شود، عدم
+        استفاده از <strong>کلمات رزرو شده</strong> (<strong>Reserved Words</strong>) است. اما کلمات رزرو شده چه کلماتی
+        هستند؟</p>
+    <p style="text-align: justify;">در هر زبان برنامه‌نویسی تعدادی کلمه‌ی از پیش تعریف شده وجود دارد که هر یک به منظور
+        خاصی در آن زبان به کار برده می‌شوند. مثلاً برای تعریف یک ثابت از کلمه‌ی const و برای تعریف یک تابع از کلمه‌ی
+        function استفاده می‌شود. به این کلمات در هر زبان برنامه‌نویسی کلمات رزرو شده یا <strong>کلمات کلیدی</strong>
+        (<strong>Keywords</strong>) گفته می‌شود.</p>
+    <p style="text-align: justify;">فهرست تمام کلمات رزرو شده در زبان جاوااسکریپت (یا به طور دقیق‌تر ECMAScript) به شرح
+        زیر است.</p>
+    <pre class="ltr"><code class="language-javascript">await , break , case , catch , class , const , continue
 debugger , default , delete , do , else , enum , export
 extends , false , finally , for , function , if , implements
 import , in , instanceof , interface , let , new , null
@@ -11,27 +17,34 @@ package , private , protected , public , return , static
 super , switch , this , throw , true , try , typeof , var
 void , while , with , yield
 </code></pre>
-<p style="text-align: justify;">اینها کلماتی هستند که به هیچ وجه به عنوان شناسه قابل استفاده نیستند و برای اهداف خاصی در زبان جاوا اسکریپت در نظر گرفته شده‌اند.</p>
-<p style="text-align: justify;">اما کلمات دیگری نیز در جاوا اسکریپت وجود دارند که در عین حال که یک کلمه‌ی رزرو شده نیستند. نباید از آنها به عنوان شناسه استفاده کنیم. یعنی استفاده از این کلمات به عنوان شناسه هیچ خطایی را در برنامه تولید نمی‌کند و برنامه به اجرای خود ادامه می‌دهد. اما ممکن است در شرایط خاص نتایج غیر منتظره و اشتباهی به وجود آورد. این نوع کلمات خود به چند دسته تقسیم می‌شود.</p>
-<ul>
-<li>کلماتی که در نسخه‌های قدیمی جزئی از کلمات رزرو شده بودند، ولی در حال حاضر یک کلمه‌ی رزرو شده نیستند و از استاندارد حذف شده‌اند.</li>
-</ul>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">اینها کلماتی هستند که به هیچ وجه به عنوان شناسه قابل استفاده نیستند و برای اهداف
+        خاصی در زبان جاوااسکریپت در نظر گرفته شده‌اند.</p>
+    <p style="text-align: justify;">اما کلمات دیگری نیز در جاوااسکریپت وجود دارند که در عین حال که یک کلمه‌ی رزرو شده
+        نیستند. نباید از آنها به عنوان شناسه استفاده کنیم. یعنی استفاده از این کلمات به عنوان شناسه هیچ خطایی را در
+        برنامه تولید نمی‌کند و برنامه به اجرای خود ادامه می‌دهد. اما ممکن است در شرایط خاص نتایج غیر منتظره و اشتباهی به
+        وجود آورد. این نوع کلمات خود به چند دسته تقسیم می‌شود.</p>
+    <ul>
+        <li>کلماتی که در نسخه‌های قدیمی جزئی از کلمات رزرو شده بودند، ولی در حال حاضر یک کلمه‌ی رزرو شده نیستند و از
+            استاندارد حذف شده‌اند.</li>
+    </ul>
+    <pre class="ltr"><code class="language-javascript">
 abstract , boolean , byte , char , double , final , float , goto , int
 long , native , short , synchronized , throws , volatile , transient
 </code></pre>
-<ul>
-<li>کلماتی که نشان‌دهنده‌ی نام اشیاء، خاصیت‌ها یا متدهای پیش‌ساخته (built-in) در ECMAScript هستند. (به مرور با این موارد آشنا خواهید شد)</li>
-</ul>
-<pre class="ltr"><code class="language-javascript">
+    <ul>
+        <li>کلماتی که نشان‌دهنده‌ی نام اشیاء، خاصیت‌ها یا متدهای پیش‌ساخته (built-in) در ECMAScript هستند. (به مرور با
+            این موارد آشنا خواهید شد)</li>
+    </ul>
+    <pre class="ltr"><code class="language-javascript">
 arguments , Array , Date , eval , hasOwnProperty , Infinity
 isFinite , isNaN , isPrototypeOf , length , Math , NaN , Number
 Object , prototype , String , toString , undefined , valueOf
 </code></pre>
-<ul>
-<li>کلماتی که نشان‌دهنده‌ی نام اشیاء، خاصیت‌ها یا متدهای پیش‌ساخته‌ در JavaScript هستند. (یعنی جزئی از ECMAScript نیستند)</li>
-</ul>
-<pre class="ltr"><code class="language-javascript">
+    <ul>
+        <li>کلماتی که نشان‌دهنده‌ی نام اشیاء، خاصیت‌ها یا متدهای پیش‌ساخته‌ در JavaScript هستند. (یعنی جزئی از
+            ECMAScript نیستند)</li>
+    </ul>
+    <pre class="ltr"><code class="language-javascript">
 alert , all , anchor , anchors , area , assign , blur , button , checkbox
 clearInterval , clearTimeout , clientInformation , close , closed , confirm
 constructor , crypto , decodeURI , decodeURIComponent , defaultStatus , document
@@ -44,7 +57,10 @@ parseInt , password , pkcs11 , plugin , prompt , propertyIsEnum , radio , reset
 screenX , screenY , scroll , secure , select , self , setInterval , setTimeout , status
 submit , taint , text , textarea , top , unescape , untaint , window
 </code></pre>
-<p style="text-align: justify;">البته کلمات دسته‌ی آخر از اهمیت کمتری برخوردار هستند (به جز چند مورد خاص مثل window و document). به همین دلیل بعضاً از این کلمات در نامگذاری شناسه‌ها نیز استفاده می‌شود. اما بهتر است که از این کلمات به عنوان شناسه استفاده نشود.</p>
-<p style="text-align: justify;">همچنین توجه کنید که نیازی به حفظ کردن این کلمات ندارید، به مرور زمان موارد ضروری در ذهن شما ماندگار خواهند شد. ضمن اینکه اکثر ویرایشگرهای کد امروزی با تغییر دادن رنگ کلمات کلیدی زبان، تشخیص کلمات کلیدی زبان‌های برنامه‌نویسی را بسیار ساده می‌کنند.</p>
+    <p style="text-align: justify;">البته کلمات دسته‌ی آخر از اهمیت کمتری برخوردار هستند (به جز چند مورد خاص مثل window
+        و document). به همین دلیل بعضاً از این کلمات در نامگذاری شناسه‌ها نیز استفاده می‌شود. اما بهتر است که از این
+        کلمات به عنوان شناسه استفاده نشود.</p>
+    <p style="text-align: justify;">همچنین توجه کنید که نیازی به حفظ کردن این کلمات ندارید، به مرور زمان موارد ضروری در
+        ذهن شما ماندگار خواهند شد. ضمن اینکه اکثر ویرایشگرهای کد امروزی با تغییر دادن رنگ کلمات کلیدی زبان، تشخیص کلمات
+        کلیدی زبان‌های برنامه‌نویسی را بسیار ساده می‌کنند.</p>
 </div>
-                

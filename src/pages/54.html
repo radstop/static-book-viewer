@@ -1,27 +1,41 @@
-
-                <h2>کار با صفات (Attributes) در DOM</h2>
-                <div><p style="text-align: justify;">در بخش‌های قبلی با روش‌های مختلف انتخاب عناصر صفحات وب آشنا شدیم. اما هدف اصلی از انتخاب عناصر، خواندن محتوای آنها و یا ایجاد تغییرات در محتوای آنها است. در این بخش قصد داریم به بررسی امکانات جاوا اسکریپت در رابطه با خواندن صفات (Attributes) عناصر و ایجاد تغییرات در آنها بپردازیم.</p>
-<p>&nbsp;</p>
-<h3>متدهای ایجاد، خواندن، ویرایش و حذف صفات</h3>
-<p style="text-align: justify;">می‌دانیم که تگ‌های HTML می‌توانند دارای تعدادی صفت (یا خاصیت) باشند. مثلاً در قطعه کد زیر تگ &lt;div&gt; دارای دو صفت id و class است.</p>
-<pre class="ltr"><code class="language-markup">
+<h2>کار با صفات (Attributes) در DOM</h2>
+<div>
+    <p style="text-align: justify;">در بخش‌های قبلی با روش‌های مختلف انتخاب عناصر صفحات وب آشنا شدیم. اما هدف اصلی از
+        انتخاب عناصر، خواندن محتوای آنها و یا ایجاد تغییرات در محتوای آنها است. در این بخش قصد داریم به بررسی امکانات
+        جاوااسکریپت در رابطه با خواندن صفات (Attributes) عناصر و ایجاد تغییرات در آنها بپردازیم.</p>
+    <p>&nbsp;</p>
+    <h3>متدهای ایجاد، خواندن، ویرایش و حذف صفات</h3>
+    <p style="text-align: justify;">می‌دانیم که تگ‌های HTML می‌توانند دارای تعدادی صفت (یا خاصیت) باشند. مثلاً در قطعه
+        کد زیر تگ &lt;div&gt; دارای دو صفت id و class است.</p>
+    <pre class="ltr"><code class="language-markup">
 &lt;div id="myid" class="myclass"&gt;Content&lt;/div&gt;
 </code></pre>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">تذکر :</span></strong> کلمه‌ی Attribute را می‌توان در فارسی به &#8220;صفت&#8221;، &#8220;خاصیت&#8221;، &#8220;ویژگی&#8221;، &#8220;خصیصه&#8221; و &#8230; ترجمه کرد. معمولاً طراحان وب بیشتر از کلمات &#8220;صفت&#8221; یا &#8220;خاصیت&#8221; به عنوان معادل فارسی Attribute استفاده می‌کنند. همچنین کلمه‌ی Property (خاصیت‌های اشیاء) را نیز می‌توان در فارسی به &#8220;خاصیت&#8221;، &#8220;ویژگی&#8221;، &#8220;دارایی&#8221; و &#8230; ترجمه کرد. از این پس برای جلوگیری از بروز ابهام، همیشه از کلمه‌ی &#8220;صفت&#8221; به عنوان معادل فارسی Attribute و از کلمه‌ی &#8220;خاصیت&#8221; به عنوان معادل فارسی Property استفاده می‌شود.</p>
-<p style="text-align: justify;">یکی از کارهای مرسوم در جاوا اسکریپت، ایجاد کردن، خواندن، ویرایش کردن و حذف کردن صفات عناصر صفحه‌ی وب است. برای خواندن مقدار یک صفت می‌توان از متد getAttribute استفاده کرد. مثلاً برای خواندن مقدار صفت class تگ &lt;div&gt; فوق می‌توان به شکل زیر عمل کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;"><strong><span style="color: #ff0000;">تذکر :</span></strong> کلمه‌ی Attribute را
+        می‌توان در فارسی به &#8220;صفت&#8221;، &#8220;خاصیت&#8221;، &#8220;ویژگی&#8221;، &#8220;خصیصه&#8221; و &#8230;
+        ترجمه کرد. معمولاً طراحان وب بیشتر از کلمات &#8220;صفت&#8221; یا &#8220;خاصیت&#8221; به عنوان معادل فارسی
+        Attribute استفاده می‌کنند. همچنین کلمه‌ی Property (خاصیت‌های اشیاء) را نیز می‌توان در فارسی به
+        &#8220;خاصیت&#8221;، &#8220;ویژگی&#8221;، &#8220;دارایی&#8221; و &#8230; ترجمه کرد. از این پس برای جلوگیری از
+        بروز ابهام، همیشه از کلمه‌ی &#8220;صفت&#8221; به عنوان معادل فارسی Attribute و از کلمه‌ی &#8220;خاصیت&#8221; به
+        عنوان معادل فارسی Property استفاده می‌شود.</p>
+    <p style="text-align: justify;">یکی از کارهای مرسوم در جاوااسکریپت، ایجاد کردن، خواندن، ویرایش کردن و حذف کردن صفات
+        عناصر صفحه‌ی وب است. برای خواندن مقدار یک صفت می‌توان از متد getAttribute استفاده کرد. مثلاً برای خواندن مقدار
+        صفت class تگ &lt;div&gt; فوق می‌توان به شکل زیر عمل کرد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let div = document.getElementById('myid');
 console.log(div.getAttribute('class'));
 ← "myclass"
 </code></pre>
-<p style="text-align: justify;">در صورتی که صفت مشخص شده در متد getAttribute برای عنصر مورد نظر تعریف نشده باشد، این متد مقدار null را بازمی‌گرداند.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">در صورتی که صفت مشخص شده در متد getAttribute برای عنصر مورد نظر تعریف نشده باشد، این
+        متد مقدار null را بازمی‌گرداند.</p>
+    <pre class="ltr"><code class="language-javascript">
 console.log(div.getAttribute('title'));
 ← null
 </code></pre>
-<p>این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/VVmeRx" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<p style="text-align: justify;">همچنین با متد setAttribute می‌توان یک صفت جدید برای یک عنصر تعریف کرد و یا مقدار صفات موجود را تغییر داد. قطعه کد زیر نحوه‌ی استفاده از این متد را نشان می‌دهد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p>این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/VVmeRx" target="_blank"
+            rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+    <p style="text-align: justify;">همچنین با متد setAttribute می‌توان یک صفت جدید برای یک عنصر تعریف کرد و یا مقدار
+        صفات موجود را تغییر داد. قطعه کد زیر نحوه‌ی استفاده از این متد را نشان می‌دهد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let div = document.getElementById('myid');
 div.setAttribute('class' , 'newclass');
 div.setAttribute('title' , 'mytitle');
@@ -30,25 +44,38 @@ console.log(div.getAttribute('class'));
 console.log(div.getAttribute('title'));
 ← "mytitle"
 </code></pre>
-<p style="text-align: justify;">در این مثال ابتدا مقدار صفت class به مقدار جدید &#8220;newclass&#8221; تغییر می‌کند. سپس صفت جدید title با مقدار &#8220;mytitle&#8221; به عنصر &lt;div&gt; اضافه می‌شود. در خطوط بعدی نیز مقدار این دو صفت در کنسول نمایش داده می‌شود. این مثال را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/JebXoM" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<p style="text-align: justify;">جهت حذف کردن یک صفت از یک عنصر نیز می‌توان از متد removeAttribute استفاده کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">در این مثال ابتدا مقدار صفت class به مقدار جدید &#8220;newclass&#8221; تغییر می‌کند.
+        سپس صفت جدید title با مقدار &#8220;mytitle&#8221; به عنصر &lt;div&gt; اضافه می‌شود. در خطوط بعدی نیز مقدار این
+        دو صفت در کنسول نمایش داده می‌شود. این مثال را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/JebXoM"
+            target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+    <p style="text-align: justify;">جهت حذف کردن یک صفت از یک عنصر نیز می‌توان از متد removeAttribute استفاده کرد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let div = document.getElementById('myid');
 div.removeAttribute('id');
 console.log(div.getAttribute('id'));
 ← null
 </code></pre>
-<p style="text-align: justify;">در قطعه کد فوق، صفت id از عنصر &lt;div&gt; حذف می‌شود. به همین دلیل در دستور بعدی مقدار این صفت برابر با null است. توجه کنید که با وجود این که صفت id از عنصر &lt;div&gt; حذف شده و با وجود انتخاب شدن این عنصر با متد getElementById، متغیر div همچنان به عنصر مورد نظر اشاره می‌کند و می‌توان تغییرات دیگری را روی این عنصر اعمال کرد. زیرا انتساب عنصر &lt;div&gt; به متغیر div قبلاً انجام شده است. اما از این پس نمی‌توان با متد getElementById عنصر مذکور را انتخاب کرد. مگر این که مجدداً صفت id به آن اضافه شود.</p>
-<p>&nbsp;</p>
-<h3>استفاده از نقطه برای دسترسی به صفات</h3>
-<p style="text-align: justify;">می‌دانیم که عناصر صفحه‌ی وب، در مدل DOM به اشیاء جاوا اسکریپت تبدیل می‌شوند. و می‌دانیم که اشیاء در جاوا اسکریپت می‌توانند دارای خاصیت‌هایی باشند. تمام صفاتی که در سند HTML برای یک عنصر تعریف شده باشند، به صورت خودکار به خاصیت‌های شئ معادل همان عنصر تبدیل می‌شوند. در نتیجه می‌توان به جای استفاده از متد getAttribute برای خواندن مقدار یک صفت، از عملگر نقطه استفاده کرد. این کار موجب ساده‌تر و کوتاه‌تر شدن کدنویسی می‌شود. به عنوان مثال برای خواندن صفت id می‌توان به صورت زیر عمل کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">در قطعه کد فوق، صفت id از عنصر &lt;div&gt; حذف می‌شود. به همین دلیل در دستور بعدی
+        مقدار این صفت برابر با null است. توجه کنید که با وجود این که صفت id از عنصر &lt;div&gt; حذف شده و با وجود انتخاب
+        شدن این عنصر با متد getElementById، متغیر div همچنان به عنصر مورد نظر اشاره می‌کند و می‌توان تغییرات دیگری را
+        روی این عنصر اعمال کرد. زیرا انتساب عنصر &lt;div&gt; به متغیر div قبلاً انجام شده است. اما از این پس نمی‌توان با
+        متد getElementById عنصر مذکور را انتخاب کرد. مگر این که مجدداً صفت id به آن اضافه شود.</p>
+    <p>&nbsp;</p>
+    <h3>استفاده از نقطه برای دسترسی به صفات</h3>
+    <p style="text-align: justify;">می‌دانیم که عناصر صفحه‌ی وب، در مدل DOM به اشیاء جاوااسکریپت تبدیل می‌شوند. و
+        می‌دانیم که اشیاء در جاوااسکریپت می‌توانند دارای خاصیت‌هایی باشند. تمام صفاتی که در سند HTML برای یک عنصر تعریف
+        شده باشند، به صورت خودکار به خاصیت‌های شئ معادل همان عنصر تبدیل می‌شوند. در نتیجه می‌توان به جای استفاده از متد
+        getAttribute برای خواندن مقدار یک صفت، از عملگر نقطه استفاده کرد. این کار موجب ساده‌تر و کوتاه‌تر شدن کدنویسی
+        می‌شود. به عنوان مثال برای خواندن صفت id می‌توان به صورت زیر عمل کرد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let div = document.getElementById('myid');
 console.log(div.id);
 ← "myid"
 </code></pre>
-<p style="text-align: justify;">همچنین برای تغییر مقدار یک صفت نیز می‌توان از همین روش استفاده کرد و مقدار جدیدی به صفت مورد نظر اعمال کرد. توجه کنید که مقادیر جدیدی که به صفات اعمال می‌شوند، هم با عملگر نقطه و هم با متد getAttibute قابل خواندن هستند.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">همچنین برای تغییر مقدار یک صفت نیز می‌توان از همین روش استفاده کرد و مقدار جدیدی به
+        صفت مورد نظر اعمال کرد. توجه کنید که مقادیر جدیدی که به صفات اعمال می‌شوند، هم با عملگر نقطه و هم با متد
+        getAttibute قابل خواندن هستند.</p>
+    <pre class="ltr"><code class="language-javascript">
 let div = document.getElementById('myid');
 div.title = "mytitle";
 console.log(div.getAttribute('title'));
@@ -56,27 +83,38 @@ console.log(div.getAttribute('title'));
 console.log(div.title);
 ← "mytitle"
 </code></pre>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> می‌دانیم که صفت class و صفت for (برای تگ‌های &lt;label&gt; و &lt;output&gt;) جزء صفات استاندارد در HTML هستند. با توجه به این که کلمات class و for در جاوا اسکریپت جزء کلمات رزرو شده هستند. نمی‌توان از این کلمات به عنوان خاصیت اشیاء به همراه عملگر نقطه استفاده کرد. به همین دلیل برای دسترسی به این صفات با استفاده از عملگر نقطه باید به ترتیب از کلمات className و htmlFor استفاده کرد. قطعه کد زیر این موضوع را بهتر نشان می‌دهد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span></strong> می‌دانیم که صفت class و
+        صفت for (برای تگ‌های &lt;label&gt; و &lt;output&gt;) جزء صفات استاندارد در HTML هستند. با توجه به این که کلمات
+        class و for در جاوااسکریپت جزء کلمات رزرو شده هستند. نمی‌توان از این کلمات به عنوان خاصیت اشیاء به همراه عملگر
+        نقطه استفاده کرد. به همین دلیل برای دسترسی به این صفات با استفاده از عملگر نقطه باید به ترتیب از کلمات className
+        و htmlFor استفاده کرد. قطعه کد زیر این موضوع را بهتر نشان می‌دهد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let div = document.getElementById('myid');
 div.className= "newclass";
 console.log(div.getAttribute('class'));
 ← "newclass"
 </code></pre>
-<p style="text-align: justify;">در HTML می‌توان از صفات سفارشی (غیر استاندارد) نیز برای تگ‌های HTML استفاده کرد. مثلاً در قطعه کد زیر عنصر &lt;div&gt; دارای یک صفت سفارشی به نام myattr است.</p>
-<pre class="ltr"><code class="language-markup">
+    <p style="text-align: justify;">در HTML می‌توان از صفات سفارشی (غیر استاندارد) نیز برای تگ‌های HTML استفاده کرد.
+        مثلاً در قطعه کد زیر عنصر &lt;div&gt; دارای یک صفت سفارشی به نام myattr است.</p>
+    <pre class="ltr"><code class="language-markup">
 &lt;div id="myid" class="myclass" myattr="myvalue"&gt;Content&lt;/div&gt;
 </code></pre>
-<p style="text-align: justify;">مقدار صفات سفارشی را می‌توان با متد getAttribute خواند. با متد setAttribute نیز می‌توان صفات سفارشی جدیدی را به عناصر اضافه کرد و یا مقدار صفات سفارشی موجود را ویرایش کرد. اما با عملگر نقطه نمی‌توان به صفات سفارشی دسترسی داشت. به قطعه کد زیر توجه کنید.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">مقدار صفات سفارشی را می‌توان با متد getAttribute خواند. با متد setAttribute نیز
+        می‌توان صفات سفارشی جدیدی را به عناصر اضافه کرد و یا مقدار صفات سفارشی موجود را ویرایش کرد. اما با عملگر نقطه
+        نمی‌توان به صفات سفارشی دسترسی داشت. به قطعه کد زیر توجه کنید.</p>
+    <pre class="ltr"><code class="language-javascript">
 let div = document.getElementById('myid');
 console.log(div.getAttribute('myattr'));
 ← "myvalue"
 console.log(div.myattr);
 ← undefined
 </code></pre>
-<p style="text-align: justify;">مشاهده می‌کنید که استفاده از عملگر نقطه، مقدار undefined را بازمی‌گرداند. پس مقدار صفات سفارشی را فقط با متد getAttribute می‌توان به دست آورد. همچنین فقط با متد setAttribute می‌توان یک صفت سفارشی جدید ایجاد کرد و یا مقدار یک صفت سفارشی را ویرایش کرد. البته با عملگر نقطه می‌توان هر خاصیت (Property) دلخواهی را به یک عنصر اضافه کرد. اما این خاصیت‌های جدید توسط متد getAttribute قابل خواندن نیستند. یعنی یکی از صفات عنصر به حساب نمی‌آیند، بلکه یک خاصیت برای شئ مورد نظر هستند. قطعه کد زیر این موضوع را نشان می‌دهد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">مشاهده می‌کنید که استفاده از عملگر نقطه، مقدار undefined را بازمی‌گرداند. پس مقدار
+        صفات سفارشی را فقط با متد getAttribute می‌توان به دست آورد. همچنین فقط با متد setAttribute می‌توان یک صفت سفارشی
+        جدید ایجاد کرد و یا مقدار یک صفت سفارشی را ویرایش کرد. البته با عملگر نقطه می‌توان هر خاصیت (Property) دلخواهی
+        را به یک عنصر اضافه کرد. اما این خاصیت‌های جدید توسط متد getAttribute قابل خواندن نیستند. یعنی یکی از صفات عنصر
+        به حساب نمی‌آیند، بلکه یک خاصیت برای شئ مورد نظر هستند. قطعه کد زیر این موضوع را نشان می‌دهد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let div = document.getElementById('myid');
 div.newattr = "newvalue";
 console.log(div.getAttribute('newattr'));
@@ -84,21 +122,37 @@ console.log(div.getAttribute('newattr'));
 console.log(div.newattr);
 ← "newvalue"
 </code></pre>
-<p style="text-align: justify;">مشاهده می‌کنید که خاصیت‌های سفارشی که با عملگر نقطه به شئ div اضافه می‌شوند، فقط با عملگر نقطه قابل دسترسی هستند. دو مثال فوق را می‌توانید <a href="https://codepen.io/abbassac/pen/yQVJER" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong></span> همانطور که در فصول قبلی اشاره شد. متغیرهایی که با کلمه‌ی کلیدی const تعریف می‌شوند را نمی‌توان مجدداً مقداردهی کرد. اما اگر این متغیرها از نوع شئ باشند، می‌توان اجزاء آنها را (متدها و خاصیت‌ها) تغییر داد. با توجه به اینکه عناصر صفحه‌ی وب نیز از نوع شئ (Object) هستند. در نتیجه می‌توان متغیرهای مربوط به این عناصر را به صورت ثابت تعریف کرد. در این صورت امکان اعمال تغییر در اجزاء این عناصر وجود دارد، اما نمی‌توان مقدار خود متغیر تغییر داد. به عنوان مثال دستورات زیر کاملاً معتبر هستند.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">مشاهده می‌کنید که خاصیت‌های سفارشی که با عملگر نقطه به شئ div اضافه می‌شوند، فقط با
+        عملگر نقطه قابل دسترسی هستند. دو مثال فوق را می‌توانید <a href="https://codepen.io/abbassac/pen/yQVJER"
+            target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+    <p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته:</strong></span> همانطور که در فصول قبلی
+        اشاره شد. متغیرهایی که با کلمه‌ی کلیدی const تعریف می‌شوند را نمی‌توان مجدداً مقداردهی کرد. اما اگر این متغیرها
+        از نوع شئ باشند، می‌توان اجزاء آنها را (متدها و خاصیت‌ها) تغییر داد. با توجه به اینکه عناصر صفحه‌ی وب نیز از نوع
+        شئ (Object) هستند. در نتیجه می‌توان متغیرهای مربوط به این عناصر را به صورت ثابت تعریف کرد. در این صورت امکان
+        اعمال تغییر در اجزاء این عناصر وجود دارد، اما نمی‌توان مقدار خود متغیر تغییر داد. به عنوان مثال دستورات زیر
+        کاملاً معتبر هستند.</p>
+    <pre class="ltr"><code class="language-javascript">
 const div = document.getElementById('myid');
 div.newattr = "newvalue";
 </code></pre>
-<p style="text-align: justify;">معمولاً برنامه‌نویسان جاوا اسکریپت ترجیح می‌دهند که عناصر صفحه‌ی وب را در ثابت‌ها ذخیره کنند. این کار موجب افزایش خوانایی برنامه می‌شود و نشاندهنده‌ی این است که متغیر مورد نظر حاوی یک شئ است که تا پایان اجرای برنامه نیز همین شئ را در خود نگهداری خواهد کرد. به همین دلیل از این به بعد در این کتاب نیز همین روش را پیش می‌گیریم.</p>
-<p>&nbsp;</p>
-<h3>خاصیت dataset</h3>
-<p style="text-align: justify;">هرچند در HTML صفات سفارشی را با هر نامی می‌توان به تگ‌ها اضافه کرد. اما در HTML5 توصیه شده است که در نام صفات سفارشی از پیشوند &#8220;-data&#8221; استفاده شود. این کار هم خوانایی کدهای HTML را بالاتر می‌برد و هم دسترسی به این صفات در جاوا اسکریپت را ساده‌تر می‌کند. در مدل DOM هر عنصر دارای خاصیتی به نام dataset است که برای نگهداری اینگونه صفات سفارشی به کار برده می‌شود. صفاتی که با پیشوند &#8220;-data&#8221; شروع می‌شوند، به صورت خودکار به این خاصیت اضافه می‌شوند. یعنی خاصیت dataset یک شئ است که به ازای هر یک از صفات سفارشی دارای یک خاصیت است. به عنوان مثال تگ &lt;div&gt; زیر را در نظر بگیرید.</p>
-<pre class="ltr"><code class="language-markup">
+    <p style="text-align: justify;">معمولاً برنامه‌نویسان جاوااسکریپت ترجیح می‌دهند که عناصر صفحه‌ی وب را در ثابت‌ها
+        ذخیره کنند. این کار موجب افزایش خوانایی برنامه می‌شود و نشاندهنده‌ی این است که متغیر مورد نظر حاوی یک شئ است که
+        تا پایان اجرای برنامه نیز همین شئ را در خود نگهداری خواهد کرد. به همین دلیل از این به بعد در این کتاب نیز همین
+        روش را پیش می‌گیریم.</p>
+    <p>&nbsp;</p>
+    <h3>خاصیت dataset</h3>
+    <p style="text-align: justify;">هرچند در HTML صفات سفارشی را با هر نامی می‌توان به تگ‌ها اضافه کرد. اما در HTML5
+        توصیه شده است که در نام صفات سفارشی از پیشوند &#8220;-data&#8221; استفاده شود. این کار هم خوانایی کدهای HTML را
+        بالاتر می‌برد و هم دسترسی به این صفات در جاوااسکریپت را ساده‌تر می‌کند. در مدل DOM هر عنصر دارای خاصیتی به نام
+        dataset است که برای نگهداری اینگونه صفات سفارشی به کار برده می‌شود. صفاتی که با پیشوند &#8220;-data&#8221; شروع
+        می‌شوند، به صورت خودکار به این خاصیت اضافه می‌شوند. یعنی خاصیت dataset یک شئ است که به ازای هر یک از صفات سفارشی
+        دارای یک خاصیت است. به عنوان مثال تگ &lt;div&gt; زیر را در نظر بگیرید.</p>
+    <pre class="ltr"><code class="language-markup">
 &lt;div id="user" data-id="1234567890" data-user="johndoe" data-date-of-birth="11/12/2000"&gt;Content&lt;/div&gt;
 </code></pre>
-<p style="text-align: justify;">حال برای دسترسی به صفات سفارشی این عنصر می‌توان از خاصیت dataset به شکل زیر استفاده کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">حال برای دسترسی به صفات سفارشی این عنصر می‌توان از خاصیت dataset به شکل زیر استفاده
+        کرد.</p>
+    <pre class="ltr"><code class="language-javascript">
 const div = document.getElementById('user');
 console.log(div.dataset.id);
 ← "1234567890"
@@ -107,52 +161,73 @@ console.log(div.dataset.user);
 console.log(div.dataset.dateOfBirth);
 ← "11/12/2000"
 </code></pre>
-<p style="text-align: justify;">به نحوه‌ی تغییر نام صفت &#8220;data-date-of-birth&#8221; توجه کنید. در HTML در نامگذاری‌های چند کلمه‌ای از خط تیره (dash) برای جدا کردن کلمات استفاده می‌شود. اما این کاراکتر در نامگذاری شناسه‌ها در جاوا اسکریپت غیر مجاز است. بنابراین در صورت استفاده از نام‌های چند کلمه‌ای در HTML، در جاوا اسکریپت خط تیره‌ها حذف شده و کلمات به هم می‌چسبند و حرف اول هر کلمه (به جز کلمه‌ی اول) به حروف بزرگ تبدیل می‌شود. این مثال را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/gQLwjB" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. توجه کنید که خاصیت‌های شئ dataset را می‌توان ویرایش کرد. همچنین می‌توان خاصیت‌های جدیدی را به آن اضافه کرد.</p>
-<p>&nbsp;</p>
-<h3>خاصیت classList</h3>
-<p style="text-align: justify;">در HTML هر یک از تگ‌ها می‌توانند در صفت class خود، بیش از یک مقدار داشته باشند. مثلاً در قطعه کد زیر تگ &lt;div&gt; دارای ۳ کلاس به نام‌های class2، class1 و class3 می‌باشد.</p>
-<pre class="ltr"><code class="language-markup">
+    <p style="text-align: justify;">به نحوه‌ی تغییر نام صفت &#8220;data-date-of-birth&#8221; توجه کنید. در HTML در
+        نامگذاری‌های چند کلمه‌ای از خط تیره (dash) برای جدا کردن کلمات استفاده می‌شود. اما این کاراکتر در نامگذاری
+        شناسه‌ها در جاوااسکریپت غیر مجاز است. بنابراین در صورت استفاده از نام‌های چند کلمه‌ای در HTML، در جاوااسکریپت خط
+        تیره‌ها حذف شده و کلمات به هم می‌چسبند و حرف اول هر کلمه (به جز کلمه‌ی اول) به حروف بزرگ تبدیل می‌شود. این مثال
+        را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/gQLwjB" target="_blank"
+            rel="noopener noreferrer">اینجا</a> اجرا کنید. توجه کنید که خاصیت‌های شئ dataset را می‌توان ویرایش کرد.
+        همچنین می‌توان خاصیت‌های جدیدی را به آن اضافه کرد.</p>
+    <p>&nbsp;</p>
+    <h3>خاصیت classList</h3>
+    <p style="text-align: justify;">در HTML هر یک از تگ‌ها می‌توانند در صفت class خود، بیش از یک مقدار داشته باشند.
+        مثلاً در قطعه کد زیر تگ &lt;div&gt; دارای ۳ کلاس به نام‌های class2، class1 و class3 می‌باشد.</p>
+    <pre class="ltr"><code class="language-markup">
 &lt;div id="myid" class="class1 class2 class3"&gt;Content&lt;/div&gt;
 </code></pre>
-<p style="text-align: justify;">برای اضافه کردن یک کلاس جدید به این مجموعه، و یا حذف یک مورد از آن، باید کل مجموعه را در خاصیت className مشخص کنیم. مثلاً برای اضافه کردن کلاسی با نام class4 باید از دستور زیر استفاده کنیم.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">برای اضافه کردن یک کلاس جدید به این مجموعه، و یا حذف یک مورد از آن، باید کل مجموعه
+        را در خاصیت className مشخص کنیم. مثلاً برای اضافه کردن کلاسی با نام class4 باید از دستور زیر استفاده کنیم.</p>
+    <pre class="ltr"><code class="language-javascript">
 const div = document.getElementById('myid');
 div.className = 'class1 class2 class3 class4';
 </code></pre>
-<p style="text-align: justify;">به طور کلی برای اعمال هر تغییری در مجموعه کلاس‌های موجود در صفت class باید تمام موارد را ذکر کنیم. استفاده از این روش ضمن طولانی کردن کدنویسی، برنامه‌نویس را ملزم می‌کند تا در هنگام حذف و یا اضافه کردن یک کلاس، از سایر کلاس‌های موجود در صفت class مطلع باشد.</p>
-<p style="text-align: justify;">برای رفع این مشکل و سهولت کار می‌توان از خاصیت classList استفاده کرد. این خاصیت تمام کلاس‌های یک عنصر را در خود نگهداری می‌کند و دارای متدهایی برای اعمال تغییرات بر روی مجموعه است. به عنوان مثال با استفاده از متد add می‌توان یک یا چند کلاس جدید را به مجموعه اضافه کرد. قطعه کد زیر کلاس class4 را به مجموعه اضافه می‌کند.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">به طور کلی برای اعمال هر تغییری در مجموعه کلاس‌های موجود در صفت class باید تمام
+        موارد را ذکر کنیم. استفاده از این روش ضمن طولانی کردن کدنویسی، برنامه‌نویس را ملزم می‌کند تا در هنگام حذف و یا
+        اضافه کردن یک کلاس، از سایر کلاس‌های موجود در صفت class مطلع باشد.</p>
+    <p style="text-align: justify;">برای رفع این مشکل و سهولت کار می‌توان از خاصیت classList استفاده کرد. این خاصیت تمام
+        کلاس‌های یک عنصر را در خود نگهداری می‌کند و دارای متدهایی برای اعمال تغییرات بر روی مجموعه است. به عنوان مثال با
+        استفاده از متد add می‌توان یک یا چند کلاس جدید را به مجموعه اضافه کرد. قطعه کد زیر کلاس class4 را به مجموعه
+        اضافه می‌کند.</p>
+    <pre class="ltr"><code class="language-javascript">
 div.classList.add('class4');
 console.log(Array.from(div.classList));
 ← ["class1" , "class2" , "class3" , "class4"]
 </code></pre>
-<p style="text-align: justify;">در صورتی که class4 از قبل در لیست کلاس‌ها وجود داشته باشد، هیچ تغییری در مجموعه اتفاق نمی‌افتد. همچنین توجه کنید که خاصیت classList یک آرایه نیست. به همین دلیل قبل از نمایش آن در کنسول از متد Array.from برای تبدیل آن به آرایه استفاده شده است.</p>
-<p style="text-align: justify;">با استفاده از متد remove نیز می‌توان یک یا چند کلاس را از مجموعه حذف کرد. دستور زیر کلاس‌های class2 و class4 را از صفت class عنصر &lt;div&gt; حذف می‌کند.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">در صورتی که class4 از قبل در لیست کلاس‌ها وجود داشته باشد، هیچ تغییری در مجموعه
+        اتفاق نمی‌افتد. همچنین توجه کنید که خاصیت classList یک آرایه نیست. به همین دلیل قبل از نمایش آن در کنسول از متد
+        Array.from برای تبدیل آن به آرایه استفاده شده است.</p>
+    <p style="text-align: justify;">با استفاده از متد remove نیز می‌توان یک یا چند کلاس را از مجموعه حذف کرد. دستور زیر
+        کلاس‌های class2 و class4 را از صفت class عنصر &lt;div&gt; حذف می‌کند.</p>
+    <pre class="ltr"><code class="language-javascript">
 div.classList.remove('class4' , 'class2');
 console.log(Array.from(div.classList));
 ← ["class1" , "class3"]
 </code></pre>
-<p style="text-align: justify;">متد toggle یک کلاس را به عنوان آرگومان ورودی دریافت می‌کند و در صورت وجود آن کلاس در مجموعه‌ی کلاس‌ها، آن را از مجموعه حذف می‌کند و در صورت عدم وجود، آن را به مجموعه اضافه می‌کند. در قطعه کد زیر کلاس class4 به مجموعه‌ی قبلی اضافه شده و کلاس class3 از مجموعه حذف می‌شود.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">متد toggle یک کلاس را به عنوان آرگومان ورودی دریافت می‌کند و در صورت وجود آن کلاس در
+        مجموعه‌ی کلاس‌ها، آن را از مجموعه حذف می‌کند و در صورت عدم وجود، آن را به مجموعه اضافه می‌کند. در قطعه کد زیر
+        کلاس class4 به مجموعه‌ی قبلی اضافه شده و کلاس class3 از مجموعه حذف می‌شود.</p>
+    <pre class="ltr"><code class="language-javascript">
 div.classList.toggle('class4');
 div.classList.toggle('class3');
 console.log(Array.from(div.classList));
 ← ["class1" , "class4"]
 </code></pre>
-<p style="text-align: justify;">با استفاده از متد replace نیز می‌توان یک کلاس را با کلاسی دیگر جایگزین کرد. در قطعه کد زیر کلاس class1 با class2 جایگزین می‌شود.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">با استفاده از متد replace نیز می‌توان یک کلاس را با کلاسی دیگر جایگزین کرد. در قطعه
+        کد زیر کلاس class1 با class2 جایگزین می‌شود.</p>
+    <pre class="ltr"><code class="language-javascript">
 div.classList.replace('class1' , 'class2');
 console.log(Array.from(div.classList));
 ← ["class2" , "class4"]
 </code></pre>
-<p style="text-align: justify;">با استفاده از متد contains نیز می‌توان بررسی کرد که آیا یک کلاس خاص در مجموعه‌ی کلاس‌ها وجود دارد یا خیر؟ این متد در صورت وجود کلاس مورد نظر، مقدار true و در غیر این صورت مقدار false را بازمی‌گرداند.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">با استفاده از متد contains نیز می‌توان بررسی کرد که آیا یک کلاس خاص در مجموعه‌ی
+        کلاس‌ها وجود دارد یا خیر؟ این متد در صورت وجود کلاس مورد نظر، مقدار true و در غیر این صورت مقدار false را
+        بازمی‌گرداند.</p>
+    <pre class="ltr"><code class="language-javascript">
 console.log(div.classList.contains('class2'));
 ← true
 console.log(div.classList.contains('class1'));
 ← false
 </code></pre>
-<p>مثال‌های این قسمت را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/wQopZZ" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+    <p>مثال‌های این قسمت را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/wQopZZ" target="_blank"
+            rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
 </div>
-                

@@ -1,7 +1,8 @@
-
-                <h2>آشنایی با مفهوم Event Flow</h2>
-                <div><p style="text-align: justify;">یکی از مفاهیم مهم در رابطه با رویدادهای DOM، مفهوم Event Flow یا Event Propagation است. برای توضیح این مفهوم ابتدا یک سند HTML را به صورت زیر تعریف می‌کنیم.</p>
-<pre class="ltr"><code class="language-markup">
+<h2>آشنایی با مفهوم Event Flow</h2>
+<div>
+	<p style="text-align: justify;">یکی از مفاهیم مهم در رابطه با رویدادهای DOM، مفهوم Event Flow یا Event Propagation
+		است. برای توضیح این مفهوم ابتدا یک سند HTML را به صورت زیر تعریف می‌کنیم.</p>
+	<pre class="ltr"><code class="language-markup">
 &lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;Event Flow&lt;/title&gt;
@@ -11,19 +12,62 @@
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p style="text-align: justify;">فرض کنید کاربر بر روی عنصر &lt;div&gt; کلیک می‌کند. در این صورت رویداد click برای این عنصر رخ می‌دهد. و اگر یک Event Handler برای این رویداد تعریف شده باشد، فراخوانی خواهد شد.</p>
-<p style="text-align: justify;">حال فرض کنید یک Event Handler نیز برای رویداد click از عنصر &lt;body&gt; تعریف شده است. آیا با کلیک کردن بر روی عنصر &lt;div&gt;، این Event Handler نیز باید اجرا شود؟ احتمالاً در ابتدا پاسخ شما منفی خواهد بود. و استدلال شما برای پاسختان این است که رویداد click برای عنصر &lt;div&gt; رخ داده است و نباید Event Handler عنصر &lt;body&gt; اجرا شود.</p>
-<p style="text-align: justify;">اما این استدلال صحیح نیست. زیرا عنصر &lt;div&gt; بخشی از عنصر &lt;body&gt; است. در نتیجه کلیک کردن بر روی عنصر &lt;div&gt;، به معنی کلیک کردن بر روی عنصر &lt;body&gt; نیز می‌باشد. برای درک بهتر این موضوع می‌توانید شکل زیر را در نظر بگیرید که از دو دایره‌ی متحدالمرکز تشکیل شده است. شما نمی‌توانید انگشتتان را طوری روی سطح دایره‌ی کوچک قرار دهید که خارج از دایره‌ی بزرگ باشد. زیرا هر نقطه‌ای که درون دایره‌ی کوچک قرار گرفته باشد، بدون شک درون دایره‌ی بزرگ هم قرار دارد. پس لمس کردن هر بخشی از دایره‌ی کوچک، به معنی لمس کردن دایره‌ی بزرگ نیز می‌باشد. اما معکوس این گزاره صادق نیست. یعنی می‌توان نقطه‌ای از دایره‌ی بزرگ را لمس کرد، به طوری که این نقطه خارج از دایره‌ی کوچک باشد.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-720 size-full" src="https://otedia.com/wp-content/uploads/2018/11/circiles.png" alt="" width="386" height="386" srcset="https://otedia.com/wp-content/uploads/2018/11/circiles.png 386w, https://otedia.com/wp-content/uploads/2018/11/circiles-150x150.png 150w, https://otedia.com/wp-content/uploads/2018/11/circiles-300x300.png 300w" sizes="(max-width: 386px) 100vw, 386px" /></p>
-<p style="text-align: justify;">همین بحث را می‌توان در مورد رویدادها در جاوا اسکریپت نیز ارائه کرد و این نتیجه را گرفت که &#8220;هر رویدادی که برای یک عنصر خاص رخ می‌دهد، برای عنصر والد آن نیز رخ می‌دهد. همچنین اگر عنصر والد، فرزند عنصری دیگر باشد، این رویداد برای والد آن نیز رخ می‌دهد. و این روند تا ریشه‌ی درخت DOM، یعنی شئ document ادامه پیدا می‌کند.&#8221;</p>
-<p style="text-align: justify;">اما با در نظر گرفتن این توضیحات، سوال دیگری مطرح می‌شود. آن سوال این است که Event Handler ها با چه ترتیبی باید فراخوانی شوند؟ یا به بیان دیگر، ابتدا Event Handler عنصر فرزند فراخوانی می‌شود یا Event Handler عنصر والد؟</p>
-<p style="text-align: justify;">دو حالت متفاوت را می‌توان به عنوان پاسخ این سوال ارائه کرد. حالت اول این است که ابتدا Event Handler عنصر والد اجرا شود و Event Handler عنصر فرزند پس از آن اجرا شود. حالت دوم نیز معکوس حالت اول است. یعنی ابتدا Event Handler عنصر فرزند اجرا شود و Event Handler عنصر والد پس از آن اجرا شود. شکل زیر این دو حالت را برای مثال بالا نشان می‌دهد. در واقع در جاوا اسکریپت استفاده از هر دو حالت امکان‌پذیر است که این حالت‌ها به ترتیب Event Capturing و Event Bubbling نام دارند.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-721 size-full" src="https://otedia.com/wp-content/uploads/2018/11/capturing-vs-bubbling.png" alt="capturing-vs-bubbling" width="908" height="391" srcset="https://otedia.com/wp-content/uploads/2018/11/capturing-vs-bubbling.png 908w, https://otedia.com/wp-content/uploads/2018/11/capturing-vs-bubbling-300x129.png 300w, https://otedia.com/wp-content/uploads/2018/11/capturing-vs-bubbling-768x331.png 768w" sizes="(max-width: 908px) 100vw, 908px" /></p>
-<p style="text-align: justify;">زمانی که برای اولین بار مفهوم Event Flow یا Event Propagation در پیاده‌سازی مرورگرها به کار گرفته شد. در مرورگر Internet Explorer از روش Event Bubbling و در مرورگر Netscape Navigator از روش Event Capturing استفاده شد. اما روشی که امروزه در تمام مرورگرها به کار می‌رود، ترکیبی از این دو حالت است. به این صورت که ابتدا رویداد برای شئ document رخ می‌دهد. سپس همین رویداد برای فرزندان شئ document تا رسیدن به عنصر نهایی رخ می‌دهد. در مرحله‌ی بعدی همین روند به صورت معکوس تا رسیدن به شئ document ادامه می‌یابد. شکل زیر ساختار استاندارد انتشار رویداد در DOM را نشان می‌دهد.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-722 size-full" src="https://otedia.com/wp-content/uploads/2018/11/dom-event-flow.png" alt="dom-event-flow" width="611" height="352" srcset="https://otedia.com/wp-content/uploads/2018/11/dom-event-flow.png 611w, https://otedia.com/wp-content/uploads/2018/11/dom-event-flow-300x173.png 300w" sizes="(max-width: 611px) 100vw, 611px" /></p>
-<p style="text-align: justify;">همانطور که مشاهده می‌کنید این ساختار از <span class="text-dark">۳</span> مرحله یا فاز مختلف تشکیل شده است. مرحله‌ی اول که در آن انتشار رویداد از بالا به پایین است Capturing phase نام دارد. مرحله‌ی دوم که در آن رویداد به پایین‌ترین عنصر می‌رسد Target phase نام دارد. و مرحله‌ی سوم که در آن انتشار رویداد از پایین به بالا است Bubbling phase نام دارد. همچنین پایین‌ترین عنصر در این ساختار (عنصر &lt;div&gt;)، عنصر target نام دارد.</p>
-<p style="text-align: justify;">در جاوا اسکریپت به صورت پیش‌فرض Event Handler هایی که برای یک عنصر تعریف می‌شوند، فقط در فازهای Target و Bubbling اجرا می‌شوند. البته در تمام مثال‌هایی که در بخش‌های قبلی ارائه شده‌اند، فقط از فاز Target استفاده کرده بودیم. حال برای نشان دادن مفهوم Event Flow به صورت عملی، به مثال زیر توجه کنید. در این مثال برای دو عنصر &lt;div&gt; و &lt;body&gt;، از دو تابع متفاوت به عنوان Event Handler برای رویداد click استفاده شده است.</p>
-<pre class="ltr"><code class="language-javascript line-numbers">
+	<p style="text-align: justify;">فرض کنید کاربر بر روی عنصر &lt;div&gt; کلیک می‌کند. در این صورت رویداد click برای
+		این عنصر رخ می‌دهد. و اگر یک Event Handler برای این رویداد تعریف شده باشد، فراخوانی خواهد شد.</p>
+	<p style="text-align: justify;">حال فرض کنید یک Event Handler نیز برای رویداد click از عنصر &lt;body&gt; تعریف شده
+		است. آیا با کلیک کردن بر روی عنصر &lt;div&gt;، این Event Handler نیز باید اجرا شود؟ احتمالاً در ابتدا پاسخ شما
+		منفی خواهد بود. و استدلال شما برای پاسختان این است که رویداد click برای عنصر &lt;div&gt; رخ داده است و نباید
+		Event Handler عنصر &lt;body&gt; اجرا شود.</p>
+	<p style="text-align: justify;">اما این استدلال صحیح نیست. زیرا عنصر &lt;div&gt; بخشی از عنصر &lt;body&gt; است. در
+		نتیجه کلیک کردن بر روی عنصر &lt;div&gt;، به معنی کلیک کردن بر روی عنصر &lt;body&gt; نیز می‌باشد. برای درک بهتر
+		این موضوع می‌توانید شکل زیر را در نظر بگیرید که از دو دایره‌ی متحدالمرکز تشکیل شده است. شما نمی‌توانید انگشتتان
+		را طوری روی سطح دایره‌ی کوچک قرار دهید که خارج از دایره‌ی بزرگ باشد. زیرا هر نقطه‌ای که درون دایره‌ی کوچک قرار
+		گرفته باشد، بدون شک درون دایره‌ی بزرگ هم قرار دارد. پس لمس کردن هر بخشی از دایره‌ی کوچک، به معنی لمس کردن
+		دایره‌ی بزرگ نیز می‌باشد. اما معکوس این گزاره صادق نیست. یعنی می‌توان نقطه‌ای از دایره‌ی بزرگ را لمس کرد، به
+		طوری که این نقطه خارج از دایره‌ی کوچک باشد.</p>
+	<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-720 size-full"
+			src="https://otedia.com/wp-content/uploads/2018/11/circiles.png" alt="" width="386" height="386"
+			srcset="https://otedia.com/wp-content/uploads/2018/11/circiles.png 386w, https://otedia.com/wp-content/uploads/2018/11/circiles-150x150.png 150w, https://otedia.com/wp-content/uploads/2018/11/circiles-300x300.png 300w"
+			sizes="(max-width: 386px) 100vw, 386px" /></p>
+	<p style="text-align: justify;">همین بحث را می‌توان در مورد رویدادها در جاوااسکریپت نیز ارائه کرد و این نتیجه را
+		گرفت که &#8220;هر رویدادی که برای یک عنصر خاص رخ می‌دهد، برای عنصر والد آن نیز رخ می‌دهد. همچنین اگر عنصر والد،
+		فرزند عنصری دیگر باشد، این رویداد برای والد آن نیز رخ می‌دهد. و این روند تا ریشه‌ی درخت DOM، یعنی شئ document
+		ادامه پیدا می‌کند.&#8221;</p>
+	<p style="text-align: justify;">اما با در نظر گرفتن این توضیحات، سوال دیگری مطرح می‌شود. آن سوال این است که Event
+		Handler ها با چه ترتیبی باید فراخوانی شوند؟ یا به بیان دیگر، ابتدا Event Handler عنصر فرزند فراخوانی می‌شود یا
+		Event Handler عنصر والد؟</p>
+	<p style="text-align: justify;">دو حالت متفاوت را می‌توان به عنوان پاسخ این سوال ارائه کرد. حالت اول این است که
+		ابتدا Event Handler عنصر والد اجرا شود و Event Handler عنصر فرزند پس از آن اجرا شود. حالت دوم نیز معکوس حالت اول
+		است. یعنی ابتدا Event Handler عنصر فرزند اجرا شود و Event Handler عنصر والد پس از آن اجرا شود. شکل زیر این دو
+		حالت را برای مثال بالا نشان می‌دهد. در واقع در جاوااسکریپت استفاده از هر دو حالت امکان‌پذیر است که این حالت‌ها
+		به ترتیب Event Capturing و Event Bubbling نام دارند.</p>
+	<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-721 size-full"
+			src="https://otedia.com/wp-content/uploads/2018/11/capturing-vs-bubbling.png" alt="capturing-vs-bubbling"
+			width="908" height="391"
+			srcset="https://otedia.com/wp-content/uploads/2018/11/capturing-vs-bubbling.png 908w, https://otedia.com/wp-content/uploads/2018/11/capturing-vs-bubbling-300x129.png 300w, https://otedia.com/wp-content/uploads/2018/11/capturing-vs-bubbling-768x331.png 768w"
+			sizes="(max-width: 908px) 100vw, 908px" /></p>
+	<p style="text-align: justify;">زمانی که برای اولین بار مفهوم Event Flow یا Event Propagation در پیاده‌سازی مرورگرها
+		به کار گرفته شد. در مرورگر Internet Explorer از روش Event Bubbling و در مرورگر Netscape Navigator از روش Event
+		Capturing استفاده شد. اما روشی که امروزه در تمام مرورگرها به کار می‌رود، ترکیبی از این دو حالت است. به این صورت
+		که ابتدا رویداد برای شئ document رخ می‌دهد. سپس همین رویداد برای فرزندان شئ document تا رسیدن به عنصر نهایی رخ
+		می‌دهد. در مرحله‌ی بعدی همین روند به صورت معکوس تا رسیدن به شئ document ادامه می‌یابد. شکل زیر ساختار استاندارد
+		انتشار رویداد در DOM را نشان می‌دهد.</p>
+	<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-722 size-full"
+			src="https://otedia.com/wp-content/uploads/2018/11/dom-event-flow.png" alt="dom-event-flow" width="611"
+			height="352"
+			srcset="https://otedia.com/wp-content/uploads/2018/11/dom-event-flow.png 611w, https://otedia.com/wp-content/uploads/2018/11/dom-event-flow-300x173.png 300w"
+			sizes="(max-width: 611px) 100vw, 611px" /></p>
+	<p style="text-align: justify;">همانطور که مشاهده می‌کنید این ساختار از <span class="text-dark">۳</span> مرحله یا
+		فاز مختلف تشکیل شده است. مرحله‌ی اول که در آن انتشار رویداد از بالا به پایین است Capturing phase نام دارد.
+		مرحله‌ی دوم که در آن رویداد به پایین‌ترین عنصر می‌رسد Target phase نام دارد. و مرحله‌ی سوم که در آن انتشار
+		رویداد از پایین به بالا است Bubbling phase نام دارد. همچنین پایین‌ترین عنصر در این ساختار (عنصر &lt;div&gt;)،
+		عنصر target نام دارد.</p>
+	<p style="text-align: justify;">در جاوااسکریپت به صورت پیش‌فرض Event Handler هایی که برای یک عنصر تعریف می‌شوند، فقط
+		در فازهای Target و Bubbling اجرا می‌شوند. البته در تمام مثال‌هایی که در بخش‌های قبلی ارائه شده‌اند، فقط از فاز
+		Target استفاده کرده بودیم. حال برای نشان دادن مفهوم Event Flow به صورت عملی، به مثال زیر توجه کنید. در این مثال
+		برای دو عنصر &lt;div&gt; و &lt;body&gt;، از دو تابع متفاوت به عنوان Event Handler برای رویداد click استفاده شده
+		است.</p>
+	<pre class="ltr"><code class="language-javascript line-numbers">
 const div = document.getElementById('mydiv');
 const body = document.body;
 
@@ -38,23 +82,51 @@ function bodyHandler(){
 	alert('I`m bodyHandler');
 }
 </code></pre>
-<p style="text-align: justify;">حال در صورتی که روی عنصر &lt;div&gt; کلیک کنید، رویداد click ابتدا برای عنصر &lt;div&gt; و پس از آن برای عنصر &lt;body&gt; رخ می‌دهد. در نتیجه ابتدا تابع divHandler و سپس تابع bodyHandler اجرا می‌شوند و پیام‌های مشخص شده را با تابع alert نمایش می‌دهند.</p>
-<p style="text-align: justify;">اما اگر در فضای خارج از عنصر &lt;div&gt; که فقط متعلق به عنصر &lt;body&gt; است کلیک کنید، فقط تایع bodyHandler اجرا می‌شود و فقط یک پیام نمایش داده می‌شود. زیرا در این حالت عنصر نهایی (یا target) همان عنصر &lt;body&gt; است. و عنصر &lt;div&gt; جزئی از ساختار Event Flow نیست. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/QJxYdz" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<p style="text-align: justify;">پس می‌بینید که به صورت پیش‌فرض، Event Handler هایی که برای عناصر والد عنصر target تعریف شده‌اند، فقط در فاز Bubbling اجرا می‌شوند. اما می‌توان حالت پیش‌فرض را به راحتی تغییر داد و توابعی را به عنوان Event Handler تعریف کرد که در فاز Capturing اجرا شوند. برای انجام این کار می‌توان از آرگومان سوم در متد addEventListener استفاده کرد.</p>
-<p style="text-align: justify;">در صورتی که آرگومان سوم متد addEventListener برابر با true قرار داده شود، Event Handler تعریف شده در فاز Capturing اجرا خواهد شد. و در صورت false بودن این آرگومان، Event Handler در فاز Bubbling اجرا می‌شود. با توجه به این که مقدار پیش‌فرض این آرگومان false است، برای تعریف Event Handler هایی که در فاز Bubbling اجرا می‌شوند، نیازی به استفاده از آرگومان سوم نیست.</p>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> true یا false بودن آرگومان سوم متد addEventListener، تاثیری بر اجرای تابع Event Handler در فاز Target ندارد. یعنی Event Handler های عنصر target همیشه اجرا می‌شوند. (مگر حالت خاصی که در ادامه توضیح داده خواهد شد)</p>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span></strong> برای این که یک Event Handler هم در فاز Capturing و هم در فاز Bubbling اجرا شود، باید دو بار از متد addEventListener استفاده شود. یک بار با مقدار true در آرگومان سوم و یک با مقدار false در آرگومان سوم.</p>
-<p style="text-align: justify;">برای تغییر رفتار مثال قبلی، به طوری که تابع bodyHandler قبل از تابع divHandler و در فاز Capturing اجرا شود. کافی است خط پنجم این برنامه را به شکل زیر تغییر دهید.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">حال در صورتی که روی عنصر &lt;div&gt; کلیک کنید، رویداد click ابتدا برای عنصر
+		&lt;div&gt; و پس از آن برای عنصر &lt;body&gt; رخ می‌دهد. در نتیجه ابتدا تابع divHandler و سپس تابع bodyHandler
+		اجرا می‌شوند و پیام‌های مشخص شده را با تابع alert نمایش می‌دهند.</p>
+	<p style="text-align: justify;">اما اگر در فضای خارج از عنصر &lt;div&gt; که فقط متعلق به عنصر &lt;body&gt; است کلیک
+		کنید، فقط تایع bodyHandler اجرا می‌شود و فقط یک پیام نمایش داده می‌شود. زیرا در این حالت عنصر نهایی (یا target)
+		همان عنصر &lt;body&gt; است. و عنصر &lt;div&gt; جزئی از ساختار Event Flow نیست. این مثال را می‌توانید <a
+			href="https://codepen.io/abbassac/pen/QJxYdz" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.
+	</p>
+	<p style="text-align: justify;">پس می‌بینید که به صورت پیش‌فرض، Event Handler هایی که برای عناصر والد عنصر target
+		تعریف شده‌اند، فقط در فاز Bubbling اجرا می‌شوند. اما می‌توان حالت پیش‌فرض را به راحتی تغییر داد و توابعی را به
+		عنوان Event Handler تعریف کرد که در فاز Capturing اجرا شوند. برای انجام این کار می‌توان از آرگومان سوم در متد
+		addEventListener استفاده کرد.</p>
+	<p style="text-align: justify;">در صورتی که آرگومان سوم متد addEventListener برابر با true قرار داده شود، Event
+		Handler تعریف شده در فاز Capturing اجرا خواهد شد. و در صورت false بودن این آرگومان، Event Handler در فاز
+		Bubbling اجرا می‌شود. با توجه به این که مقدار پیش‌فرض این آرگومان false است، برای تعریف Event Handler هایی که در
+		فاز Bubbling اجرا می‌شوند، نیازی به استفاده از آرگومان سوم نیست.</p>
+	<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span></strong> true یا false بودن
+		آرگومان سوم متد addEventListener، تاثیری بر اجرای تابع Event Handler در فاز Target ندارد. یعنی Event Handler های
+		عنصر target همیشه اجرا می‌شوند. (مگر حالت خاصی که در ادامه توضیح داده خواهد شد)</p>
+	<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span></strong> برای این که یک Event
+		Handler هم در فاز Capturing و هم در فاز Bubbling اجرا شود، باید دو بار از متد addEventListener استفاده شود. یک
+		بار با مقدار true در آرگومان سوم و یک با مقدار false در آرگومان سوم.</p>
+	<p style="text-align: justify;">برای تغییر رفتار مثال قبلی، به طوری که تابع bodyHandler قبل از تابع divHandler و در
+		فاز Capturing اجرا شود. کافی است خط پنجم این برنامه را به شکل زیر تغییر دهید.</p>
+	<pre class="ltr"><code class="language-javascript">
 body.addEventListener('click' , bodyHandler , true);
 </code></pre>
-<p style="text-align: justify;">حال با کلیک کردن بر روی عنصر &lt;div&gt;، ابتدا تابع bodyHandler و سپس تابع divHandler اجرا می‌شوند. این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/BGVbYa" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<p>&nbsp;</p>
-<h3>جلوگیری از انتشار رویداد</h3>
-<p style="text-align: justify;">همانطور که مشاهده کردید، در زمان وقوع یک رویداد برای یک عنصر خاص از صفحه‌ی وب، همان رویداد دو بار برای تمام عناصر والد آن عنصر رخ می‌دهند. البته این لزوماً به معنی فراخوانی یک Event Handler برای تمام عناصر والد نیست. زیرا برای این منظور لازم است تا یک یا چند Event Handler برای همان رویداد، برای عناصر والد نیز تعریف شده باشد.</p>
-<p style="text-align: justify;">مثال قبل را مجدداً در نظر بگیرید. اما فرض کنید منطق برنامه به نحوی است که در زمان کلیک کردن بر روی عنصر &lt;div&gt;، فقط باید Event Handler همین عنصر اجرا شود و نباید Event Handler عنصر &lt;body&gt; اجرا شود. یعنی تابع bodyHandler فقط باید زمانی اجرا شود که دقیقاً بر روی عنصر &lt;body&gt; (و نه عنصر &lt;div&gt;) کلیک شده باشد. برای پیاده‌سازی چنین حالتی چه باید کرد؟</p>
-<p style="text-align: justify;">در تمام رویدادها، شئ event دارای متدی به نام stopPropagation است. اجرای این متد در یک Event Handler، منجر به توقف انتشار رویداد می‌شود. توجه کنید که این متد را در هر یک از فازهای Event Flow می‌توان به کار برد. اما استفاده از متد stopPropagation در فازهای Capturing و Bubbling به ندرت اتفاق می‌افتد. و معمولاً از این متد در فاز Target استفاده می‌شود. برای درک بهتر رفتار این متد به مثال زیر توجه کنید.</p>
-<pre class="ltr"><code class="language-javascript line-numbers">
+	<p style="text-align: justify;">حال با کلیک کردن بر روی عنصر &lt;div&gt;، ابتدا تابع bodyHandler و سپس تابع
+		divHandler اجرا می‌شوند. این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/BGVbYa"
+			target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+	<p>&nbsp;</p>
+	<h3>جلوگیری از انتشار رویداد</h3>
+	<p style="text-align: justify;">همانطور که مشاهده کردید، در زمان وقوع یک رویداد برای یک عنصر خاص از صفحه‌ی وب، همان
+		رویداد دو بار برای تمام عناصر والد آن عنصر رخ می‌دهند. البته این لزوماً به معنی فراخوانی یک Event Handler برای
+		تمام عناصر والد نیست. زیرا برای این منظور لازم است تا یک یا چند Event Handler برای همان رویداد، برای عناصر والد
+		نیز تعریف شده باشد.</p>
+	<p style="text-align: justify;">مثال قبل را مجدداً در نظر بگیرید. اما فرض کنید منطق برنامه به نحوی است که در زمان
+		کلیک کردن بر روی عنصر &lt;div&gt;، فقط باید Event Handler همین عنصر اجرا شود و نباید Event Handler عنصر
+		&lt;body&gt; اجرا شود. یعنی تابع bodyHandler فقط باید زمانی اجرا شود که دقیقاً بر روی عنصر &lt;body&gt; (و نه
+		عنصر &lt;div&gt;) کلیک شده باشد. برای پیاده‌سازی چنین حالتی چه باید کرد؟</p>
+	<p style="text-align: justify;">در تمام رویدادها، شئ event دارای متدی به نام stopPropagation است. اجرای این متد در
+		یک Event Handler، منجر به توقف انتشار رویداد می‌شود. توجه کنید که این متد را در هر یک از فازهای Event Flow
+		می‌توان به کار برد. اما استفاده از متد stopPropagation در فازهای Capturing و Bubbling به ندرت اتفاق می‌افتد. و
+		معمولاً از این متد در فاز Target استفاده می‌شود. برای درک بهتر رفتار این متد به مثال زیر توجه کنید.</p>
+	<pre class="ltr"><code class="language-javascript line-numbers">
 const div = document.getElementById('mydiv');
 const body = document.body;
 
@@ -70,10 +142,23 @@ function bodyHandler(){
 	alert('I`m bodyHandler');
 }
 </code></pre>
-<p style="text-align: justify;">در این مثال در تابع divHandler از متد stopPropagation استفاده شده است. بنابراین اگر بر روی عنصر &lt;div&gt; کلیک کنید، فقط تابع divHandler اجرا می‌شود. زیرا جریان انتشار رویداد در این تابع قطع شده و فاز Bubbling اجرا نمی‌شود. البته هنوز هم با کلیک کردن روی عنصر &lt;body&gt; تابع bodyHandler اجرا می‌شود. زیرا در این حالت عنصر &lt;div&gt; جزئی از ساختار Event Flow نیست. این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/EORJKO" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<p style="text-align: justify;">اما اگر خط پنجم از برنامه‌ی فوق را اصلاح کنید. به طوری که مقدار true به عنوان آرگومان سوم به متد addEventListener اضافه شود. در این صورت متد bodyHandler در فاز Capturing اجرا خواهد شد. در نتیجه با کلیک کردن بر روی عنصر &lt;div&gt;، ابتدا تابع bodyHandler و پس از آن تابع divHandler اجرا خواهد شد. در این حالت استفاده از متد stopPropagation تاثیری در نتیجه‌ی نهایی ندارد. زیرا متد bodyHandler قبل از توقف انتشار رویداد با متد stopPropagation اجرا شده است.</p>
-<p style="text-align: justify;">حالت دیگری که می‌توان با استفاده از متد stopPropagation به وجود آورد، توقف انتشار رویداد در مرحله‌ی Capturing است. به عنوان مثال در برنامه‌ی زیر این حالت رخ می‌دهد. زیرا تابع bodyHandler در فاز Capturing اجرا می‌شود و در این تابع از متد stopPropagation برای متوقف کردن انتشار رویداد استفاده شده است. در نتیجه با کلیک کردن بر روی عنصر &lt;div&gt;، تابع bodyHandler اجرا می‌شود، اما تایع divHandler اجرا نمی‌شود. زیرا انتشار رویداد قبل از رسیدن به فاز Target متوقف شده است.</p>
-<pre class="ltr"><code class="language-javascript line-numbers">
+	<p style="text-align: justify;">در این مثال در تابع divHandler از متد stopPropagation استفاده شده است. بنابراین اگر
+		بر روی عنصر &lt;div&gt; کلیک کنید، فقط تابع divHandler اجرا می‌شود. زیرا جریان انتشار رویداد در این تابع قطع شده
+		و فاز Bubbling اجرا نمی‌شود. البته هنوز هم با کلیک کردن روی عنصر &lt;body&gt; تابع bodyHandler اجرا می‌شود. زیرا
+		در این حالت عنصر &lt;div&gt; جزئی از ساختار Event Flow نیست. این برنامه را می‌توانید <a
+			href="https://codepen.io/abbassac/pen/EORJKO" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.
+	</p>
+	<p style="text-align: justify;">اما اگر خط پنجم از برنامه‌ی فوق را اصلاح کنید. به طوری که مقدار true به عنوان
+		آرگومان سوم به متد addEventListener اضافه شود. در این صورت متد bodyHandler در فاز Capturing اجرا خواهد شد. در
+		نتیجه با کلیک کردن بر روی عنصر &lt;div&gt;، ابتدا تابع bodyHandler و پس از آن تابع divHandler اجرا خواهد شد. در
+		این حالت استفاده از متد stopPropagation تاثیری در نتیجه‌ی نهایی ندارد. زیرا متد bodyHandler قبل از توقف انتشار
+		رویداد با متد stopPropagation اجرا شده است.</p>
+	<p style="text-align: justify;">حالت دیگری که می‌توان با استفاده از متد stopPropagation به وجود آورد، توقف انتشار
+		رویداد در مرحله‌ی Capturing است. به عنوان مثال در برنامه‌ی زیر این حالت رخ می‌دهد. زیرا تابع bodyHandler در فاز
+		Capturing اجرا می‌شود و در این تابع از متد stopPropagation برای متوقف کردن انتشار رویداد استفاده شده است. در
+		نتیجه با کلیک کردن بر روی عنصر &lt;div&gt;، تابع bodyHandler اجرا می‌شود، اما تایع divHandler اجرا نمی‌شود. زیرا
+		انتشار رویداد قبل از رسیدن به فاز Target متوقف شده است.</p>
+	<pre class="ltr"><code class="language-javascript line-numbers">
 const div = document.getElementById('mydiv');
 const body = document.body;
 
@@ -89,15 +174,28 @@ function bodyHandler(event){
 	event.stopPropagation();
 }
 </code></pre>
-<p style="text-align: justify;">این برنامه را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/bQKJmY" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<p>&nbsp;</p>
-<h3>خاصیت‌های شئ event</h3>
-<p style="text-align: justify;">در برخی برنامه‌ها لازم است تا در زمان اجرای یک Event Handler، بتوان اطلاعاتی را در رابطه با وضعیت Event Flow به دست آورد. شئ event دارای تعدادی خاصیت است که می‌توان از آنها برای به دست آوردن این اطلاعات استفاده کرد.</p>
-<p style="text-align: justify;">مثلاً ممکن است در زمان اجرای یک Event Handler، نیاز به دانستن فاز فعلی داشته باشیم. زیرا ممکن است یک تابع خاص، به عنوان Event Handler در فازهای متفاوتی اجرا شود و در هر فازی عملکرد متفاوتی داشته باشد. برای این منظور می‌توان از خاصیت eventPhase استفاده کرد. مقدار این خاصیت در فازهای Capturing و Target و Bubbling به ترتیب <span class="text-dark">۱</span> و ۲ و ۳ است.</p>
-<p style="text-align: justify;">خاصیت دیگری که می‌تواند در برخی شرایط مفید باشد، خاصیت currentTarget است. این خاصیت به عنصری اشاره می‌کند که تابع Event Handler در حال اجرا، توسط Event Listener آن عنصر فراخوانی شده است.</p>
-<p style="text-align: justify;">همچنین استفاده از خاصیت target نیز می‌تواند مفید باشد. این خاصیت همیشه به عنصری که در پایین‌ترین سطح ساختار Event Flow قرار دارد اشاره می‌کند. یعنی در مثال‌های قبلی با کلیک کردن روی عنصر &lt;div&gt;، حتی در تابع bodyHandler نیز این خاصیت به عنصر &lt;div&gt; اشاره می‌کند.</p>
-<p style="text-align: justify;">مثال زیر رفتار هر یک از این خاصیت‌ها را نشان می‌دهد. با کلیک کردن بر روی عنصر &lt;body&gt; و عنصر &lt;div&gt; و فراخوانی Event Hander ها، مقدار هر یک از این خاصیت‌ها توسط یک تابع alert نمایش داده می‌شود. توجه کنید که در این مثال دو Event Listener برای رویداد click برای عنصر &lt;body&gt; تعریف شده است که یکی در فاز Capturing و دیگری در فاز Bubbling اجرا می‌شوند. البته هر دو از یک تابع به عنوان Event Handler استفاده می‌کنند.</p>
-<pre class="ltr"><code class="language-javascript line-numbers">
+	<p style="text-align: justify;">این برنامه را نیز می‌توانید <a href="https://codepen.io/abbassac/pen/bQKJmY"
+			target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+	<p>&nbsp;</p>
+	<h3>خاصیت‌های شئ event</h3>
+	<p style="text-align: justify;">در برخی برنامه‌ها لازم است تا در زمان اجرای یک Event Handler، بتوان اطلاعاتی را در
+		رابطه با وضعیت Event Flow به دست آورد. شئ event دارای تعدادی خاصیت است که می‌توان از آنها برای به دست آوردن این
+		اطلاعات استفاده کرد.</p>
+	<p style="text-align: justify;">مثلاً ممکن است در زمان اجرای یک Event Handler، نیاز به دانستن فاز فعلی داشته باشیم.
+		زیرا ممکن است یک تابع خاص، به عنوان Event Handler در فازهای متفاوتی اجرا شود و در هر فازی عملکرد متفاوتی داشته
+		باشد. برای این منظور می‌توان از خاصیت eventPhase استفاده کرد. مقدار این خاصیت در فازهای Capturing و Target و
+		Bubbling به ترتیب <span class="text-dark">۱</span> و ۲ و ۳ است.</p>
+	<p style="text-align: justify;">خاصیت دیگری که می‌تواند در برخی شرایط مفید باشد، خاصیت currentTarget است. این خاصیت
+		به عنصری اشاره می‌کند که تابع Event Handler در حال اجرا، توسط Event Listener آن عنصر فراخوانی شده است.</p>
+	<p style="text-align: justify;">همچنین استفاده از خاصیت target نیز می‌تواند مفید باشد. این خاصیت همیشه به عنصری که
+		در پایین‌ترین سطح ساختار Event Flow قرار دارد اشاره می‌کند. یعنی در مثال‌های قبلی با کلیک کردن روی عنصر
+		&lt;div&gt;، حتی در تابع bodyHandler نیز این خاصیت به عنصر &lt;div&gt; اشاره می‌کند.</p>
+	<p style="text-align: justify;">مثال زیر رفتار هر یک از این خاصیت‌ها را نشان می‌دهد. با کلیک کردن بر روی عنصر
+		&lt;body&gt; و عنصر &lt;div&gt; و فراخوانی Event Hander ها، مقدار هر یک از این خاصیت‌ها توسط یک تابع alert نمایش
+		داده می‌شود. توجه کنید که در این مثال دو Event Listener برای رویداد click برای عنصر &lt;body&gt; تعریف شده است
+		که یکی در فاز Capturing و دیگری در فاز Bubbling اجرا می‌شوند. البته هر دو از یک تابع به عنوان Event Handler
+		استفاده می‌کنند.</p>
+	<pre class="ltr"><code class="language-javascript line-numbers">
 const div = document.getElementById('mydiv');
 const body = document.body;
 
@@ -121,7 +219,15 @@ function bodyHandler(event){
 	alert(str);
 }
 </code></pre>
-<p style="text-align: justify;">در این مثال با کلیک کردن بر روی عنصر &lt;div&gt; مشاهده خواهید کرد که تابع alert سه بار اجرا خواهد شد که در تمام اجراها خاصیت target به عنصر &lt;div&gt; اشاره می‌کند. اما خاصیت currentTarget در تابع bodyHandler به عنصر &lt;body&gt; و در تابع divHandler به عنصر &lt;div&gt; اشاره می‌کند. خاصیت eventPhase نیز در هر بار نمایش، به ترتیب اعداد ۱ و ۲ و ۳ را نمایش می‌دهد که نمایانگر فازهای مختلف انتشار رویداد است.</p>
-<p style="text-align: justify;">همچنین اگر مستقیماً روی عنصر &lt;body&gt; کلیک کنید. مشاهده خواهید کرد که تابع alert دو بار اجرا می‌شود. و در هر دو اجرا اطلاعات دقیقاً یکسانی را خواهید دید. در واقع در این حالت هر دو فراخوانی تابع bodyHandler در فاز target اتفاق می‌افتد. زیرا همانطور که اشاره شد، تمام Event Handler ها بدون توجه به مقدار آرگومان سوم متد addEventListener، در فاز target اجرا می‌شوند. در نتیجه با توجه به اینکه در این حالت عنصر &lt;body&gt; همان عنصر target است، هر دو Event Listener اجرا شده و تابع bodyHandler را فراخوانی می‌کنند. این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/gQKVLr" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
+	<p style="text-align: justify;">در این مثال با کلیک کردن بر روی عنصر &lt;div&gt; مشاهده خواهید کرد که تابع alert سه
+		بار اجرا خواهد شد که در تمام اجراها خاصیت target به عنصر &lt;div&gt; اشاره می‌کند. اما خاصیت currentTarget در
+		تابع bodyHandler به عنصر &lt;body&gt; و در تابع divHandler به عنصر &lt;div&gt; اشاره می‌کند. خاصیت eventPhase
+		نیز در هر بار نمایش، به ترتیب اعداد ۱ و ۲ و ۳ را نمایش می‌دهد که نمایانگر فازهای مختلف انتشار رویداد است.</p>
+	<p style="text-align: justify;">همچنین اگر مستقیماً روی عنصر &lt;body&gt; کلیک کنید. مشاهده خواهید کرد که تابع alert
+		دو بار اجرا می‌شود. و در هر دو اجرا اطلاعات دقیقاً یکسانی را خواهید دید. در واقع در این حالت هر دو فراخوانی تابع
+		bodyHandler در فاز target اتفاق می‌افتد. زیرا همانطور که اشاره شد، تمام Event Handler ها بدون توجه به مقدار
+		آرگومان سوم متد addEventListener، در فاز target اجرا می‌شوند. در نتیجه با توجه به اینکه در این حالت عنصر
+		&lt;body&gt; همان عنصر target است، هر دو Event Listener اجرا شده و تابع bodyHandler را فراخوانی می‌کنند. این
+		برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/gQKVLr" target="_blank"
+			rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
 </div>
-                

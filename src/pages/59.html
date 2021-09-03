@@ -1,15 +1,33 @@
-
-                <h2>رویدادهای ماوس و شئ رویداد (Event Object)</h2>
-                <div><p style="text-align: justify;">در بخش قبلی با مفاهیم اولیه‌ی رویدادها و نحوه‌ی افزودن یک Event Listener برای یک رویداد خاص آشنا شدیم. تنها رویدادی که در بخش قبل از آن استفاده شد، رویداد click بود. اما در جاوا اسکریپت انواع مختلفی از رویدادها قابل استفاده هستند که در این بخش به بررسی رویدادهای مرتبط با ماوس می‌پردازیم. همچنین با شئ رویداد (Event Object) آشنا خواهیم شد که در مدیریت و پاسخ دادن به رویدادها کاربرد فراوانی دارد.</p>
-<p>&nbsp;</p>
-<h3>رویدادهای click و dblclick</h3>
-<p style="text-align: justify;">رویداد click پرکاربردترین رویداد در جاوا اسکریپت است که به چند شکل مختلف ممکن است رخ دهد. مرسوم‌ترین شکل وقوع این رویداد، فشردن دکمه‌ی اصلی ماوس (معمولاً دکمه‌ی چپ) است. اما این رویداد در صورت لمس صفحه نمایش در دستگاه‌های مجهز به صفحه نمایش لمسی، و همچنین در صورت فشردن کلید Enter یا کلید Space از صفحه کلید رخ می‌دهد.</p>
-<p style="text-align: justify;">توجه کنید که رویداد click پس از رها کردن دکمه‌ی فشرده شده و یا جدا کردن انگشت از صفحه نمایش رخ می‌دهد. همچنین در هر دو لحظه‌ی فشردن و رها کردن، باید نشانگر ماوس (یا انگشت) در محدوده‌ی عنصر مورد نظر باشد.</p>
-<p style="text-align: justify;">رویداد بعدی که توسط ماوس می‌تواند تولید شود، رویداد Double Click است که در جاوا اسکریپت باید به صورت dblclick نوشته شود. این رویداد در صورتی رخ می‌دهد که رویداد click دو بار به صورت متوالی و با فاصله‌ی زمانی کوتاه رخ دهد. حداکثر فاصله‌ی زمانی بین دو رویداد click نیز توسط سیستم عامل قابل تنظیم است که معمولاً این زمان کمتر از <span class="text-dark">یک</span> ثانیه است.</p>
-<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته :</span> </strong>در صورتی که در یک عنصر هم برای رویداد click و هم برای رویداد dblclick یک Event Listener تعریف شده باشد. همیشه قبل از اجرای Event Handler مربوط به رویداد dblclick، باید Event Handler مربوط به رویداد click دو بار اجرا شود. زیرا رویداد dblclick همیشه بعد از دو بار وقوع رویداد click اتفاق می‌افتد.</p>
-<p><strong><span style="color: #ff0000;">نکته :</span></strong> رویداد dblclick با فشردن متوالی کلیدهای Enter و Space رخ نمی‌دهد.</p>
-<p style="text-align: justify;">در مثال زیر هم برای رویداد click و هم برای رویداد dblclick یک Event Listener تعریف شده است. با اجرای این برنامه مشاهده می‌کنید که در صورت Double Click کردن بر روی دکمه، ابتدا دو بار Event Handler مربوط به رویداد click اجرا می‌شود. سپس Event Handler رویداد dblclick اجرا می‌شود. (فرض شده است که یک عنصر &lt;button&gt; در صفحه وجود دارد.)</p>
-<pre class="ltr"><code class="language-javascript">
+<h2>رویدادهای ماوس و شئ رویداد (Event Object)</h2>
+<div>
+	<p style="text-align: justify;">در بخش قبلی با مفاهیم اولیه‌ی رویدادها و نحوه‌ی افزودن یک Event Listener برای یک
+		رویداد خاص آشنا شدیم. تنها رویدادی که در بخش قبل از آن استفاده شد، رویداد click بود. اما در جاوااسکریپت انواع
+		مختلفی از رویدادها قابل استفاده هستند که در این بخش به بررسی رویدادهای مرتبط با ماوس می‌پردازیم. همچنین با شئ
+		رویداد (Event Object) آشنا خواهیم شد که در مدیریت و پاسخ دادن به رویدادها کاربرد فراوانی دارد.</p>
+	<p>&nbsp;</p>
+	<h3>رویدادهای click و dblclick</h3>
+	<p style="text-align: justify;">رویداد click پرکاربردترین رویداد در جاوااسکریپت است که به چند شکل مختلف ممکن است رخ
+		دهد. مرسوم‌ترین شکل وقوع این رویداد، فشردن دکمه‌ی اصلی ماوس (معمولاً دکمه‌ی چپ) است. اما این رویداد در صورت لمس
+		صفحه نمایش در دستگاه‌های مجهز به صفحه نمایش لمسی، و همچنین در صورت فشردن کلید Enter یا کلید Space از صفحه کلید
+		رخ می‌دهد.</p>
+	<p style="text-align: justify;">توجه کنید که رویداد click پس از رها کردن دکمه‌ی فشرده شده و یا جدا کردن انگشت از
+		صفحه نمایش رخ می‌دهد. همچنین در هر دو لحظه‌ی فشردن و رها کردن، باید نشانگر ماوس (یا انگشت) در محدوده‌ی عنصر مورد
+		نظر باشد.</p>
+	<p style="text-align: justify;">رویداد بعدی که توسط ماوس می‌تواند تولید شود، رویداد Double Click است که در
+		جاوااسکریپت باید به صورت dblclick نوشته شود. این رویداد در صورتی رخ می‌دهد که رویداد click دو بار به صورت متوالی
+		و با فاصله‌ی زمانی کوتاه رخ دهد. حداکثر فاصله‌ی زمانی بین دو رویداد click نیز توسط سیستم عامل قابل تنظیم است که
+		معمولاً این زمان کمتر از <span class="text-dark">یک</span> ثانیه است.</p>
+	<p style="text-align: justify;"><strong><span style="color: #ff0000;">نکته:</span> </strong>در صورتی که در یک عنصر
+		هم برای رویداد click و هم برای رویداد dblclick یک Event Listener تعریف شده باشد. همیشه قبل از اجرای Event
+		Handler مربوط به رویداد dblclick، باید Event Handler مربوط به رویداد click دو بار اجرا شود. زیرا رویداد dblclick
+		همیشه بعد از دو بار وقوع رویداد click اتفاق می‌افتد.</p>
+	<p><strong><span style="color: #ff0000;">نکته:</span></strong> رویداد dblclick با فشردن متوالی کلیدهای Enter و
+		Space رخ نمی‌دهد.</p>
+	<p style="text-align: justify;">در مثال زیر هم برای رویداد click و هم برای رویداد dblclick یک Event Listener تعریف
+		شده است. با اجرای این برنامه مشاهده می‌کنید که در صورت Double Click کردن بر روی دکمه، ابتدا دو بار Event Handler
+		مربوط به رویداد click اجرا می‌شود. سپس Event Handler رویداد dblclick اجرا می‌شود. (فرض شده است که یک عنصر
+		&lt;button&gt; در صفحه وجود دارد.)</p>
+	<pre class="ltr"><code class="language-javascript">
 const button = document.querySelector('button');
 button.addEventListener('click' , () =&gt; {
 	const p = document.createElement('p');
@@ -22,15 +40,39 @@ button.addEventListener('dblclick' , () =&gt; {
 	document.body.appendChild(p);
 });
 </code></pre>
-<p style="text-align: justify;">در این مثال با هر بار رخ دادن رویداد click و یا dblclick یک عنصر &lt;p&gt; ایجاد شده و نام رویداد به همراه زمان وقوع رویداد در آن قرار می‌گیرد و به انتهای عنصر &lt;body&gt; اضافه می‌شود. در صورت اجرای این برنامه و انجام عمل کلیک و دابل کلیک بر روی دکمه‌ی مورد نظر، پیام‌هایی مشابه شکل زیر نمایش داده می‌شوند. همانطور که مشاهده می‌کنید فقط در صورتی رویداد dblclick رخ می‌دهد که حتماً قبل از آن دو بار رویداد click با فاصله‌ی زمانی کوتاه اتفاق افتاده باشد. این برنامه را می‌توانید <a href="https://codepen.io/abbassac/pen/mQxdrJ" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen اجرا کنید.</p>
-<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-709 size-full" src="https://otedia.com/wp-content/uploads/2018/11/dblclick-event.png" alt="" width="834" height="492" srcset="https://otedia.com/wp-content/uploads/2018/11/dblclick-event.png 834w, https://otedia.com/wp-content/uploads/2018/11/dblclick-event-300x177.png 300w, https://otedia.com/wp-content/uploads/2018/11/dblclick-event-768x453.png 768w" sizes="(max-width: 834px) 100vw, 834px" /></p>
-<p>&nbsp;</p>
-<h3>شئ رویداد یا Event Object</h3>
-<p style="text-align: justify;">در زمان وقوع رویدادها، در صورتی که تابعی به عنوان Event Handler برای آن رویداد تعریف شده باشد، آن تابع فراخوانی می‌شود تا عکس‌العمل مناسب را برای مدیریت رویداد انجام دهد. اما در زمان فراخوانی این تابع، همیشه یک آرگومان ورودی نیز برای آن ارسال می‌شود که به آن شئ رویداد یا Event Object گفته می‌شود. این شئ حاوی اطلاعات مفیدی در مورد نوع رویداد و نحوه‌ی وقوع آن است. البته اطلاعات موجود در این شئ با توجه به نوع رویداد متفاوت است. مثلاً در رویدادهای صفحه کلید می‌تواند حاوی نام کلید فشرده شده باشد. اما در رویداد click می‌تواند حاوی مختصات محل فشردن دکمه‌ی ماوس باشد.</p>
-<p style="text-align: justify;">در صورت نیاز به اطلاعات شئ رویداد در توابع Event Handler، باید یک پارامتر ورودی نیز برای این توابع در نظر بگیریم. نام این پارامتر اختیاری است. اما معمولاً از نام event و یا به اختصار از نام e برای این پارامتر استفاده می‌شود.</p>
-<p style="text-align: justify;">برخی از خاصیت‌های شئ رویداد در تمام رویدادها در دسترس هستند و برخی دیگر فقط در رویدادهای خاصی در دسترس هستند. دو خاصیت type و target از مهمترین خاصیت‌های شئ رویداد هستند که در تمام رویدادها در دسترس هستند. خاصیت type نوع رویداد را به صورت یک رشته (مثلاً &#8220;click&#8221;) نگهداری می‌کند. و خاصیت target به عنصری از DOM که رویداد را تولید کرده است اشاره می‌کند. (عنصر &lt;button&gt; در مثال قبلی)</p>
-<p style="text-align: justify;">جهت درک بهتر کاربرد این خاصیت‌ها به مثال زیر توجه کنید. در این مثال دو عنصر &lt;button&gt; که صفت id آنها به ترتیب &#8220;btn1&#8221; و &#8220;btn2&#8221; است وجود دارد. توجه کنید که تابعی که به عنوان Event Handler برای رویدادهای click و dblclick به کار رفته است، برای هر دو عنصر یکسان است. استفاده از یک تابع برای مدیریت چند رویداد در جاوا اسکریپت بسیار مرسوم است. در این صورت باید در داخل تابع بتوان تشخیص داد که رویداد از چه نوعی بوده و برای چه عنصری رخ داده است. که برای این منظور می‌توان از خاصیت‌های type و target استفاده کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">در این مثال با هر بار رخ دادن رویداد click و یا dblclick یک عنصر &lt;p&gt; ایجاد شده
+		و نام رویداد به همراه زمان وقوع رویداد در آن قرار می‌گیرد و به انتهای عنصر &lt;body&gt; اضافه می‌شود. در صورت
+		اجرای این برنامه و انجام عمل کلیک و دابل کلیک بر روی دکمه‌ی مورد نظر، پیام‌هایی مشابه شکل زیر نمایش داده
+		می‌شوند. همانطور که مشاهده می‌کنید فقط در صورتی رویداد dblclick رخ می‌دهد که حتماً قبل از آن دو بار رویداد click
+		با فاصله‌ی زمانی کوتاه اتفاق افتاده باشد. این برنامه را می‌توانید <a
+			href="https://codepen.io/abbassac/pen/mQxdrJ" target="_blank" rel="noopener noreferrer">اینجا</a> در CodePen
+		اجرا کنید.</p>
+	<p style="text-align: center;"><img loading="lazy" class="alignnone wp-image-709 size-full"
+			src="https://otedia.com/wp-content/uploads/2018/11/dblclick-event.png" alt="" width="834" height="492"
+			srcset="https://otedia.com/wp-content/uploads/2018/11/dblclick-event.png 834w, https://otedia.com/wp-content/uploads/2018/11/dblclick-event-300x177.png 300w, https://otedia.com/wp-content/uploads/2018/11/dblclick-event-768x453.png 768w"
+			sizes="(max-width: 834px) 100vw, 834px" /></p>
+	<p>&nbsp;</p>
+	<h3>شئ رویداد یا Event Object</h3>
+	<p style="text-align: justify;">در زمان وقوع رویدادها، در صورتی که تابعی به عنوان Event Handler برای آن رویداد تعریف
+		شده باشد، آن تابع فراخوانی می‌شود تا عکس‌العمل مناسب را برای مدیریت رویداد انجام دهد. اما در زمان فراخوانی این
+		تابع، همیشه یک آرگومان ورودی نیز برای آن ارسال می‌شود که به آن شئ رویداد یا Event Object گفته می‌شود. این شئ
+		حاوی اطلاعات مفیدی در مورد نوع رویداد و نحوه‌ی وقوع آن است. البته اطلاعات موجود در این شئ با توجه به نوع رویداد
+		متفاوت است. مثلاً در رویدادهای صفحه کلید می‌تواند حاوی نام کلید فشرده شده باشد. اما در رویداد click می‌تواند
+		حاوی مختصات محل فشردن دکمه‌ی ماوس باشد.</p>
+	<p style="text-align: justify;">در صورت نیاز به اطلاعات شئ رویداد در توابع Event Handler، باید یک پارامتر ورودی نیز
+		برای این توابع در نظر بگیریم. نام این پارامتر اختیاری است. اما معمولاً از نام event و یا به اختصار از نام e برای
+		این پارامتر استفاده می‌شود.</p>
+	<p style="text-align: justify;">برخی از خاصیت‌های شئ رویداد در تمام رویدادها در دسترس هستند و برخی دیگر فقط در
+		رویدادهای خاصی در دسترس هستند. دو خاصیت type و target از مهمترین خاصیت‌های شئ رویداد هستند که در تمام رویدادها
+		در دسترس هستند. خاصیت type نوع رویداد را به صورت یک رشته (مثلاً &#8220;click&#8221;) نگهداری می‌کند. و خاصیت
+		target به عنصری از DOM که رویداد را تولید کرده است اشاره می‌کند. (عنصر &lt;button&gt; در مثال قبلی)</p>
+	<p style="text-align: justify;">جهت درک بهتر کاربرد این خاصیت‌ها به مثال زیر توجه کنید. در این مثال دو عنصر
+		&lt;button&gt; که صفت id آنها به ترتیب &#8220;btn1&#8221; و &#8220;btn2&#8221; است وجود دارد. توجه کنید که تابعی
+		که به عنوان Event Handler برای رویدادهای click و dblclick به کار رفته است، برای هر دو عنصر یکسان است. استفاده از
+		یک تابع برای مدیریت چند رویداد در جاوااسکریپت بسیار مرسوم است. در این صورت باید در داخل تابع بتوان تشخیص داد که
+		رویداد از چه نوعی بوده و برای چه عنصری رخ داده است. که برای این منظور می‌توان از خاصیت‌های type و target استفاده
+		کرد.</p>
+	<pre class="ltr"><code class="language-javascript">
 const button1 = document.getElementById('btn1');
 const button2 = document.getElementById('btn2');
 button1.addEventListener('click' , handler);
@@ -51,19 +93,32 @@ function handler(event){
 	}
 }
 </code></pre>
-<p style="text-align: justify;">با اجرای این برنامه مشاهده خواهید کرد که علی‌رغم تعریف تنها یک تابع به عنوان Event Handler، با کلیک یا دابل کلیک کردن بر روی هر یک از دکمه‌ها، پیام مناسب نمایش داده می‌شود. یعنی یک تابع به عنوان Event Handler در چهار حالت مختلف به کار رفته است. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/qQoEYR" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<p>&nbsp;</p>
-<h3>مختصات محل وقوع رویداد</h3>
-<p style="text-align: justify;">برخلاف خاصیت‌های type و target که در تمام رویدادها وجود دارند، برخی خاصیت‌ها فقط در برخی از رویدادها در دسترس هستند. مثلاً در رویدادهای ماوس می‌توان با استفاده از خاصیت‌های زیر، مختصات محل وقوع رویداد را به دست آورد.</p>
-<ul>
-<li>clientX و clientY : مختصات محل وقوع رویداد نسبت به گوشه‌ی بالا و چپ مرورگر (فقط بخش نمایشی یا Viewport مرورگر).</li>
-<li>offsetX و offsetY : مختصات محل وقوع رویداد نسبت به گوشه‌ی بالا و چپ عنصر تولید کننده‌ی رویداد یا همان target.</li>
-<li>pageX و pageY : مختصات محل وقوع رویداد نسبت به گوشه‌ی بالا و چپ صفحه‌ی وب.</li>
-<li>screenX و screenY : مختصات محل وقوع رویداد نسبت به گوشه‌ی بالا و چپ صفحه نمایش.</li>
-</ul>
-<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته :</strong> </span>در صورتی که صفحه‌ی وب به صورت افقی یا عمودی جا به جا (Scroll) نشده باشد، مقدار خاصیت‌های clientX و clientY با مقدار خاصیت‌های pageX و pageY برابر خواهد بود.</p>
-<p style="text-align: justify;">برای درک بهتر مفهوم هر یک از این خاصیت‌ها به مثال زیر توجه کنید. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/NEYXbz" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید. با کلیک کردن روی نقاط مختلف دکمه‌ی موجود در صفحه، و همچنین Scroll کردن صفحه و کلیک مجدد، مقدار هر یک از خاصیت‌های فوق را مشاهده کنید.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p style="text-align: justify;">با اجرای این برنامه مشاهده خواهید کرد که علی‌رغم تعریف تنها یک تابع به عنوان Event
+		Handler، با کلیک یا دابل کلیک کردن بر روی هر یک از دکمه‌ها، پیام مناسب نمایش داده می‌شود. یعنی یک تابع به عنوان
+		Event Handler در چهار حالت مختلف به کار رفته است. این مثال را می‌توانید <a
+			href="https://codepen.io/abbassac/pen/qQoEYR" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.
+	</p>
+	<p>&nbsp;</p>
+	<h3>مختصات محل وقوع رویداد</h3>
+	<p style="text-align: justify;">برخلاف خاصیت‌های type و target که در تمام رویدادها وجود دارند، برخی خاصیت‌ها فقط در
+		برخی از رویدادها در دسترس هستند. مثلاً در رویدادهای ماوس می‌توان با استفاده از خاصیت‌های زیر، مختصات محل وقوع
+		رویداد را به دست آورد.</p>
+	<ul>
+		<li>clientX و clientY : مختصات محل وقوع رویداد نسبت به گوشه‌ی بالا و چپ مرورگر (فقط بخش نمایشی یا Viewport
+			مرورگر).</li>
+		<li>offsetX و offsetY : مختصات محل وقوع رویداد نسبت به گوشه‌ی بالا و چپ عنصر تولید کننده‌ی رویداد یا همان
+			target.</li>
+		<li>pageX و pageY : مختصات محل وقوع رویداد نسبت به گوشه‌ی بالا و چپ صفحه‌ی وب.</li>
+		<li>screenX و screenY : مختصات محل وقوع رویداد نسبت به گوشه‌ی بالا و چپ صفحه نمایش.</li>
+	</ul>
+	<p style="text-align: justify;"><span style="color: #ff0000;"><strong>نکته:</strong> </span>در صورتی که صفحه‌ی وب
+		به صورت افقی یا عمودی جا به جا (Scroll) نشده باشد، مقدار خاصیت‌های clientX و clientY با مقدار خاصیت‌های pageX و
+		pageY برابر خواهد بود.</p>
+	<p style="text-align: justify;">برای درک بهتر مفهوم هر یک از این خاصیت‌ها به مثال زیر توجه کنید. این مثال را
+		می‌توانید <a href="https://codepen.io/abbassac/pen/NEYXbz" target="_blank" rel="noopener noreferrer">اینجا</a>
+		اجرا کنید. با کلیک کردن روی نقاط مختلف دکمه‌ی موجود در صفحه، و همچنین Scroll کردن صفحه و کلیک مجدد، مقدار هر یک
+		از خاصیت‌های فوق را مشاهده کنید.</p>
+	<pre class="ltr"><code class="language-javascript">
 const button = document.querySelector('button');
 button.addEventListener('click' , (event) =&gt; {
 	const p = document.createElement('p');
@@ -75,33 +130,56 @@ button.addEventListener('click' , (event) =&gt; {
 	document.body.appendChild(p);
 });
 </code></pre>
-<p>&nbsp;</p>
-<h3>سایر رویدادهای ماوس</h3>
-<p style="text-align: justify;">هرچند رویداد click پر کاربردترین رویداد ماوس است. اما انواع دیگری از رویدادها نیز توسط ماوس قابل تولید هستند که در برخی شرایط، استفاده از آنها می‌تواند بسیار مفید باشد. این رویدادها عبارتند از :</p>
-<ul>
-<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmousedown" target="_blank" rel="noopener noreferrer">mousedown</a> : در زمان فشردن هر یک از دکمه‌های ماوس رخ می‌دهد.</li>
-<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmousedown" target="_blank" rel="noopener noreferrer">mouseup</a> : در زمان رها کردن هر یک از دکمه‌های ماوس رخ می‌دهد.</li>
-<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmousemove" target="_blank" rel="noopener noreferrer">mousemove</a> : در زمان جا به جا کردن ماوس رخ می‌دهد. (با عمل drag متفاوت است. زیرا نیازی به فشردن دکمه‌های ماوس نیست)</li>
-<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmouseenter" target="_blank" rel="noopener noreferrer">mouseenter</a> : در زمان ورود ماوس به محدوده‌ی یک عنصر رخ می‌دهد.</li>
-<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmouseenter" target="_blank" rel="noopener noreferrer">mouseleave</a> : در زمان خروج ماوس از محدوده‌ی یک عنصر رخ می‌دهد.</li>
-<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmouseover" target="_blank" rel="noopener noreferrer">mouseover</a> : در زمان ورود ماوس به محدوده‌ی یک عنصر و یا ورود ماوس به محدوده‌ی فرزندان یک عنصر رخ می‌دهد.</li>
-<li><a href="https://www.w3schools.com/jsref/event_onmouseout.asp" target="_blank" rel="noopener noreferrer">mouseout</a> : در زمان خروج ماوس از محدوده‌ی یک عنصر و یا خروج ماوس از محدوده‌ی فرزندان یک عنصر رخ می‌دهد.</li>
-<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_oncontextmenu" target="_blank" rel="noopener noreferrer">contextmenu</a> : در زمان فشردن دکمه‌ی فرعی (معمولاً دکمه‌ی راست) ماوس رخ می‌دهد.</li>
-</ul>
-<p style="text-align: justify;">جهت درک بهتر رفتار و زمان وقوع هر یک از این رویدادها، روی نام رویداد کلیک کنید.</p>
-<p><strong><span style="color: #ff0000;">نکته :</span></strong> همیشه قبل از وقوع رویداد کلیک، به ترتیب یک بار رویداد mousedown و یک بار رویداد mouseup رخ می‌دهد.</p>
-<p><span style="color: #ff0000;"><strong>نکته :</strong></span> همیشه با رها کردن دکمه‌ی فرعی ماوس، ابتدا رویداد mouseup و سپس رویداد contextmenu رخ می‌دهد.</p>
-<p>&nbsp;</p>
-<h3>سایر خاصیت‌های شئ event</h3>
-<p style="text-align: justify;">در رویدادهای ماوس علاوه بر خاصیت‌هایی که برای به دست آوردن مختصات محل وقوع رویداد به کار می‌روند، خاصیت‌های دیگری نیز قابل استفاده هستند که مهمترین آنها عبارتند از :</p>
-<ul>
-<li>button : شماره دکمه‌ی فشرده شده از ماوس. (صفر برای دکمه‌ی اصلی، یک برای دکمه‌ی وسط و دو برای دکمه‌ی فرعی)</li>
-<li>altKey : در صورت فشرده بودن کلید Alt در زمان وقوع رویداد، مقدار این خاصیت true خواهد بود.</li>
-<li>ctrlKey : در صورت فشرده بودن کلید Ctrl در زمان وقوع رویداد، مقدار این خاصیت true خواهد بود.</li>
-<li>shiftKey : در صورت فشرده بودن کلید Shift در زمان وقوع رویداد، مقدار این خاصیت true خواهد بود.</li>
-</ul>
-<p style="text-align: justify;">برای درک بهتر رفتار این خاصیت‌ها به مثال زیر توجه کنید. در این مثال یک تابع Event Handler برای رویداد mousedown تعریف شده است. بنابراین در صورت فشردن هر یک از دکمه‌های ماوس این تابع فراخوانی می‌شود. در این تابع وضعیت سه کلید Alt و Ctrl و Shitf در لحظه‌ی وقوع رویداد بررسی شده و در عنصر &lt;div&gt; نمایش داده می‌شود. همچنین شماره‌ی دکمه‌ی فشرده شده از ماوس نیز نشان داده می‌شود. این مثال را می‌توانید <a href="https://codepen.io/abbassac/pen/NEYOxV" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.</p>
-<pre class="ltr"><code class="language-javascript">
+	<p>&nbsp;</p>
+	<h3>سایر رویدادهای ماوس</h3>
+	<p style="text-align: justify;">هرچند رویداد click پر کاربردترین رویداد ماوس است. اما انواع دیگری از رویدادها نیز
+		توسط ماوس قابل تولید هستند که در برخی شرایط، استفاده از آنها می‌تواند بسیار مفید باشد. این رویدادها عبارتند از :
+	</p>
+	<ul>
+		<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmousedown" target="_blank"
+				rel="noopener noreferrer">mousedown</a> : در زمان فشردن هر یک از دکمه‌های ماوس رخ می‌دهد.</li>
+		<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmousedown" target="_blank"
+				rel="noopener noreferrer">mouseup</a> : در زمان رها کردن هر یک از دکمه‌های ماوس رخ می‌دهد.</li>
+		<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmousemove" target="_blank"
+				rel="noopener noreferrer">mousemove</a> : در زمان جا به جا کردن ماوس رخ می‌دهد. (با عمل drag متفاوت است.
+			زیرا نیازی به فشردن دکمه‌های ماوس نیست)</li>
+		<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmouseenter" target="_blank"
+				rel="noopener noreferrer">mouseenter</a> : در زمان ورود ماوس به محدوده‌ی یک عنصر رخ می‌دهد.</li>
+		<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmouseenter" target="_blank"
+				rel="noopener noreferrer">mouseleave</a> : در زمان خروج ماوس از محدوده‌ی یک عنصر رخ می‌دهد.</li>
+		<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmouseover" target="_blank"
+				rel="noopener noreferrer">mouseover</a> : در زمان ورود ماوس به محدوده‌ی یک عنصر و یا ورود ماوس به
+			محدوده‌ی فرزندان یک عنصر رخ می‌دهد.</li>
+		<li><a href="https://www.w3schools.com/jsref/event_onmouseout.asp" target="_blank"
+				rel="noopener noreferrer">mouseout</a> : در زمان خروج ماوس از محدوده‌ی یک عنصر و یا خروج ماوس از
+			محدوده‌ی فرزندان یک عنصر رخ می‌دهد.</li>
+		<li><a href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_oncontextmenu" target="_blank"
+				rel="noopener noreferrer">contextmenu</a> : در زمان فشردن دکمه‌ی فرعی (معمولاً دکمه‌ی راست) ماوس رخ
+			می‌دهد.</li>
+	</ul>
+	<p style="text-align: justify;">جهت درک بهتر رفتار و زمان وقوع هر یک از این رویدادها، روی نام رویداد کلیک کنید.</p>
+	<p><strong><span style="color: #ff0000;">نکته:</span></strong> همیشه قبل از وقوع رویداد کلیک، به ترتیب یک بار
+		رویداد mousedown و یک بار رویداد mouseup رخ می‌دهد.</p>
+	<p><span style="color: #ff0000;"><strong>نکته:</strong></span> همیشه با رها کردن دکمه‌ی فرعی ماوس، ابتدا رویداد
+		mouseup و سپس رویداد contextmenu رخ می‌دهد.</p>
+	<p>&nbsp;</p>
+	<h3>سایر خاصیت‌های شئ event</h3>
+	<p style="text-align: justify;">در رویدادهای ماوس علاوه بر خاصیت‌هایی که برای به دست آوردن مختصات محل وقوع رویداد به
+		کار می‌روند، خاصیت‌های دیگری نیز قابل استفاده هستند که مهمترین آنها عبارتند از :</p>
+	<ul>
+		<li>button : شماره دکمه‌ی فشرده شده از ماوس. (صفر برای دکمه‌ی اصلی، یک برای دکمه‌ی وسط و دو برای دکمه‌ی فرعی)
+		</li>
+		<li>altKey : در صورت فشرده بودن کلید Alt در زمان وقوع رویداد، مقدار این خاصیت true خواهد بود.</li>
+		<li>ctrlKey : در صورت فشرده بودن کلید Ctrl در زمان وقوع رویداد، مقدار این خاصیت true خواهد بود.</li>
+		<li>shiftKey : در صورت فشرده بودن کلید Shift در زمان وقوع رویداد، مقدار این خاصیت true خواهد بود.</li>
+	</ul>
+	<p style="text-align: justify;">برای درک بهتر رفتار این خاصیت‌ها به مثال زیر توجه کنید. در این مثال یک تابع Event
+		Handler برای رویداد mousedown تعریف شده است. بنابراین در صورت فشردن هر یک از دکمه‌های ماوس این تابع فراخوانی
+		می‌شود. در این تابع وضعیت سه کلید Alt و Ctrl و Shitf در لحظه‌ی وقوع رویداد بررسی شده و در عنصر &lt;div&gt; نمایش
+		داده می‌شود. همچنین شماره‌ی دکمه‌ی فشرده شده از ماوس نیز نشان داده می‌شود. این مثال را می‌توانید <a
+			href="https://codepen.io/abbassac/pen/NEYOxV" target="_blank" rel="noopener noreferrer">اینجا</a> اجرا کنید.
+	</p>
+	<pre class="ltr"><code class="language-javascript">
 const div = document.querySelector('div');
 div.addEventListener('mousedown' , checkState);
 
@@ -113,6 +191,6 @@ function checkState(event){
  	 	Shift: ${event.shiftKey}`;
 }
 </code></pre>
-<p style="text-align: justify;">در این بخش با تمام رویدادهای ماوس و اکثر خاصیت‌های شئ event در رویدادهای ماوس آشنا شدیم. در بخش بعدی نیز به بررسی رویدادهای صفحه کلید و خاصیت‌های شئ event در رویدادهای صفحه کلید می‌پردازیم.</p>
+	<p style="text-align: justify;">در این بخش با تمام رویدادهای ماوس و اکثر خاصیت‌های شئ event در رویدادهای ماوس آشنا
+		شدیم. در بخش بعدی نیز به بررسی رویدادهای صفحه کلید و خاصیت‌های شئ event در رویدادهای صفحه کلید می‌پردازیم.</p>
 </div>
-                

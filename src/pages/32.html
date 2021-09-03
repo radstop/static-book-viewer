@@ -1,57 +1,74 @@
-
-                <h2>نقشه ها (Maps)</h2>
-                <div><p style="text-align: justify;">یکی دیگر از انواع داده‌ها در جاوا اسکریپت، نوع داده‌ی <strong>نقشه</strong> یا <strong>Map</strong> است. یک نقشه متشکل از تعدادی داده است که در آن هر داده دارای یک نام (یا کلید) و یک مقدار است. این نوع داده در سایر زبان‌های برنامه‌نویسی نیز وجود دارد و برای آن از اصطلاحاتی مانند دیکشنری (Dictionary) یا Hash Table نیز استفاده می‌شود. اما در جاوا اسکریپت این نوع داده را نقشه یا Map می‌نامیم.</p>
-<p style="text-align: justify;">برای ایجاد یک نقشه‌ی جدید باید از تابع سازنده‌ی Map و عملگر new استفاده کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+<h2>نقشه ها (Maps)</h2>
+<div>
+    <p style="text-align: justify;">یکی دیگر از انواع داده‌ها در جاوااسکریپت، نوع داده‌ی <strong>نقشه</strong> یا
+        <strong>Map</strong> است. یک نقشه متشکل از تعدادی داده است که در آن هر داده دارای یک نام (یا کلید) و یک مقدار
+        است. این نوع داده در سایر زبان‌های برنامه‌نویسی نیز وجود دارد و برای آن از اصطلاحاتی مانند دیکشنری (Dictionary)
+        یا Hash Table نیز استفاده می‌شود. اما در جاوااسکریپت این نوع داده را نقشه یا Map می‌نامیم.
+    </p>
+    <p style="text-align: justify;">برای ایجاد یک نقشه‌ی جدید باید از تابع سازنده‌ی Map و عملگر new استفاده کرد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let myMap = new Map();
 </code></pre>
-<p style="text-align: justify;">با استفاده از متد set می‌توان یک عضو جدید را به یک نقشه اضافه کرد. این متد دو ورودی دریافت می‌کند. ورودی اول کلید عضو جدید است و ورودی دوم مقدار عضو جدید است.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">با استفاده از متد set می‌توان یک عضو جدید را به یک نقشه اضافه کرد. این متد دو ورودی
+        دریافت می‌کند. ورودی اول کلید عضو جدید است و ورودی دوم مقدار عضو جدید است.</p>
+    <pre class="ltr"><code class="language-javascript">
 myMap.set(1 ,  'Apple');
 ← Map {1 =&gt; "Apple"}
 </code></pre>
-<p style="text-align: justify;">در اینجا نیز مانند متد add در مجموعه‌ها، می‌توان متد set را به صورت زنجیره‌ای به کار برد و چندین عضو را در یک دستور به نقشه اضافه کرد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">در اینجا نیز مانند متد add در مجموعه‌ها، می‌توان متد set را به صورت زنجیره‌ای به کار
+        برد و چندین عضو را در یک دستور به نقشه اضافه کرد.</p>
+    <pre class="ltr"><code class="language-javascript">
 myMap.set(1 ,  'Apple').set(2 , 'Orange').set(3 , 'Banana');
 ← Map {1 =&gt; "Apple", 2 =&gt; "Orange", 3 =&gt; "Banana"}
 </code></pre>
-<p style="text-align: justify;">توجه کنید که در نقشه‌ها نمی‌توان اعضایی با کلید تکراری ایجاد کرد. یعنی کلیدهایی که به کار برده می‌شوند باید منحصر به فرد باشند. اما اعضای نقشه می‌توانند دارای مقادیر تکراری باشند. مثلاً در دستور اول زیر که در ادامه‌ی دستورات فوق اجرا می‌شود، با توجه به تکراری بودن کلید 1، مقدار این عضو به روز رسانی می‌شود و عضو جدیدی ایجاد نمی‌شود. اما در دستور دوم، یک عضو جدید به نقشه اضافه می‌شود که مقدار تکراری دارد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">توجه کنید که در نقشه‌ها نمی‌توان اعضایی با کلید تکراری ایجاد کرد. یعنی کلیدهایی که
+        به کار برده می‌شوند باید منحصر به فرد باشند. اما اعضای نقشه می‌توانند دارای مقادیر تکراری باشند. مثلاً در دستور
+        اول زیر که در ادامه‌ی دستورات فوق اجرا می‌شود، با توجه به تکراری بودن کلید 1، مقدار این عضو به روز رسانی می‌شود
+        و عضو جدیدی ایجاد نمی‌شود. اما در دستور دوم، یک عضو جدید به نقشه اضافه می‌شود که مقدار تکراری دارد.</p>
+    <pre class="ltr"><code class="language-javascript">
 myMap.set(1 ,  'Cherry');
 ← Map {1 =&gt; "Cherry", 2 =&gt; "Orange", 3 =&gt; "Banana"}
 myMap.set(4 , "Orange");
 ← Map {1 =&gt; "Cherry", 2 =&gt; "Orange", 3 =&gt; "Banana" , 4 =&gt; "Orange"}
 </code></pre>
-<p style="text-align: justify;">همچنین توجه کنید که کلیدهای یک نقشه لزوماً از نوع عددی و دارای ترتیب نیستند. یعنی هر نوع داده‌ای را با هر مقداری می‌توان به عنوان کلید اعضای یک نقشه به کار برد. اما معمولاً کلیدها از نوع عددی یا رشته‌ای هستند. مقدار هر عضو نیز می‌تواند از هر نوع داده‌ای باشد. به قطعه کد زیر توجه کنید.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">همچنین توجه کنید که کلیدهای یک نقشه لزوماً از نوع عددی و دارای ترتیب نیستند. یعنی هر
+        نوع داده‌ای را با هر مقداری می‌توان به عنوان کلید اعضای یک نقشه به کار برد. اما معمولاً کلیدها از نوع عددی یا
+        رشته‌ای هستند. مقدار هر عضو نیز می‌تواند از هر نوع داده‌ای باشد. به قطعه کد زیر توجه کنید.</p>
+    <pre class="ltr"><code class="language-javascript">
 let myMap = new Map();
 myMap.set(1 ,  'Car').set('weight' , 1000).set('color' , 'Blue');
 ← Map {1 =&gt; "Car", "weight" =&gt; 1000, "color" =&gt; "Blue"}
 </code></pre>
-<p style="text-align: justify;">همچنین در زمان تعریف یک نقشه می‌توان با استفاده از یک آرایه‌ی دو بُعدی، اعضای اولیه‌ی آن را تعیین کرد. نحوه‌ی انجام این کار را در قطعه کد زیر مشاهده می‌کنید. در این حالت هر عنصر از آرایه‌ی دو بعدی، یک آرایه به طول ۲ است که در آن عنصر اول کلید، و عنصر دوم مقدار یک عضو از نقشه را مشخص می‌کند.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">همچنین در زمان تعریف یک نقشه می‌توان با استفاده از یک آرایه‌ی دو بُعدی، اعضای
+        اولیه‌ی آن را تعیین کرد. نحوه‌ی انجام این کار را در قطعه کد زیر مشاهده می‌کنید. در این حالت هر عنصر از آرایه‌ی
+        دو بعدی، یک آرایه به طول ۲ است که در آن عنصر اول کلید، و عنصر دوم مقدار یک عضو از نقشه را مشخص می‌کند.</p>
+    <pre class="ltr"><code class="language-javascript">
 let person = new Map([ ['firstName' , 'Abbas'] , ['lastName' , 'Moqaddam'] , ['age' , 33] ]);
 person;
 ← Map {"firstName" =&gt; "Abbas", "lastName" =&gt; "Moqaddam", "age" =&gt; 33}
 </code></pre>
-<p>&nbsp;</p>
-<h3>متدها و خواص نقشه‌ها</h3>
-<p style="text-align: justify;">با استفاده از خاصیت size می‌توان تعداد اعضای یک نقشه را به دست آورد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p>&nbsp;</p>
+    <h3>متدها و خواص نقشه‌ها</h3>
+    <p style="text-align: justify;">با استفاده از خاصیت size می‌توان تعداد اعضای یک نقشه را به دست آورد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let person = new Map();
 person.set('firstName' ,  'Abbas').set('lastName' , 'Moqaddam').set('age' , 33);
 person.size;
 ← 3
 </code></pre>
-<p style="text-align: justify;">با استفاده از متد get نیز می‌توان مقدار یک عضو را به واسطه‌ی کلید آن عضو به دست آورد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">با استفاده از متد get نیز می‌توان مقدار یک عضو را به واسطه‌ی کلید آن عضو به دست
+        آورد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let person = new Map();
 person.set('firstName' ,  'Abbas').set('lastName' , 'Moqaddam').set('age' , 33);
 person.get('lastName');
 ← "Moqaddam"
 </code></pre>
-<p style="text-align: justify;">در نقشه‌ها نیز مانند مجموعه‌ها، می‌توان از متد delete برای حذف یک عضو از نقشه استفاده کرد. این متد در صورت وجود عضو مورد نظر، آن را حذف کرده و مقدار true را بازمی‌گرداند. و در صورت عدم وجود عضو مورد نظر، مقدار false را بازمی‌گرداند. همچنین از متد clear نیز می‌توان برای حذف تمام اعضای یک نقشه استفاده کرد. به قطعه کد زیر توجه کنید.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p style="text-align: justify;">در نقشه‌ها نیز مانند مجموعه‌ها، می‌توان از متد delete برای حذف یک عضو از نقشه
+        استفاده کرد. این متد در صورت وجود عضو مورد نظر، آن را حذف کرده و مقدار true را بازمی‌گرداند. و در صورت عدم وجود
+        عضو مورد نظر، مقدار false را بازمی‌گرداند. همچنین از متد clear نیز می‌توان برای حذف تمام اعضای یک نقشه استفاده
+        کرد. به قطعه کد زیر توجه کنید.</p>
+    <pre class="ltr"><code class="language-javascript">
 let person = new Map();
 person.set('firstName' ,  'Abbas').set('lastName' , 'Moqaddam').set('age' , 33);
 ← Map {"firstName" =&gt; "Abbas", "lastName" =&gt; "Moqaddam", "age" =&gt; 33}
@@ -65,10 +82,13 @@ person.clear();
 person;
 ← Map {}
 </code></pre>
-<p>&nbsp;</p>
-<h3>تبدیل نقشه‌ها به آرایه</h3>
-<p style="text-align: justify;">در بخش قبل دیدیم که مجموعه‌ها را می‌توان به دو روش به آرایه تبدیل کرد. برای تبدیل نقشه‌ها به آرایه نیز دقیقاً از همان دو روش می‌توان استفاده کرد. یعنی استفاده از عملگر spread داخل علامت &#8220;[ ]&#8221;، و همچنین استفاده از متد Array.from و ارسال نقشه‌ی مورد نظر به این متد. قطعه کد زیر نحوه‌ی انجام این کار را به هر دو روش ذکر شده نشان می‌دهد.</p>
-<pre class="ltr"><code class="language-javascript">
+    <p>&nbsp;</p>
+    <h3>تبدیل نقشه‌ها به آرایه</h3>
+    <p style="text-align: justify;">در بخش قبل دیدیم که مجموعه‌ها را می‌توان به دو روش به آرایه تبدیل کرد. برای تبدیل
+        نقشه‌ها به آرایه نیز دقیقاً از همان دو روش می‌توان استفاده کرد. یعنی استفاده از عملگر spread داخل علامت &#8220;[
+        ]&#8221;، و همچنین استفاده از متد Array.from و ارسال نقشه‌ی مورد نظر به این متد. قطعه کد زیر نحوه‌ی انجام این
+        کار را به هر دو روش ذکر شده نشان می‌دهد.</p>
+    <pre class="ltr"><code class="language-javascript">
 let personMap = new Map();
 personMap.set('firstName' ,  'Abbas').set('lastName' , 'Moqaddam');
 ← Map {"firstName" =&gt; "Abbas", "lastName" =&gt; "Moqaddam"}
@@ -77,7 +97,9 @@ let personArray = [...personMap];
 personArray = Array.from(personMap);
 ← [ ["firstName" , "Abbas"] , ["lastName" , "Moqaddam"] ]
 </code></pre>
-<p style="text-align: justify;">توجه کنید که نقشه‌ها در زمان تبدیل شدن به آرایه، به آرایه‌های دو بُعدی تبدیل می‌شوند. زیرا هر عضو از نقشه دارای یک کلید و یک مقدار است که باید به یک آرایه با طول ۲ تبدیل شود.</p>
-<p style="text-align: justify;">همچنین توجه کنید که در جاوا اسکریپت نوع دیگری از نقشه‌ها نیز وجود دارد. این نوع از نقشه‌ها با عنوان نقشه‌های ضعیف (WeakMaps) شناخته می‌شوند. در فصل ۱۱ در مورد این نوع از نقشه‌ها و خواص آنها بیشتر صحبت خواهیم کرد.</p>
+    <p style="text-align: justify;">توجه کنید که نقشه‌ها در زمان تبدیل شدن به آرایه، به آرایه‌های دو بُعدی تبدیل
+        می‌شوند. زیرا هر عضو از نقشه دارای یک کلید و یک مقدار است که باید به یک آرایه با طول ۲ تبدیل شود.</p>
+    <p style="text-align: justify;">همچنین توجه کنید که در جاوااسکریپت نوع دیگری از نقشه‌ها نیز وجود دارد. این نوع از
+        نقشه‌ها با عنوان نقشه‌های ضعیف (WeakMaps) شناخته می‌شوند. در فصل ۱۱ در مورد این نوع از نقشه‌ها و خواص آنها بیشتر
+        صحبت خواهیم کرد.</p>
 </div>
-                
