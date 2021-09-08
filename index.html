@@ -14,16 +14,14 @@
 	<div class="inventory"></div>
 	<div class="container"></div>
 
-	<!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
-	<!-- <script src="https://unpkg.com/@babel/helper-module-imports"></script> -->
-
 	<script type="module">
 		import T, { test2 } from "./src/helpers/test.js";
 		import fetchInventory from "./src/components/Sidebar.js";
 		import getCourse from "./src/components/Course.js";
 		import Setting from './src/helpers/setting.js'
 
-
+		import './src/helpers/handleSidebar.js';
+		import getLessonContent from './src/helpers/handleCourse.js';
 
 		(async () => {
 			// put inventory content in sidebar 
@@ -43,9 +41,8 @@
 			const config = await Setting();
 			document.body.style.fontFamily = config.fontFamily; // load and set font
 		})();
+
 	</script>
-	<script src="src/helpers/handleSidebar.js"></script>
-	<script src="src/helpers/handleCourse.js"></script>
 </body>
 
 </html>

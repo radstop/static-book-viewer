@@ -1,4 +1,4 @@
-window.addEventListener(
+export default window.addEventListener(
   "load",
   function () {
     // control hide/show of sidebar items
@@ -15,7 +15,7 @@ window.addEventListener(
       });
     });
 
-    // control collaps-in and collapse-out sidebar menu
+    // control collapse-in and collapse-out sidebar menu
     document
       .querySelector(".menu__toggle-btn")
       .addEventListener("click", function (e) {
