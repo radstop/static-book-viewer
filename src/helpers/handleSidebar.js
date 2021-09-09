@@ -1,4 +1,4 @@
-export default window.addEventListener(
+window.addEventListener(
   "load",
   function () {
     // control hide/show of sidebar items

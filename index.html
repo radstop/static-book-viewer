@@ -14,35 +14,7 @@
 	<div class="inventory"></div>
 	<div class="container"></div>
 
-	<script type="module">
-		import T, { test2 } from "./src/helpers/test.js";
-		import fetchInventory from "./src/components/Sidebar.js";
-		import getCourse from "./src/components/Course.js";
-		import Setting from './src/helpers/setting.js'
-
-		import './src/helpers/handleSidebar.js';
-		import getLessonContent from './src/helpers/handleCourse.js';
-
-		(async () => {
-			// put inventory content in sidebar 
-			const res = await fetchInventory();
-			document.querySelector(".inventory").innerHTML = res;
-			// get first lesson content
-			getLessonContent(1, getCourse);
-			// get clicked lesson content
-			document.querySelectorAll(".menu__item a").forEach(lessonLink => {
-				lessonLink.addEventListener("click", async function (e) {
-					e.preventDefault();
-					getLessonContent(lessonLink.dataset.link, getCourse);
-					window.scrollTo(0, 0);
-				});
-			});
-
-			const config = await Setting();
-			document.body.style.fontFamily = config.fontFamily; // load and set font
-		})();
-
-	</script>
+	<script type="module" src="src/App.js"></script>
 </body>
 
 </html>
