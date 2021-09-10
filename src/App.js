@@ -19,7 +19,8 @@ import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/remove-initi
     getLessonContent(Number(window.location.hash.replace("#", "")), getCourse);
   } else {
     // get first lesson content
-    getLessonContent(1, getCourse);
+    getLessonContent(0, getCourse);
+    window.location.hash = 0;
   }
 
   window.addEventListener("hashchange", () => {
