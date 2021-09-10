@@ -16,4 +16,10 @@ export default async function getLessonContent(lessonID, callbackFunc) {
   });
   const selectedItem = document.querySelector(`[data-link='${lessonID}']`);
   selectedItem.parentNode.className = "submenu--active";
+
+  if (!document.querySelector(".menu__item--open")) {
+    document
+      .querySelector(".submenu--active")
+      .parentNode.parentNode.classList.add("menu__item--open");
+  }
 }

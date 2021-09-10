@@ -84,7 +84,8 @@
       max-height: 550px;
       color: #000;
 
-      button {
+      button,
+      ul li a {
         color: #000 !important;
       }
     }
@@ -138,7 +139,7 @@
       color: teal;
 
       a {
-        color: teal;
+        color: teal !important;
       }
     }
   }

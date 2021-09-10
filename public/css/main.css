@@ -199,7 +199,8 @@ img {
   max-height: 550px;
   color: #000;
 }
-.menu__item--open button {
+.menu__item--open button,
+.menu__item--open ul li a {
   color: #000 !important;
 }
 .menu__item--active {
@@ -242,7 +243,7 @@ img {
   color: teal;
 }
 .menu .submenu--active a {
-  color: teal;
+  color: teal !important;
 }
 
 /*# sourceMappingURL=main.css.map */
