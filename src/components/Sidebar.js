@@ -1,5 +1,5 @@
 async function fetchInventory() {
-  const response = await fetch("src/resources/inventory.json");
+  const response = await fetch("../src/resources/inventory.json");
 
   let data = await response.json();
 
