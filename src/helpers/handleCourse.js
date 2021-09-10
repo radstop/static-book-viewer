@@ -3,6 +3,7 @@
  * @param {number} lessonID
  * @param {Function} callbackFunc
  */
+
 export default async function getLessonContent(lessonID, callbackFunc) {
   const [clickedPageTitle, mainContent] = await callbackFunc(lessonID);
   document.title = clickedPageTitle;
@@ -11,12 +12,14 @@ export default async function getLessonContent(lessonID, callbackFunc) {
 
   window.Prism.highlightAll();
 
+  // set active to selected lesson
   document.querySelectorAll(".submenu--active").forEach((item) => {
     item.classList.remove("submenu--active");
   });
   const selectedItem = document.querySelector(`[data-link='${lessonID}']`);
   selectedItem.parentNode.className = "submenu--active";
 
+  // open submenu after page load
   if (!document.querySelector(".menu__item--open")) {
     document
       .querySelector(".submenu--active")
