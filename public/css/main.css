@@ -157,6 +157,9 @@ img {
   opacity: 0;
   animation: showMenuIcon 0.5s ease-in-out forwards;
 }
+.menu__collapse .menu__toggle-btn svg {
+  transform: rotate(180deg);
+}
 .menu__toggle-btn {
   cursor: pointer;
   height: 1rem;
@@ -164,6 +167,9 @@ img {
   position: relative;
   z-index: 2;
   padding-right: 0.6rem;
+}
+.menu__toggle-btn svg {
+  transition: all 0.3s;
 }
 .menu ul {
   margin: 0;
