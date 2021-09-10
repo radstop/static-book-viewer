@@ -44,7 +44,7 @@ body {
 
 .container {
   max-width: 1200px;
-  margin-right: 350px;
+  margin-right: 320px;
   padding: 1.5rem 2rem;
   transition: margin-right 0.4s;
 }
@@ -126,7 +126,7 @@ img {
 
 .menu {
   padding: 1rem 0;
-  width: 350px;
+  width: 320px;
   height: 100%;
   transition: all 0.3s;
   position: fixed;
@@ -150,7 +150,7 @@ img {
   }
 }
 .menu__collapse {
-  right: -350px;
+  right: -320px;
 }
 .menu__collapse .menu__toggle-btn {
   position: absolute;
