@@ -6,6 +6,7 @@
 export default async function getLessonContent(lessonID, callbackFunc) {
   const [clickedPageTitle, mainContent] = await callbackFunc(lessonID);
   document.title = clickedPageTitle;
+
   document.querySelector(".container").innerHTML = mainContent;
 
   window.Prism.highlightAll();

@@ -17,13 +17,20 @@ import(
   // put inventory content in sidebar
   const res = await fetchInventory();
   document.querySelector(".inventory").innerHTML = res;
-  // get first lesson content
-  getLessonContent(1, getCourse);
+
+  if (Number(window.location.hash.replace("#", ""))) {
+    getLessonContent(Number(window.location.hash.replace("#", "")), getCourse);
+  } else {
+    // get first lesson content
+    getLessonContent(1, getCourse);
+  }
+
   // get clicked lesson content
   document.querySelectorAll(".menu__item a").forEach((lessonLink) => {
     lessonLink.addEventListener("click", async function (e) {
       e.preventDefault();
       getLessonContent(lessonLink.dataset.link, getCourse);
+      window.location.hash = lessonLink.dataset.link;
       window.scrollTo(0, 0);
     });
   });
