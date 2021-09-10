@@ -6,6 +6,12 @@ import "./helpers/handleSidebar.js";
 import getLessonContent from "./helpers/handleCourse.js";
 
 import("https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.js");
+import(
+  "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/toolbar/prism-toolbar.min.js"
+);
+import(
+  "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"
+);
 
 (async () => {
   // put inventory content in sidebar
