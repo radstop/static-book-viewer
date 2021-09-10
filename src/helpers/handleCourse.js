@@ -10,4 +10,10 @@ export default async function getLessonContent(lessonID, callbackFunc) {
   document.querySelector(".container").innerHTML = mainContent;
 
   window.Prism.highlightAll();
+
+  document.querySelectorAll(".submenu--active").forEach((item) => {
+    item.classList.remove("submenu--active");
+  });
+  const selectedItem = document.querySelector(`[data-link='${lessonID}']`);
+  selectedItem.parentNode.className = "submenu--active";
 }

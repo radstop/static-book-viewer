@@ -197,10 +197,10 @@ img {
 }
 .menu__item--open {
   max-height: 550px;
-  color: teal;
+  color: #000;
 }
 .menu__item--open button {
-  color: teal !important;
+  color: #000 !important;
 }
 .menu__item--active {
   text-indent: 0.3rem;
@@ -226,6 +226,7 @@ img {
   padding: 0 1rem;
   display: block;
   font-family: inherit;
+  color: #777;
 }
 .menu__item a {
   padding: 0.5rem;
@@ -235,6 +236,13 @@ img {
 }
 .menu__item a:hover {
   text-indent: 0.3rem;
+}
+.menu .submenu--active {
+  font-weight: bold;
+  color: teal;
+}
+.menu .submenu--active a {
+  color: teal;
 }
 
 /*# sourceMappingURL=main.css.map */
