@@ -128,7 +128,6 @@ img {
   padding: 1rem 0;
   width: 350px;
   height: 100%;
-  overflow-x: hidden;
   transition: all 0.3s;
   position: fixed;
   padding-top: 45px;
@@ -140,8 +139,23 @@ img {
     max-width: 100%;
   }
 }
+@keyframes showMenuIcon {
+  from {
+    opacity: 0;
+    left: 0;
+  }
+  to {
+    opacity: 1;
+    left: -2rem;
+  }
+}
 .menu__collapse {
   right: -350px;
+}
+.menu__collapse .menu__toggle-btn {
+  position: absolute;
+  opacity: 0;
+  animation: showMenuIcon 0.5s ease-in-out forwards;
 }
 .menu__toggle-btn {
   cursor: pointer;
@@ -149,6 +163,7 @@ img {
   line-height: 1rem;
   position: relative;
   z-index: 2;
+  padding-right: 0.6rem;
 }
 .menu ul {
   margin: 0;

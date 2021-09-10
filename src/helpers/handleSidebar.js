@@ -20,7 +20,7 @@ window.addEventListener(
       .querySelector(".menu__toggle-btn")
       .addEventListener("click", function (e) {
         e.preventDefault();
-        this.nextElementSibling.classList.toggle("menu__collapse");
+        document.querySelector(".menu").classList.toggle("menu__collapse");
         document
           .querySelector(".container")
           .classList.toggle("container__with_sb");

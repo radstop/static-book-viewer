@@ -2,7 +2,6 @@
   padding: 1rem 0;
   width: $sidebar_width;
   height: 100%;
-  overflow-x: hidden;
   transition: all 0.3s;
   position: fixed;
   padding-top: 45px;
@@ -13,8 +12,26 @@
     max-width: 100%;
   }
 
+  @keyframes showMenuIcon {
+    from {
+      opacity: 0;
+      left: 0;
+    }
+
+    to {
+      opacity: 1;
+      left: -2rem;
+    }
+  }
+
   &__collapse {
     right: -1 * $sidebar_width;
+
+    .menu__toggle-btn {
+      position: absolute;
+      opacity: 0;
+      animation: showMenuIcon 0.5s ease-in-out forwards;
+    }
   }
 
   &__toggle-btn {
@@ -23,6 +40,7 @@
     line-height: 1rem;
     position: relative;
     z-index: 2;
+    padding-right: 0.6rem;
   }
 
   ul {
