@@ -25,6 +25,10 @@ import(
     getLessonContent(1, getCourse);
   }
 
+  window.addEventListener("hashchange", () => {
+    getLessonContent(Number(window.location.hash.replace("#", "")), getCourse);
+  });
+
   // get clicked lesson content
   document.querySelectorAll(".menu__item a").forEach((lessonLink) => {
     lessonLink.addEventListener("click", async function (e) {
