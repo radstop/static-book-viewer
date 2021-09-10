@@ -7,9 +7,12 @@
   padding-top: 45px;
   top: 0;
   right: 0;
+  z-index: 10;
 
-  @media screen and (max-width: 600px) {
-    max-width: 100%;
+  @include respond-below(sm) {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
   }
 
   @keyframes showMenuIcon {
