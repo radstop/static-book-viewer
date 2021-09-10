@@ -197,6 +197,10 @@ img {
 }
 .menu__item--open {
   max-height: 550px;
+  color: teal;
+}
+.menu__item--open button {
+  color: teal !important;
 }
 .menu__item--active {
   text-indent: 0.3rem;

@@ -82,6 +82,11 @@
 
     &--open {
       max-height: 550px;
+      color: teal;
+
+      button {
+        color: teal !important;
+      }
     }
 
     &--active {
