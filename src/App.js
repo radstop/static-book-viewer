@@ -5,6 +5,8 @@ import Setting from "./helpers/setting.js";
 import "./helpers/handleSidebar.js";
 import getLessonContent from "./helpers/handleCourse.js";
 
+import("https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.js");
+
 (async () => {
   // put inventory content in sidebar
   const res = await fetchInventory();
