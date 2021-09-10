@@ -1,17 +1,14 @@
 import fetchInventory from "./components/Sidebar.js";
 import getCourse from "./components/Course.js";
 import Setting from "./helpers/setting.js";
-
-import "./helpers/handleSidebar.js";
 import getLessonContent from "./helpers/handleCourse.js";
 
-import("https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.js");
-import(
-  "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/toolbar/prism-toolbar.min.js"
-);
-import(
-  "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"
-);
+import "./helpers/handleSidebar.js";
+
+import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.js";
+import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/toolbar/prism-toolbar.min.js";
+import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js";
+import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/remove-initial-line-feed/prism-remove-initial-line-feed.min.js";
 
 (async () => {
   // put inventory content in sidebar
@@ -35,7 +32,10 @@ import(
       e.preventDefault();
       getLessonContent(lessonLink.dataset.link, getCourse);
       window.location.hash = lessonLink.dataset.link;
-      window.scrollTo(0, 0);
+      window.scroll({
+        top: 0,
+        behavior: "smooth", // 👈
+      });
     });
   });
 
