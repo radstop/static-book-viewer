@@ -5,10 +5,10 @@ import getLessonContent from "./helpers/handleCourse.js";
 
 import "./helpers/handleSidebar.js";
 
-import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.js";
-import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/toolbar/prism-toolbar.min.js";
-import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js";
-import "https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/remove-initial-line-feed/prism-remove-initial-line-feed.min.js";
+import "./vendor/prismjs/prism.min.js";
+import "./vendor/prismjs/prism-toolbar.min.js";
+import "./vendor/prismjs/prism-copy-to-clipboard.min.js";
+import "./vendor/prismjs/prism-remove-initial-line-feed.min.js";
 
 (async () => {
   // put inventory content in sidebar
