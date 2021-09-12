@@ -12,12 +12,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(4rem);
 
   @include respond-below(sm) {
     background: rgba($color: #fff, $alpha: 0.5);
     box-shadow: 0 0 5px 5px rgba($color: #fff, $alpha: 0.5);
     backdrop-filter: blur(2px);
-    transform: translateY(4rem);
   }
 
   svg {
