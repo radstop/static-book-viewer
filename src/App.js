@@ -1,9 +1,11 @@
 import fetchInventory from "./components/Sidebar.js";
 import getCourse from "./components/Course.js";
+
 import Setting from "./helpers/setting.js";
 import getLessonContent from "./helpers/handleCourse.js";
 
 import "./helpers/handleSidebar.js";
+import "./components/GoTop.js";
 
 import "./vendor/all.js";
 

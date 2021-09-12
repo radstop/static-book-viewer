@@ -10,6 +10,7 @@ body {
   max-width: 1200px;
   margin-right: $sidebar_width;
   padding: 1.5rem 2rem;
+  padding-bottom: 5rem;
   transition: margin-right 0.4s;
 
   &__with_sb {

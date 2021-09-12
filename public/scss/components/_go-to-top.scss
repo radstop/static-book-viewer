@@ -1,0 +1,40 @@
+.go-to-top {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  border-radius: 50%;
+  z-index: 20;
+  width: 3rem;
+  height: 3rem;
+  opacity: 0;
+  transition: all 0.5s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include respond-below(sm) {
+    background: rgba($color: #fff, $alpha: 0.5);
+    box-shadow: 0 0 5px 5px rgba($color: #fff, $alpha: 0.5);
+    backdrop-filter: blur(2px);
+    transform: translateY(4rem);
+  }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    fill: #777 !important;
+    transition: all 0.3s;
+  }
+
+  &--show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    svg {
+      fill: teal !important;
+    }
+  }
+}
