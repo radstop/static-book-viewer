@@ -1,3 +1,13 @@
+const handleSidebarOnWidth = () => {
+  if (window.innerWidth > 768) {
+    document.querySelector(".container").classList.add("container--with-sb");
+  } else {
+    document.querySelector(".container").classList.remove("container--with-sb");
+  }
+};
+
+handleSidebarOnWidth();
+
 window.addEventListener(
   "load",
   function () {
@@ -20,10 +30,20 @@ window.addEventListener(
       .querySelector(".menu__toggle-btn")
       .addEventListener("click", function (e) {
         e.preventDefault();
-        document.querySelector(".menu").classList.toggle("menu__collapse");
-        document
-          .querySelector(".container")
-          .classList.toggle("container__with_sb");
+
+        const menu = document.querySelector(".menu");
+
+        if (menu.classList.contains("menu__collapse")) {
+          menu.classList.remove("menu__collapse");
+          document
+            .querySelector(".container")
+            .classList.add("container--with-sb");
+        } else {
+          menu.classList.add("menu__collapse");
+          document
+            .querySelector(".container")
+            .classList.remove("container--with-sb");
+        }
       });
   },
   false

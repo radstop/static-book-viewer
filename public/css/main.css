@@ -44,15 +44,15 @@ body {
 
 .container {
   max-width: 1200px;
-  margin-right: 320px;
+  margin: 0 auto;
   padding: 1.5rem 2rem;
   padding-bottom: 5rem;
   transition: margin-right 0.4s;
 }
-.container__with_sb {
-  margin: 0 auto;
+.container--with-sb {
+  margin-right: 320px;
 }
-@media screen and (max-width: 600px) {
+@media (max-width: 767px) {
   .container {
     margin-right: 0;
   }
