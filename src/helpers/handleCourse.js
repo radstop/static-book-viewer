@@ -10,19 +10,21 @@ export default async function getLessonContent(lessonID, callbackFunc) {
 
   document.querySelector(".container").innerHTML = mainContent;
 
-  window.Prism.highlightAll();
+  if (clickedPageTitle !== "404") {
+    window.Prism.highlightAll();
 
   // set active to selected lesson
-  document.querySelectorAll(".submenu--active").forEach((item) => {
-    item.classList.remove("submenu--active");
-  });
-  const selectedItem = document.querySelector(`[data-link='${lessonID}']`);
-  selectedItem.parentNode.className = "submenu--active";
+    document.querySelectorAll(".submenu--active").forEach((item) => {
+      item.classList.remove("submenu--active");
+    });
+    const selectedItem = document.querySelector(`[data-link='${lessonID}']`);
+    selectedItem.parentNode.className = "submenu--active";
 
-  // open submenu after page load
-  if (!document.querySelector(".menu__item--open")) {
-    document
-      .querySelector(".submenu--active")
-      .parentNode.parentNode.classList.add("menu__item--open");
+    // open submenu after page load
+    if (!document.querySelector(".menu__item--open")) {
+      document
+        .querySelector(".submenu--active")
+        .parentNode.parentNode.classList.add("menu__item--open");
+    }
   }
 }
