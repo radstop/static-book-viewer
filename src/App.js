@@ -26,6 +26,10 @@ import "./vendor/all.js";
 
   window.addEventListener("hashchange", () => {
     getLessonContent(Number(window.location.hash.replace("#", "")), getCourse);
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
   });
 
   // get clicked lesson content
@@ -34,10 +38,6 @@ import "./vendor/all.js";
       e.preventDefault();
       getLessonContent(lessonLink.dataset.link, getCourse);
       window.location.hash = lessonLink.dataset.link;
-      window.scroll({
-        top: 0,
-        behavior: "smooth", // 👈
-      });
     });
   });
 
