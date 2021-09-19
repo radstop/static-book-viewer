@@ -4,16 +4,20 @@
  * @param {Function} callbackFunc
  */
 
+import Navigation from "../components/Navigation.js";
+
 export default async function getLessonContent(lessonID, callbackFunc) {
   const [clickedPageTitle, mainContent] = await callbackFunc(lessonID);
   document.title = clickedPageTitle;
 
-  document.querySelector(".container").innerHTML = mainContent;
+  document.querySelector(".container .post").innerHTML = mainContent;
+  document.querySelector(".container .navigation").innerHTML =
+    Navigation(lessonID);
 
   if (clickedPageTitle !== "404") {
     window.Prism.highlightAll();
 
-  // set active to selected lesson
+    // set active to selected lesson
     document.querySelectorAll(".submenu--active").forEach((item) => {
       item.classList.remove("submenu--active");
     });
