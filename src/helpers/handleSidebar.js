@@ -11,6 +11,10 @@ handleSidebarOnWidth();
 window.addEventListener(
   "load",
   function () {
+    // default collapse sidebar on mobile size
+    if (window.innerWidth < 768) {
+      document.querySelector(".menu").classList.add("menu__collapse");
+    }
     // control hide/show of sidebar items
     document.querySelectorAll(".menu__item button").forEach(function (button) {
       button.addEventListener("click", function (e) {
