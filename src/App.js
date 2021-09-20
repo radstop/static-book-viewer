@@ -1,5 +1,4 @@
 import fetchInventory from "./components/Sidebar.js";
-import getCourse from "./components/Course.js";
 
 import Setting from "./helpers/setting.js";
 import getLessonContent from "./helpers/handleCourse.js";
@@ -14,16 +13,19 @@ import "./vendor/all.js";
   const res = await fetchInventory();
   document.querySelector(".inventory").innerHTML = res;
 
-  if (Number(window.location.hash.replace("#", ""))) {
-    getLessonContent(Number(window.location.hash.replace("#", "")), getCourse);
+  const currentHash = Number(window.location.hash.replace("#", ""));
+
+  if (currentHash) {
+    getLessonContent(currentHash);
   } else {
     // get first lesson content
-    getLessonContent(0, getCourse);
+    getLessonContent(0);
     window.location.hash = 0;
   }
 
   window.addEventListener("hashchange", () => {
-    getLessonContent(Number(window.location.hash.replace("#", "")), getCourse);
+    getLessonContent(Number(window.location.hash.replace("#", "")));
+
     window.scroll({
       top: 0,
       behavior: "smooth",
@@ -34,7 +36,7 @@ import "./vendor/all.js";
   document.querySelectorAll(".menu__item a").forEach((lessonLink) => {
     lessonLink.addEventListener("click", async function (e) {
       e.preventDefault();
-      getLessonContent(lessonLink.dataset.link, getCourse);
+      getLessonContent(lessonLink.dataset.link);
       window.location.hash = lessonLink.dataset.link;
     });
   });
