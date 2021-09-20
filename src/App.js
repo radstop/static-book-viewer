@@ -4,8 +4,6 @@ import getCourse from "./components/Course.js";
 import Setting from "./helpers/setting.js";
 import getLessonContent from "./helpers/handleCourse.js";
 
-import Navigation from "./components/Navigation.js";
-
 import "./helpers/handleSidebar.js";
 import "./components/GoTop.js";
 
