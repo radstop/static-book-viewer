@@ -47,7 +47,6 @@ body {
   margin: 0 auto;
   padding: 1.5rem 2rem;
   padding-bottom: 5rem;
-  transition: margin-right 0.4s;
 }
 .container--with-sb {
   margin-right: 320px;
@@ -55,6 +54,8 @@ body {
 @media (max-width: 767px) {
   .container {
     margin-right: 0;
+    padding: 0.5rem;
+    padding-bottom: 6rem;
   }
 }
 
@@ -87,9 +88,14 @@ img {
 
 .card {
   background: #fff;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+@media (max-width: 767px) {
+  .card {
+    padding: 1rem;
+  }
 }
 .card__header {
   border-bottom: 2px solid #eee;
@@ -101,26 +107,28 @@ img {
 .btn {
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 3px;
   box-sizing: border-box;
   display: inline-block;
   transition: background 0.3s, box-shadow 0.3s;
   cursor: pointer;
   font-size: 1rem;
   font-family: inherit;
+  border-radius: 3px;
 }
 .btn:active {
   transform: translateY(-2px);
 }
 .btn--primary {
-  background: #fdb827;
-  color: #fff;
+  color: #333;
+  border: 1px solid #555;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 }
 .btn--primary:hover {
-  background: #efa302;
+  background: #fff;
 }
 .btn--secondary {
   background: #364f6b;
+  box-shadow: 3px 3px 0 rgba(54, 79, 107, 0.1);
   color: #fff;
 }
 .btn--secondary:hover {
@@ -128,6 +136,7 @@ img {
 }
 .btn--success {
   background: #81b214;
+  box-shadow: 3px 3px 0 rgba(129, 178, 20, 0.1);
   color: #fff;
 }
 .btn--success:hover {
@@ -135,6 +144,7 @@ img {
 }
 .btn--danger {
   background: #ff5d6c;
+  box-shadow: 3px 3px 0 rgba(255, 93, 108, 0.1);
   color: #fff;
 }
 .btn--danger:hover {
@@ -147,7 +157,7 @@ img {
   height: 100%;
   transition: all 0.3s;
   position: fixed;
-  padding-top: 45px;
+  padding-top: 4rem;
   top: 0;
   right: 0;
   z-index: 10;
@@ -173,7 +183,6 @@ img {
   right: -320px;
 }
 .menu__collapse .menu__toggle-btn {
-  position: absolute;
   opacity: 0;
   animation: showMenuIcon 0.5s ease-in-out forwards;
 }
@@ -184,7 +193,8 @@ img {
   cursor: pointer;
   height: 1rem;
   line-height: 1rem;
-  position: relative;
+  position: absolute;
+  top: 2rem;
   z-index: 2;
   padding-right: 0.6rem;
 }
@@ -306,14 +316,9 @@ img {
 .navigation {
   display: flex;
   justify-content: space-between;
+  padding-top: 3rem;
 }
 .navigation a {
-  color: #333;
-  border: 1px solid #555;
-  border-radius: 3px;
-  padding: 0.3rem 0.5rem;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.3s;
   display: flex;
   align-items: center;
 }
@@ -321,9 +326,6 @@ img {
   width: 1rem;
   height: 1rem;
   transition: all 0.3s;
-}
-.navigation a:hover {
-  background: #fff;
 }
 .navigation a:hover svg {
   width: 1.5rem;

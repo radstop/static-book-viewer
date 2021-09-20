@@ -1,32 +1,27 @@
 import fetchInventory from "./components/Sidebar.js";
-import getCourse from "./components/Course.js";
+import "./components/GoTop.js";
 
 import Setting from "./helpers/setting.js";
 import getLessonContent from "./helpers/handleCourse.js";
-
-import Navigation from "./components/Navigation.js";
-
 import "./helpers/handleSidebar.js";
-import "./components/GoTop.js";
+import "./helpers/hashChange.js";
 
 import "./vendor/all.js";
 
 (async () => {
   // put inventory content in sidebar
   const res = await fetchInventory();
-  document.querySelector(".inventory").innerHTML = res;
+  document.querySelector("body").innerHTML += res;
 
-  if (Number(window.location.hash.replace("#", ""))) {
-    getLessonContent(Number(window.location.hash.replace("#", "")), getCourse);
+  const currentHash = Number(window.location.hash.replace("#", ""));
+
+  if (currentHash) {
+    getLessonContent(currentHash);
   } else {
     // get first lesson content
-    getLessonContent(0, getCourse);
+    getLessonContent(0);
     window.location.hash = 0;
   }
-
-  window.addEventListener("hashchange", () => {
-    getLessonContent(Number(window.location.hash.replace("#", "")), getCourse);
-  });
 
   // get clicked lesson content
   document.querySelectorAll(".menu__item a").forEach((lessonLink) => {
@@ -36,12 +31,8 @@ import "./vendor/all.js";
           document.querySelector(".menu").classList.add("menu__collapse");
       }
       e.preventDefault();
-      getLessonContent(lessonLink.dataset.link, getCourse);
+      getLessonContent(lessonLink.dataset.link);
       window.location.hash = lessonLink.dataset.link;
-      window.scroll({
-        top: 0,
-        behavior: "smooth", // 👈
-      });
     });
   });
 

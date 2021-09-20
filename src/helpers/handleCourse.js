@@ -5,9 +5,10 @@
  */
 
 import Navigation from "../components/Navigation.js";
+import getCourse from "../components/Course.js";
 
-export default async function getLessonContent(lessonID, callbackFunc) {
-  const [clickedPageTitle, mainContent] = await callbackFunc(lessonID);
+export default async function getLessonContent(lessonID) {
+  const [clickedPageTitle, mainContent] = await getCourse(lessonID);
   document.title = clickedPageTitle;
 
   document.querySelector(".container .post").innerHTML = mainContent;
