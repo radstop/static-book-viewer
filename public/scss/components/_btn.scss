@@ -1,29 +1,31 @@
 .btn {
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 3px;
   box-sizing: border-box;
   display: inline-block;
   transition: background 0.3s, box-shadow 0.3s;
   cursor: pointer;
   font-size: 1rem;
   font-family: inherit;
+  border-radius: 3px;
 
   &:active {
     transform: translateY(-2px);
   }
 
   &--primary {
-    background: $primary_color;
-    color: #fff;
+    color: #333;
+    border: 1px solid #555;
+    box-shadow: 3px 3px 0 rgba($color: #000000, $alpha: 0.1);
 
     &:hover {
-      background: darken($color: $primary_color, $amount: 10%);
+      background: #fff;
     }
   }
 
   &--secondary {
     background: $secondary_color;
+    box-shadow: 3px 3px 0 rgba($color: $secondary_color, $alpha: 0.1);
     color: #fff;
 
     &:hover {
@@ -33,6 +35,7 @@
 
   &--success {
     background: $success_color;
+    box-shadow: 3px 3px 0 rgba($color: $success_color, $alpha: 0.1);
     color: #fff;
 
     &:hover {
@@ -42,6 +45,7 @@
 
   &--danger {
     background: $danger_color;
+    box-shadow: 3px 3px 0 rgba($color: $danger_color, $alpha: 0.1);
     color: #fff;
 
     &:hover {

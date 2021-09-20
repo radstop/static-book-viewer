@@ -4,12 +4,6 @@
   padding-top: 3rem;
 
   a {
-    color: #333;
-    border: 1px solid #555;
-    border-radius: 3px;
-    padding: 0.3rem 0.5rem;
-    box-shadow: 3px 3px 0 rgba($color: #000000, $alpha: 0.1);
-    transition: all 0.3s;
     display: flex;
     align-items: center;
 
@@ -20,8 +14,6 @@
     }
 
     &:hover {
-      background: #fff;
-
       svg {
         width: 1.5rem;
         height: 1.5rem;
