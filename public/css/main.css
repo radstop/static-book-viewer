@@ -332,4 +332,43 @@ img {
   height: 1.5rem;
 }
 
+.placeholder {
+  margin: 2rem 0;
+}
+@keyframes placeHolderAnimate {
+  from {
+    background-position: -1000px 0;
+  }
+  to {
+    background-position: 1000px 0;
+  }
+}
+
+.animatedBg {
+  animation-duration: 1.8s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderAnimate;
+  animation-timing-function: linear;
+  background: darkgray;
+  background: linear-gradient(to right, #fff 10%, #ddd 25%, #fff 33%);
+  background-size: 3000px 104px;
+  position: relative;
+  margin-bottom: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  border-radius: 3px;
+}
+.animatedBg__small {
+  height: 50px;
+  width: 40%;
+}
+.animatedBg__med {
+  height: 75px;
+  width: 80%;
+}
+.animatedBg__large {
+  height: 120px;
+  width: 100%;
+}
+
 /*# sourceMappingURL=main.css.map */
