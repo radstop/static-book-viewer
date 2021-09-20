@@ -1,10 +1,10 @@
 import fetchInventory from "./components/Sidebar.js";
+import "./components/GoTop.js";
 
 import Setting from "./helpers/setting.js";
 import getLessonContent from "./helpers/handleCourse.js";
-
 import "./helpers/handleSidebar.js";
-import "./components/GoTop.js";
+import "./helpers/hashChange.js";
 
 import "./vendor/all.js";
 
@@ -22,15 +22,6 @@ import "./vendor/all.js";
     getLessonContent(0);
     window.location.hash = 0;
   }
-
-  window.addEventListener("hashchange", () => {
-    getLessonContent(Number(window.location.hash.replace("#", "")));
-
-    window.scroll({
-      top: 0,
-      behavior: "smooth",
-    });
-  });
 
   // get clicked lesson content
   document.querySelectorAll(".menu__item a").forEach((lessonLink) => {
