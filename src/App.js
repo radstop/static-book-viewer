@@ -11,7 +11,7 @@ import "./vendor/all.js";
 (async () => {
   // put inventory content in sidebar
   const res = await fetchInventory();
-  document.querySelector(".inventory").innerHTML = res;
+  document.querySelector("body").innerHTML += res;
 
   const currentHash = Number(window.location.hash.replace("#", ""));
 

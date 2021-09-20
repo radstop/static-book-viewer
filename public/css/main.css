@@ -47,7 +47,6 @@ body {
   margin: 0 auto;
   padding: 1.5rem 2rem;
   padding-bottom: 5rem;
-  transition: margin-right 0.4s;
 }
 .container--with-sb {
   margin-right: 320px;
@@ -158,7 +157,7 @@ img {
   height: 100%;
   transition: all 0.3s;
   position: fixed;
-  padding-top: 45px;
+  padding-top: 4rem;
   top: 0;
   right: 0;
   z-index: 10;
@@ -184,7 +183,6 @@ img {
   right: -320px;
 }
 .menu__collapse .menu__toggle-btn {
-  position: absolute;
   opacity: 0;
   animation: showMenuIcon 0.5s ease-in-out forwards;
 }
@@ -195,7 +193,8 @@ img {
   cursor: pointer;
   height: 1rem;
   line-height: 1rem;
-  position: relative;
+  position: absolute;
+  top: 2rem;
   z-index: 2;
   padding-right: 0.6rem;
 }
