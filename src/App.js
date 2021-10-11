@@ -1,5 +1,6 @@
 import fetchInventory from "./components/Sidebar.js";
 import "./components/GoTop.js";
+import "./components/Theme.js";
 
 import Setting from "./helpers/setting.js";
 import getLessonContent from "./helpers/handleCourse.js";
@@ -7,6 +8,7 @@ import "./helpers/handleSidebar.js";
 import "./helpers/hashChange.js";
 
 import "./vendor/all.js";
+import setTheme from "./components/Theme.js";
 
 (async () => {
   // put inventory content in sidebar
@@ -38,4 +40,5 @@ import "./vendor/all.js";
 
   const config = await Setting();
   document.body.style.fontFamily = config.fontFamily; // load and set font
+  setTheme(config.theme);
 })();
