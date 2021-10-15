@@ -1,0 +1,41 @@
+body {
+    &.dark {
+        background-color: #121212;
+    
+        .card {
+          background-color: #302e2e;
+          color : #eeffff;
+        }
+        
+        .btn {
+          &--primary {
+            color:#eeffff;
+    
+            &:hover {
+              background-color: #222222;
+            }
+    
+            svg {
+              fill : rgba(255 , 255 , 255 , 0.5) !important;
+            }
+          }
+        }
+    
+        .menu {
+          &__item {
+            &--open {
+              button ,
+              ul li a {
+                color: #888888;
+              }
+            }
+          }
+    
+          .submenu {
+            &--active {
+              color: #008080;
+            }
+          }
+        }
+    }
+}
