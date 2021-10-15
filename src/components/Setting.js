@@ -1,8 +1,6 @@
 export default function Setting() {
 
-
-
-    const creator = document.querySelector('body')
+    document.querySelector('.container')
         .innerHTML +=
         `<div class="setting">
             <button class="setting__toggle">
@@ -14,7 +12,7 @@ export default function Setting() {
                 dfdfgdfgfdgfdg dfgfdgfdg  ggg
                 </div>
             </div>
-        </div>`
+        </div>`;
 
 
     document.querySelector('.setting__toggle').addEventListener('click', (e) => {
@@ -27,5 +25,5 @@ export default function Setting() {
         }
     });
 
-    return creator
+    // return creator
 }

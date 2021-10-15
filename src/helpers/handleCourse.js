@@ -12,15 +12,15 @@ export default async function getLessonContent(lessonID) {
   const [clickedPageTitle, mainContent] = await getCourse(lessonID);
   document.title = clickedPageTitle;
   // show placeholder
-  setPlaceholder();
+  // setPlaceholder();
 
   document.querySelector(".container .navigation").innerHTML =
     Navigation(lessonID);
 
   // load main content after 1500ms to show effect of placeholder
-  setTimeout(() => {
-    document.querySelector(".container .loading").innerHTML = "";
-    document.querySelector(".container .post").innerHTML = mainContent;
-    window.Prism.highlightAll();
-  }, 0);
+
+  document.querySelector(".container .loading").innerHTML = "";
+  document.querySelector(".container .post").innerHTML = mainContent;
+  window.Prism.highlightAll();
+
 }
