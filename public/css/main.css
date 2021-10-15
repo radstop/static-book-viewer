@@ -20,6 +20,30 @@
   font-stretch: 75% 125%;
   font-style: normal;
 }
+body.dark {
+  background-color: #121212;
+}
+body.dark .card {
+  background-color: #302e2e;
+  color: #eeffff;
+}
+body.dark .btn--primary {
+  color: #eeffff;
+}
+body.dark .btn--primary:hover {
+  background-color: #222222;
+}
+body.dark .btn--primary svg {
+  fill: rgba(255, 255, 255, 0.5) !important;
+}
+body.dark .menu__item--open button,
+body.dark .menu__item--open ul li a {
+  color: #888888;
+}
+body.dark .menu .submenu--active {
+  color: #008080;
+}
+
 html {
   font-size: 16px;
 }
@@ -40,9 +64,6 @@ body {
   background: #f1f1f1;
   color: #444;
   font-family: "Fira Sans", sans-serif;
-}
-body.dark {
-  background-color: #121212;
 }
 
 .container {
@@ -94,10 +115,6 @@ img {
   padding: 1rem 2rem;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-}
-.card--dark {
-  background-color: #302e2e;
-  color: #eeffff;
 }
 @media (max-width: 767px) {
   .card {
@@ -238,7 +255,7 @@ img {
 }
 .menu__item--open button,
 .menu__item--open ul li a {
-  color: #000 !important;
+  color: #000;
 }
 .menu__item--active {
   text-indent: 0.3rem;

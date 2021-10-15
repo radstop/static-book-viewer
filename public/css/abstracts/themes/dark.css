@@ -1,0 +1,25 @@
+body.dark {
+  background-color: #121212;
+}
+body.dark .card {
+  background-color: #302e2e;
+  color: #eeffff;
+}
+body.dark .btn--primary {
+  color: #eeffff;
+}
+body.dark .btn--primary:hover {
+  background-color: #222222;
+}
+body.dark .btn--primary svg {
+  fill: rgba(255, 255, 255, 0.5) !important;
+}
+body.dark .menu__item--open button,
+body.dark .menu__item--open ul li a {
+  color: #888888;
+}
+body.dark .menu .submenu--active {
+  color: #008080;
+}
+
+/*# sourceMappingURL=dark.css.map */
