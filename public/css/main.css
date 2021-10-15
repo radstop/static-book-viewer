@@ -339,6 +339,45 @@ img {
   height: 1.5rem;
 }
 
+.setting__toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: #fff;
+  width: 30px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 50%;
+  z-index: 10;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.setting__toggle svg {
+  fill: #555 !important;
+}
+.setting__toggle:hover {
+  background: orange;
+}
+.setting__toggle:hover svg {
+  fill: #fff !important;
+}
+.setting__content {
+  background: #ccc;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+.setting__content--active {
+  left: 0;
+}
+.setting__items {
+  display: inline-block;
+}
+
 .placeholder {
   margin: 2rem 0;
 }

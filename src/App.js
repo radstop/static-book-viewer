@@ -10,6 +10,8 @@ import "./helpers/hashChange.js";
 import "./vendor/all.js";
 import setTheme from "./components/Theme.js";
 
+import SettingComp from "./components/Setting.js";
+
 (async () => {
   // put inventory content in sidebar
   const res = await fetchInventory();
@@ -30,7 +32,7 @@ import setTheme from "./components/Theme.js";
     lessonLink.addEventListener("click", async function (e) {
       // default collapse sidebar on mobile size
       if (window.innerWidth < 768) {
-          document.querySelector(".menu").classList.add("menu__collapse");
+        document.querySelector(".menu").classList.add("menu__collapse");
       }
       e.preventDefault();
       getLessonContent(lessonLink.dataset.link);
@@ -41,4 +43,6 @@ import setTheme from "./components/Theme.js";
   const config = await Setting();
   document.body.style.fontFamily = config.fontFamily; // load and set font
   setTheme(config.theme);
+
+  SettingComp()
 })();
