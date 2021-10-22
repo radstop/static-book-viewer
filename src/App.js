@@ -44,6 +44,4 @@ import SettingComp from "./components/Setting.js";
   });
 
   SettingComp()
-
-
 })();

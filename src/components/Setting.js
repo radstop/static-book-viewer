@@ -1,11 +1,15 @@
 import HandleSettings, { setTheme, saveData } from '../helpers/handleSettings.js'
 
 export default async function Setting() {
+    // load and set exist setting data
     const config = await HandleSettings();
-    document.body.style.fontFamily = config.fontFamily; // load and set font
-    setTheme(config.theme);
+
 
     const { theme, fontFamily, fontSize } = config;
+
+    document.body.style.fontFamily = fontFamily;
+    document.body.style.fontSize = fontSize + 'px';
+    setTheme(theme);
 
     document.querySelector('.container')
         .innerHTML +=
@@ -70,6 +74,10 @@ export default async function Setting() {
 
         document.location.reload()
     })
+
+    // Todo: set latin font
+
+    // TODO: set to default settings
 
     // return creator
 }
