@@ -1,6 +1,5 @@
 import fetchInventory from "./components/Sidebar.js";
 import "./components/GoTop.js";
-import "./components/Theme.js";
 
 import getLessonContent from "./helpers/handleCourse.js";
 import "./helpers/handleSidebar.js";

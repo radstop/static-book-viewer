@@ -1,11 +1,11 @@
-import HandleSettings, { setTheme } from '../helpers/handleSettings.js'
+import HandleSettings, { setTheme, saveData } from '../helpers/handleSettings.js'
 
 export default async function Setting() {
     const config = await HandleSettings();
     document.body.style.fontFamily = config.fontFamily; // load and set font
     setTheme(config.theme);
 
-    const { theme, fontFamily, fontSize } = config
+    const { theme, fontFamily, fontSize } = config;
 
     document.querySelector('.container')
         .innerHTML +=
@@ -19,9 +19,15 @@ export default async function Setting() {
                     <h3>تنظیمات</h3>
 
                     <form id="setting_form">
-                        <input type="text" placeholder="font name" value="${fontFamily}" />
-                        <input type="text" placeholder="font size" value="${fontSize}" />
-                        <select>
+                        <select name="fontFamily">
+                            <option value="sahel">ساحل</option>
+                            <option value="vazir">وزیر</option>
+                            <option value="estedad">استعداد</option>
+                        </select>
+
+                        <input type="number" placeholder="font size" name="fontSize" value="${fontSize}" />
+
+                        <select name="theme">
                             <option value="default">Light</option>
                             <option value="dark">Dark</option>
                         </select>
@@ -32,7 +38,12 @@ export default async function Setting() {
             </div>
         </div>`;
 
+    // set current theme name to select
+    document.querySelector('#setting_form [name="fontFamily"]').value = fontFamily;
+    document.querySelector('#setting_form [name="theme"]').value = theme;
 
+
+    // toggle setting
     document.querySelector('.setting__toggle').addEventListener('click', (e) => {
         const settingContent = document.querySelector('.setting__content');
 
@@ -42,6 +53,23 @@ export default async function Setting() {
             settingContent.classList.add('setting__content--active');
         }
     });
+
+    // handle save data to setting storage
+    document.querySelector('#setting_form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        const newConfigs = {
+            fontFamily: form.fontFamily.value,
+            fontSize: form.fontSize.value,
+            theme: form.theme.value
+        }
+
+        saveData(newConfigs);
+
+        document.location.reload()
+    })
 
     // return creator
 }
