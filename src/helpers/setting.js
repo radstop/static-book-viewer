@@ -1,6 +1,9 @@
 export default function Setting() {
-  return {
+  const defaults = {
+    theme: "default",
     fontFamily: "Sahel",
-    theme : "dark"
-  };
+    fontSize: "14px",
+  }
+
+  return JSON.parse(localStorage.getItem("settings")) || defaults
 }
