@@ -392,7 +392,8 @@ img {
   left: 0;
 }
 .setting__items {
-  display: inline-block;
+  padding: 1rem;
+  margin-top: 4rem;
 }
 
 /*# sourceMappingURL=main.css.map */

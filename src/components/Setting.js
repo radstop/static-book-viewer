@@ -1,4 +1,11 @@
-export default function Setting() {
+import HandleSettings, { setTheme } from '../helpers/handleSettings.js'
+
+export default async function Setting() {
+    const config = await HandleSettings();
+    document.body.style.fontFamily = config.fontFamily; // load and set font
+    setTheme(config.theme);
+
+    const { theme, fontFamily, fontSize } = config
 
     document.querySelector('.container')
         .innerHTML +=
@@ -9,7 +16,18 @@ export default function Setting() {
 
             <div class="setting__content">
                 <div class="setting__items">
-                dfdfgdfgfdgfdg dfgfdgfdg  ggg
+                    <h3>تنظیمات</h3>
+
+                    <form id="setting_form">
+                        <input type="text" placeholder="font name" value="${fontFamily}" />
+                        <input type="text" placeholder="font size" value="${fontSize}" />
+                        <select>
+                            <option value="default">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+
+                        <button>Save</button>
+                    </form>
                 </div>
             </div>
         </div>`;
