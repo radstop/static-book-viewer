@@ -34,3 +34,29 @@
   font-stretch: 75% 125%;
   font-style: normal;
 }
+
+@font-face {
+  font-family: Grandstander;
+  src: url("../fonts/latins/Grandstander-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("../fonts/latins/RobotoSlab-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../fonts/latins/Rubik-VariableFont_wght.ttf") format("truetype");
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: normal;
+}

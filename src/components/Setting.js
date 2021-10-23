@@ -78,6 +78,7 @@ export default async function Setting() {
         const newConfigs = {
             fontFamily: form.fontFamily.value,
             fontSize: form.fontSize.value,
+            latinFont: form.latinFont.value,
             theme: form.theme.value
         }
 
