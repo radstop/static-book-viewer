@@ -2,6 +2,7 @@ const defaults = {
   theme: "default",
   fontFamily: "sahel",
   fontSize: 16,
+  latinFont: "domine",
 }
 
 function setTheme(themeName) {

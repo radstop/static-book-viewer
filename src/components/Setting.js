@@ -5,9 +5,9 @@ export default async function Setting() {
     // load and set exist setting data
     const config = await HandleSettings();
 
-    const { theme, fontFamily, fontSize } = config;
+    const { theme, fontFamily, fontSize, latinFont } = config;
 
-    document.body.style.fontFamily = fontFamily;
+    document.body.style.fontFamily = fontFamily + ',' + latinFont;
     document.body.style.fontSize = fontSize + 'px';
     setTheme(theme);
 
@@ -30,6 +30,13 @@ export default async function Setting() {
                             <option value="estedad">استعداد</option>
                         </select>
 
+                        <select name="latinFont">
+                            <option value="domine">Domine</option>
+                            <option value="grandstander">Grandstander</option>
+                            <option value="roboto">Roboto</option>
+                            <option value="rubik">Rubik</option>
+                        </select>
+
                         <input type="number" placeholder="font size" name="fontSize" value="${fontSize}" />
 
                         <select name="theme">
@@ -47,6 +54,7 @@ export default async function Setting() {
 
     // set current theme name to select
     document.querySelector('#setting_form [name="fontFamily"]').value = fontFamily;
+    document.querySelector('#setting_form [name="latinFont"]').value = latinFont;
     document.querySelector('#setting_form [name="theme"]').value = theme;
 
 

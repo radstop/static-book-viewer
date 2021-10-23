@@ -20,6 +20,13 @@
   font-stretch: 75% 125%;
   font-style: normal;
 }
+@font-face {
+  font-family: Domine;
+  src: url("../fonts/latins/Domine-VariableFont_wght.ttf") format("truetype");
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: normal;
+}
 body.dark {
   background-color: #121212;
 }
