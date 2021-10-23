@@ -1,17 +1,17 @@
 import HandleSettings, { setTheme, saveData, setToDefaults } from '../helpers/handleSettings.js'
 
 export default async function Setting() {
+
     // load and set exist setting data
     const config = await HandleSettings();
 
-
     const { theme, fontFamily, fontSize } = config;
 
-    // apply settings to project
     document.body.style.fontFamily = fontFamily;
     document.body.style.fontSize = fontSize + 'px';
     setTheme(theme);
 
+    // setting component
     document.querySelector('.container')
         .innerHTML +=
         `<div class="setting">
