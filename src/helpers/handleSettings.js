@@ -1,20 +1,26 @@
 const defaults = {
-  theme: "dark",
+  theme: "default",
   fontFamily: "sahel",
   fontSize: 16,
 }
 
-export function setTheme(themeName) {
+function setTheme(themeName) {
   if (themeName !== "default") {
     document.body.classList.add("dark");
     document.querySelector(".card").classList.add("card--" + themeName);
   }
 }
 
-export function saveData(data) {
+function saveData(data) {
   localStorage.setItem("settings", JSON.stringify(data))
+}
+
+function setToDefaults() {
+  localStorage.removeItem("settings")
 }
 
 export default function Setting() {
   return JSON.parse(localStorage.getItem("settings")) || defaults
 }
+
+export { setTheme, saveData, setToDefaults }

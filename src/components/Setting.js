@@ -1,4 +1,4 @@
-import HandleSettings, { setTheme, saveData } from '../helpers/handleSettings.js'
+import HandleSettings, { setTheme, saveData, setToDefaults } from '../helpers/handleSettings.js'
 
 export default async function Setting() {
     // load and set exist setting data
@@ -7,6 +7,7 @@ export default async function Setting() {
 
     const { theme, fontFamily, fontSize } = config;
 
+    // apply settings to project
     document.body.style.fontFamily = fontFamily;
     document.body.style.fontSize = fontSize + 'px';
     setTheme(theme);
@@ -38,6 +39,8 @@ export default async function Setting() {
 
                         <button>Save</button>
                     </form>
+
+                    <button id="handle_defaults">Set to defaults</button>
                 </div>
             </div>
         </div>`;
@@ -77,7 +80,11 @@ export default async function Setting() {
 
     // Todo: set latin font
 
-    // TODO: set to default settings
+    // Set to default settings
+    document.querySelector('#handle_defaults').addEventListener('click', (e) => {
+        setToDefaults();
+        document.location.reload();
+    })
 
     // return creator
 }
