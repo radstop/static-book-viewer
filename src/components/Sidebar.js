@@ -1,3 +1,5 @@
+import "../helpers/handleSidebar.js";
+
 async function fetchInventory() {
   const response = await fetch("../src/resources/inventory.json");
 
@@ -24,11 +26,11 @@ async function fetchInventory() {
 
       <ul>
       ${item.lessons
-        .map(
-          (lesson) =>
-            `<li><a href=""  data-link="${lesson.id}">${lesson.title}</a></li>`
-        )
-        .join("")}
+          .map(
+            (lesson) =>
+              `<li><a href=""  data-link="${lesson.id}">${lesson.title}</a></li>`
+          )
+          .join("")}
       </ul>
     </div>
     `;

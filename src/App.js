@@ -2,7 +2,7 @@ import fetchInventory from "./components/Sidebar.js";
 import "./components/GoTop.js";
 
 import getLessonContent from "./helpers/handleCourse.js";
-import "./helpers/handleSidebar.js";
+
 import "./helpers/hashChange.js";
 
 import "./vendor/all.js";
@@ -26,7 +26,6 @@ import SettingComp from "./components/Setting.js";
     console.log('bbbbb')
     window.location.hash = 0;
   }
-
 
   // get clicked lesson content
   document.querySelectorAll(".menu__item a").forEach((lessonLink) => {
