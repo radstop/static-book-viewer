@@ -3,7 +3,7 @@ import "./components/GoTop.js";
 
 import getLessonContent from "./helpers/handleCourse.js";
 
-import "./helpers/hashChange.js";
+
 
 import "./vendor/all.js";
 
