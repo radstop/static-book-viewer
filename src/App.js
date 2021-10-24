@@ -1,13 +1,7 @@
 import fetchInventory from "./components/Sidebar.js";
 import "./components/GoTop.js";
-
 import getLessonContent from "./helpers/handleCourse.js";
-
-
-
 import "./vendor/all.js";
-
-
 import SettingComp from "./components/Setting.js";
 
 (async () => {
@@ -15,11 +9,11 @@ import SettingComp from "./components/Setting.js";
   const res = await fetchInventory();
   document.querySelector("body").innerHTML += res;
 
-
   const currentHash = Number(window.location.hash.replace("#", ""));
 
   if (currentHash) {
     getLessonContent(currentHash);
+    console.log('here')
   } else {
     // get first lesson content
     getLessonContent(0);

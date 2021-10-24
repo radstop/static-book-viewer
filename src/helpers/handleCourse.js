@@ -11,6 +11,8 @@ export default async function getLessonContent(lessonID) {
   const [clickedPageTitle, mainContent] = await getCourse(lessonID);
   document.title = clickedPageTitle;
 
+  console.log('yes')
+
   document.querySelector(".container .navigation").innerHTML =
     Navigation(lessonID);
 
