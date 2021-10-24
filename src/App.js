@@ -13,11 +13,9 @@ import SettingComp from "./components/Setting.js";
 
   if (currentHash) {
     getLessonContent(currentHash);
-    console.log('here')
   } else {
     // get first lesson content
     getLessonContent(0);
-    console.log('bbbbb')
     window.location.hash = 0;
   }
 
@@ -32,7 +30,6 @@ import SettingComp from "./components/Setting.js";
 
       getLessonContent(lessonLink.dataset.link);
       window.location.hash = lessonLink.dataset.link;
-      console.log(lessonLink.dataset.link)
     });
   });
 
