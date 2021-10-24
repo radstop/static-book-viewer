@@ -22,12 +22,5 @@ window.addEventListener("hashchange", () => {
     });
 
     selectedItem.parentNode.className = "submenu--active";
-
-    // open submenu after page load
-    // if (!document.querySelector(".menu__item--open")) {
-    //   document
-    //     .querySelector(".submenu--active")
-    //     .parentNode.parentNode.classList.add("menu__item--open");
-    // }
   }
 });

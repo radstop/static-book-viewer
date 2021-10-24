@@ -1,10 +1,10 @@
 import "../handlers/hashChange.js";
+import handleActiveCourse from "../handlers/handleActiveCourse.js";
 
 async function getCourse(lessonID) {
   let response = await fetch("../src/pages/" + lessonID + ".html");
 
-  document.querySelector(`[data-link="${lessonID}"]`).parentNode.parentNode.parentNode.classList.add("menu__item--open");
-  document.querySelector(`[data-link="${lessonID}"]`).parentNode.classList.add("submenu--active");
+  handleActiveCourse(lessonID)
 
   if (!response.ok) {
     let notFoundTemplate = `
