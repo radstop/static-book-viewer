@@ -1,4 +1,4 @@
-import "../helpers/hashChange.js";
+import "../handlers/hashChange.js";
 
 async function getCourse(lessonID) {
   let response = await fetch("../src/pages/" + lessonID + ".html");

@@ -1,4 +1,4 @@
-import "../helpers/handleSidebar.js";
+import "../handlers/handleSidebar.js";
 
 async function fetchInventory() {
   const response = await fetch("../src/resources/inventory.json");

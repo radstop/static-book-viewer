@@ -1,4 +1,4 @@
-import HandleSettings, { setTheme, saveData, setToDefaults } from '../helpers/handleSettings.js'
+import HandleSettings, { setTheme, saveData, setToDefaults } from '../handlers/handleSettings.js'
 
 export default async function Setting() {
 

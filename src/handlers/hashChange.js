@@ -1,4 +1,4 @@
-import getLessonContent from "../helpers/handleCourse.js";
+import getLessonContent from "../handlers/handleCourse.js";
 
 
 window.addEventListener("hashchange", () => {
