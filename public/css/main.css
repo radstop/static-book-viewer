@@ -424,4 +424,44 @@ img {
   margin-top: 4rem;
 }
 
+.search__toggle {
+  position: fixed;
+  top: 1rem;
+  left: 3.5rem;
+  background: #fff;
+  width: 30px;
+  height: 30px;
+  padding: 3px;
+  border-radius: 50%;
+  z-index: 10;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.search__toggle svg {
+  fill: #555 !important;
+}
+.search__toggle:hover {
+  background: orange;
+}
+.search__toggle:hover svg {
+  fill: #fff !important;
+}
+.search__content {
+  background: #ccc;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+.search__content--active {
+  left: 0;
+}
+.search__items {
+  padding: 1rem;
+  margin-top: 4rem;
+}
+
 /*# sourceMappingURL=main.css.map */

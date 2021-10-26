@@ -3,6 +3,7 @@ import "./components/GoTop.js";
 import getLessonContent from "./handlers/handleCourse.js";
 import "./vendor/all.js";
 import SettingComp from "./components/Setting.js";
+import Search from "./components/Search.js";
 
 (async () => {
   // put inventory content in sidebar
@@ -34,4 +35,9 @@ import SettingComp from "./components/Setting.js";
   });
 
   SettingComp()
+
 })();
+
+// Search()
+
+
