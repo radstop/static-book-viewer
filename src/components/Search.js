@@ -1,3 +1,5 @@
+import Course from "./Course";
+
 export default function Search() {
     // search component
     const searchNode = `
@@ -14,6 +16,14 @@ export default function Search() {
                     <h3>جستجو</h3>
 
                     <input type="text" />
+
+                    <button class="search__submit">
+                    جستجو
+                    </button>
+                </div>
+
+                <div class="search__results">
+                    <ul></ul>
                 </div>
             </div>
         </div>`
@@ -22,6 +32,8 @@ export default function Search() {
 }
 
 export async function searchActions() {
+    const menuItems = await fetch("../src/resources/inventory.json").then(res => res.json());
+
     document.querySelector('.search__toggle').addEventListener('click', (e) => {
         const searchContent = document.querySelector('.search__content');
 
@@ -35,4 +47,22 @@ export async function searchActions() {
             document.querySelector('.setting__content--active').classList.remove('setting__content--active');
         }
     });
+
+    document.querySelector('.search__submit').addEventListener('click', (e) => {
+        const searchInput = document.querySelector('.search__items input');
+
+
+        menuItems.map(item => {
+            item.lessons.map(lesson => {
+                if (lesson.title.includes(searchInput.value)) {
+                    console.log(lesson)
+                    document.querySelector('.search__results ul').innerHTML += `
+                    <li>
+                        <a href="" data-link="${lesson.title}">${lesson.title}</a>
+                    </li>
+                    `
+                }
+            })
+        })
+    })
 }
