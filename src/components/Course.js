@@ -1,23 +1,20 @@
-import "../handlers/hashChange.js";
-import handleActiveCourse from "../handlers/handleActiveCourse.js";
+/**
+ * This function put lesson content and title of lesson in html document
+ * @param {number} lessonID
+ * @param {Function} callbackFunc
+ */
 
-async function getCourse(lessonID) {
-  let response = await fetch("../src/pages/" + lessonID + ".html");
+import Navigation from "../components/Navigation.js";
+import handleGetCourse from "../handlers/handleGetCourse.js";
 
-  handleActiveCourse(lessonID)
+export default async function Course(lessonID) {
+  const [clickedPageTitle, mainContent] = await handleGetCourse(lessonID);
+  document.title = clickedPageTitle;
 
-  if (!response.ok) {
-    let notFoundTemplate = `
-            <div class="nf-container">
-                <img src="../../public/img/404.png">
-            </div>
-        `;
-    return ["404", notFoundTemplate];
-  }
+  document.querySelector(".container .navigation").innerHTML =
+    Navigation(lessonID);
 
-  const body = await response.text();
-  const pageTitle = body.match("(?<=<h2>)(.*?)(?=</h2>)")[0];
-  return [pageTitle, body];
+  document.querySelector(".container .loading").innerHTML = "";
+  document.querySelector(".container .post").innerHTML = mainContent;
+  window.Prism.highlightAll();
 }
-
-export default getCourse;

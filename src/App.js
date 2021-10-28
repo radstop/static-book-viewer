@@ -1,9 +1,9 @@
 import Sidebar from "./components/Sidebar.js";
-import "./components/GoTop.js";
-import getLessonContent from "./handlers/handleCourse.js";
-import "./vendor/all.js";
+import Course from "./components/Course.js";
 import Setting, { settingActions } from "./components/Setting.js";
 import Search, { searchActions } from "./components/Search.js";
+import "./components/GoTop.js";
+import "./vendor/all.js";
 
 (async () => {
   // put inventory content in sidebar
@@ -17,10 +17,10 @@ import Search, { searchActions } from "./components/Search.js";
   const currentHash = Number(window.location.hash.replace("#", ""));
 
   if (currentHash) {
-    getLessonContent(currentHash);
+    Course(currentHash);
   } else {
     // get first lesson content
-    getLessonContent(0);
+    Course(0);
     window.location.hash = 0;
   }
 
@@ -33,7 +33,7 @@ import Search, { searchActions } from "./components/Search.js";
       }
       e.preventDefault();
 
-      getLessonContent(lessonLink.dataset.link);
+      Course(lessonLink.dataset.link);
       window.location.hash = lessonLink.dataset.link;
     });
   });

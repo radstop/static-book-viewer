@@ -1,11 +1,11 @@
-import getLessonContent from "../handlers/handleCourse.js";
+import Course from "../components/Course.js";
 
 
 window.addEventListener("hashchange", () => {
   const lessonID = Number(window.location.hash.replace("#", ""));
   const selectedItem = document.querySelector(`[data-link='${lessonID}']`);
 
-  getLessonContent(lessonID);
+  Course(lessonID);
 
   window.scroll({
     top: 0,
