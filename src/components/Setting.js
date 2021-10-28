@@ -69,6 +69,10 @@ export async function settingActions() {
         } else {
             settingContent.classList.add('setting__content--active');
         }
+
+        if (document.querySelector('.search__content--active')) {
+            document.querySelector('.search__content--active').classList.remove('search__content--active');
+        }
     });
 
 
