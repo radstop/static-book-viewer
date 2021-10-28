@@ -397,6 +397,7 @@ img {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
 }
 .setting__toggle svg {
   fill: #555 !important;
@@ -437,6 +438,7 @@ img {
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
 }
 .search__toggle svg {
   fill: #555 !important;

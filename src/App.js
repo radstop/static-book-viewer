@@ -16,4 +16,3 @@ const currentHash = Number(window.location.hash.replace("#", ""));
 
   Course(currentHash);
 })();
-

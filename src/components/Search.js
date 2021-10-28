@@ -47,20 +47,29 @@ export async function searchActions() {
     });
 
     document.querySelector('.search__submit').addEventListener('click', (e) => {
-        const searchInput = document.querySelector('.search__items input');
+        const searchInput = document.querySelector('.search__items input').value.toLowerCase()
+        const renderSearchResults = document.querySelector('.search__results ul');
 
+        if (searchInput) {
+            if (searchInput.length > 2) {
+                renderSearchResults.innerHTML = ''
 
-        menuItems.map(item => {
-            item.lessons.map(lesson => {
-                if (lesson.title.includes(searchInput.value)) {
-                    console.log(lesson)
-                    document.querySelector('.search__results ul').innerHTML += `
-                    <li>
-                        <a href="" data-link="${lesson.title}">${lesson.title}</a>
-                    </li>
-                    `
-                }
-            })
-        })
+                menuItems.map(item => {
+                    item.lessons.map(lesson => {
+                        if (lesson.title.includes(searchInput)) {
+                            renderSearchResults.innerHTML += `
+                            <li>
+                                <a href="" data-link="${lesson.title}">${lesson.title}</a>
+                            </li>
+                            `
+                        }
+                    })
+                })
+            } else {
+                alert('بیشتر از دو حرف وارد کنید')
+            }
+        } else {
+            alert('لطفا عنوان درس را وارد کنید')
+        }
     })
 }
