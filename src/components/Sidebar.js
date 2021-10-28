@@ -1,12 +1,11 @@
 import "../handlers/handleSidebar.js";
 
-async function fetchInventory() {
+async function Sidebar() {
   const response = await fetch("../src/resources/inventory.json");
 
   let data = await response.json();
 
   let sidebarTemplate = `
-
   <div class="menu">
   <span class="menu__toggle-btn">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
@@ -42,4 +41,4 @@ async function fetchInventory() {
   return sidebarTemplate;
 }
 
-export default fetchInventory;
+export default Sidebar;

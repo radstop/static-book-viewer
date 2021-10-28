@@ -1,14 +1,18 @@
-import fetchInventory from "./components/Sidebar.js";
+import Sidebar from "./components/Sidebar.js";
 import "./components/GoTop.js";
 import getLessonContent from "./handlers/handleCourse.js";
 import "./vendor/all.js";
-import SettingComp from "./components/Setting.js";
-import Search from "./components/Search.js";
+import Setting, { settingActions } from "./components/Setting.js";
+import Search, { searchActions } from "./components/Search.js";
 
 (async () => {
   // put inventory content in sidebar
-  const res = await fetchInventory();
-  document.querySelector("body").innerHTML += res;
+
+  document.querySelector("body").innerHTML +=
+    await Sidebar() + await Setting() + await Search();
+
+  settingActions()
+  searchActions()
 
   const currentHash = Number(window.location.hash.replace("#", ""));
 
@@ -33,9 +37,6 @@ import Search from "./components/Search.js";
       window.location.hash = lessonLink.dataset.link;
     });
   });
-
-  SettingComp()
-
 })();
 
 // Search()
