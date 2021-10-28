@@ -1,5 +1,3 @@
-import Course from "./Course";
-
 export default function Search() {
     // search component
     const searchNode = `

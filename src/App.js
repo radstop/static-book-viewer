@@ -15,28 +15,13 @@ import "./vendor/all.js";
   searchActions()
 
   const currentHash = Number(window.location.hash.replace("#", ""));
+  Course(currentHash);
 
-  if (currentHash) {
-    Course(currentHash);
-  } else {
-    // get first lesson content
-    Course(0);
-    window.location.hash = 0;
-  }
 
-  // get clicked lesson content
-  document.querySelectorAll(".menu__item a").forEach((lessonLink) => {
-    lessonLink.addEventListener("click", async function (e) {
-      // default collapse sidebar on mobile size
-      if (window.innerWidth < 768) {
-        document.querySelector(".menu").classList.add("menu__collapse");
-      }
-      e.preventDefault();
 
-      Course(lessonLink.dataset.link);
-      window.location.hash = lessonLink.dataset.link;
-    });
-  });
+
+
+
 })();
 
 // Search()
