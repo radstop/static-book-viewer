@@ -44,5 +44,43 @@
   &__items {
     padding: 1rem;
     margin-top: 4rem;
+
+    .setting__item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      width: 100%;
+      display: block;
+      margin:6px 0;
+      padding: 14px 8px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+
+      &.save-setting {
+        background-color: rgb(12, 168, 72);
+        color: #ffffff;
+      }
+
+      &#handle_defaults {
+        border: 1px solid #999;
+        background-color: #dedede;
+      }
+    }
+  }
+
+  input , select {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 3px 0;
+  }
+
+  input {
+    inline-size: inherit;
   }
 }

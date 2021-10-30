@@ -18,27 +18,36 @@ export default async function Setting() {
             <h3>تنظیمات</h3>
 
             <form id="setting_form">
-                <select name="fontFamily">
-                    <option value="sahel">ساحل</option>
-                    <option value="vazir">وزیر</option>
-                    <option value="estedad">استعداد</option>
-                </select>
-
-                <select name="latinFont">
-                    <option value="domine">Domine</option>
-                    <option value="grandstander">Grandstander</option>
-                    <option value="roboto">Roboto</option>
-                    <option value="rubik">Rubik</option>
-                </select>
-
-                <input type="number" placeholder="font size" name="fontSize" value="${fontSize}" />
-
-                <select name="theme">
-                    <option value="default">Light</option>
-                    <option value="dark">Dark</option>
-                </select>
-
-                <button>Save</button>
+                <div class="setting__item">
+                    <span>فونت فارسی</span>
+                    <select name="fontFamily">
+                        <option value="sahel">ساحل</option>
+                        <option value="vazir">وزیر</option>
+                        <option value="estedad">استعداد</option>
+                    </select>
+                </div>
+                <div class="setting__item">
+                    <span>فونت انگلیسی</span>
+                    <select name="latinFont">
+                        <option value="domine">Domine</option>
+                        <option value="grandstander">Grandstander</option>
+                        <option value="roboto">Roboto</option>
+                        <option value="rubik">Rubik</option>
+                    </select>
+                </div>
+                <div class="setting__item">
+                    <span>اندازه فونت</span>
+                    <input type="number" placeholder="font size" name="fontSize" value="${fontSize}" />
+                </div>
+                <div class="setting__item">
+                    <span>نوع پوسته (تم)</span>
+                    <select name="theme">
+                        <option value="default">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </div>
+                <br/>
+                <button class="save-setting">Save</button>
             </form>
 
             <button id="handle_defaults">Set to defaults</button>
