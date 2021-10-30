@@ -44,5 +44,19 @@
   &__items {
     padding: 1rem;
     margin-top: 4rem;
+
+    input , button {
+      width: 100%;
+      padding: 10px 13px;
+      margin-bottom: 8px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: rgb(12, 168, 72);
+      color: #ffffff;
+      cursor: pointer;
+    }
   }
 }

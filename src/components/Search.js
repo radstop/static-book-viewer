@@ -13,11 +13,11 @@ export default function Search() {
                 <div class="search__items">
                     <h3>جستجو</h3>
 
-                    <input type="text" />
+                    <div>
+                        <input type="text" placeholder="Type keyword here" autocomplete="off"/>
+                    </div>
 
-                    <button class="search__submit">
-                    جستجو
-                    </button>
+                    <button class="search__submit">Search</button>
                 </div>
 
                 <div class="search__results">
