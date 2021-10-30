@@ -7,7 +7,7 @@ const defaults = {
 
 function setTheme(themeName) {
   if (themeName !== "default") {
-    document.body.classList.add("dark");
+    document.body.classList.add(themeName);
     document.querySelector(".card").classList.add("card--" + themeName);
   }
 }
