@@ -47,10 +47,10 @@ export default async function Setting() {
                     </select>
                 </div>
                 <br/>
-                <button class="save-setting">Save</button>
+                <button class="save-setting">ذخیره</button>
             </form>
 
-            <button id="handle_defaults">Set to defaults</button>
+            <button id="handle_defaults">تنظیمات پیش‌فرض</button>
         </div>
     </div>
     </div>

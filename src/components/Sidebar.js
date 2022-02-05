@@ -27,7 +27,7 @@ async function Sidebar() {
       ${item.lessons
           .map(
             (lesson) =>
-              `<li><a href=""  data-link="${lesson.id}">${lesson.title}</a></li>`
+              `<li><a href="" data-link="${lesson.id}">${lesson.title}</a></li>`
           )
           .join("")}
       </ul>
