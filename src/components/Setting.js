@@ -84,7 +84,6 @@ export async function settingActions() {
         }
     });
 
-
     // handle save data to setting storage
     document.querySelector('#setting_form').addEventListener('submit', (e) => {
         e.preventDefault();
@@ -109,3 +108,4 @@ export async function settingActions() {
         document.location.reload();
     })
 }
+

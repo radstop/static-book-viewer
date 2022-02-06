@@ -32,9 +32,9 @@ export default function Search() {
 export async function searchActions() {
     const menuItems = await fetch("../src/resources/inventory.json").then(res => res.json());
 
-    document.querySelector('.search__toggle').addEventListener('click', (e) => {
-        const searchContent = document.querySelector('.search__content');
+    const searchContent = document.querySelector('.search__content');
 
+    document.querySelector('.search__toggle').addEventListener('click', (e) => {
         if (searchContent.classList.contains('search__content--active')) {
             searchContent.classList.remove('search__content--active');
         } else {
