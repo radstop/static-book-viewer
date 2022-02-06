@@ -11,8 +11,6 @@ export default async function Course(lessonID = 0) {
   const [clickedPageTitle, mainContent] = await handleGetCourse(lessonID);
   document.title = clickedPageTitle;
 
-
-
   if (lessonID == 0) {
     window.location.hash = 0;
   }
