@@ -1,5 +1,5 @@
 import Course from "./components/Course.js";
-import Sidebar from "./components/Sidebar.js";
+import Sidebar, { sidebarActions } from "./components/Sidebar.js";
 import Setting, { settingActions } from "./components/Setting.js";
 import Search, { searchActions } from "./components/Search.js";
 import "./components/GoTop.js";
@@ -13,6 +13,7 @@ const currentHash = Number(window.location.hash.replace("#", ""));
 
   settingActions()
   searchActions()
+  sidebarActions()
 
   Course(currentHash);
 })();
