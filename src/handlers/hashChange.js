@@ -6,12 +6,15 @@ window.addEventListener("hashchange", () => {
 
   Course(lessonID);
 
+  console.log(lessonID);
+
   window.scroll({
     top: 0,
     behavior: "smooth",
   });
 
   if (selectedItem) {
+    console.log(selectedItem);
     // set active to selected lesson
     document.querySelectorAll(".submenu--active").forEach((item) => {
       item.classList.remove("submenu--active");
