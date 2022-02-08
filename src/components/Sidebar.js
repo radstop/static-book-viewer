@@ -82,6 +82,7 @@ export async function sidebarActions() {
       }
     });
 
+  // handle sidebar area and container flexibility
   const handleSidebarOnWidth = () => {
     if (window.innerWidth > 768) {
       document.querySelector(".container").classList.add("container--with-sb");

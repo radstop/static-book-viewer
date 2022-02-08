@@ -31,7 +31,6 @@ export default function Search() {
 
 export async function searchActions() {
     const menuItems = await fetch("../src/resources/inventory.json").then(res => res.json());
-
     const searchContent = document.querySelector('.search__content');
 
     document.querySelector('.search__toggle').addEventListener('click', (e) => {
