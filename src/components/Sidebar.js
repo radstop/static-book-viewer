@@ -1,4 +1,3 @@
-import "../handlers/handleSidebar.js";
 import Course from "./Course.js";
 
 export default async function Sidebar() {
