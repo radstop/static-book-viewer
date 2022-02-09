@@ -99,11 +99,13 @@ body {
 }
 
 button,
-select {
+select,
+input {
   font-family: inherit;
 }
-
-select:focus {
+button:focus,
+select:focus,
+input:focus {
   outline: none;
 }
 
